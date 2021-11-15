@@ -1,4 +1,53 @@
 Liste des fonctions à réaliser pour notre lecteur de musique :
-stockage de musiques et de leurs infos associées (BDD)
+
+Regle de creation de variable :
+camelCase
+anglais
+Variable : singulier
+Listes : pluriels
+
+NOTA BENE : PRENDRE 5-6 MUSIQUES LIBRES DE DROIT pour bosser
+
+Commencer par présentation du projet : style methode Agile, voir user story, sprint, etc
+graphe usecase diagram StarUML
+
+V1 : essentiel
+
+BDD / JPA / Dao :
+stockage de musiques et de leurs infos associées :
+
+table 1 : musiques
+- id musique (clé primaire)
+- title
+- genre
+- duration
+- fichier musique
+- id album (clé étrangère)
+
+table 2 : albums
+- id album (clé primaire)
+- albumCover
+- album
+- artiste
+
+users :
+- password
+- login
+- id
+- accountType (admin / premium) free -> sans authentif
+
+JS, CSS, HTML, Java EE :
 création d'un site web avec accès via connexion & session (web), dont lecteur de musique
-lecteur de musique : afficher image album, fonctions lecture, pause, recommencer
+- page d'accueil -> avec accès authentification OU accès page gratuite ; jolie façade du site
+- page d'authentification -> login, password, mot de passe oublié, retour
+- page d'écoute : lecteur de musique moche sur un bandeau, titre, durée, artiste, album
+recherche : barre d'input pour filtre sur BDD à l'arrache dans la BDD en entier sans faute
+sans authentif : sans option de passer la chanson ; recherche (tri BDD) ;
+avec session : droit à la pause, recherche (tri BDD), choix de chanson, passer de chanson, etc
+
+V2 : pas mal
+recherche : barre d'input pour filtre sur BDD puis bouton " je cherche un artiste " / " je cherche une chanson "
+
+V3 : luxe
+systeme de recherche avancé (prise en compte des fautes, etc)
+lecteur de musique : afficher albumCover, durée totale / restante, lecture, pause, recommencer, next
