@@ -1,1 +1,4 @@
-test
+Liste des fonctions à réaliser pour notre lecteur de musique :
+stockage de musiques et de leurs infos associées (BDD)
+création d'un site web avec accès via connexion & session (web), dont lecteur de musique
+lecteur de musique : afficher image album, fonctions lecture, pause, recommencer
