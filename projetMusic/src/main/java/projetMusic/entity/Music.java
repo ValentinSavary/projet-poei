@@ -25,13 +25,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "music")
 @NamedQueries({
-		@NamedQuery(name = "Music.findAll", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists"),
-		@NamedQuery(name = "Music.findByTitle", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists where mus.title=:title"),
+		@NamedQuery(name = "Music.findAll", query = "select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art"),
+		@NamedQuery(name = "Music.findByTitle", query = "select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art where mus.title=:title"),
 		@NamedQuery(name = "Music.findByAlbum", query = "select mus from Music mus left join fetch mus.albums where mus.albums=:album"),
 		@NamedQuery(name = "Music.findByPlaylist", query = "select mus from Music mus left join fetch mus.playlists where mus.playlists=:playlist"),
-		@NamedQuery(name = "Music.findByArtist", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists where mus.albums.artists=:artist"),
-		@NamedQuery(name = "Music.findByGenre", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists where mus.genres=:genre") })
+		@NamedQuery(name = "Music.findByArtist", query = "select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art where art=:artist")})
 @SequenceGenerator(name = "seqMusic", sequenceName = "seq_music", allocationSize = 1)
+
+//@NamedQuery(name = "Music.findAll", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists")})
+//@NamedQuery(name = "Music.findByTitle", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists where mus.title=:title")
+//@NamedQuery(name = "Music.findByArtist", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists where mus.albums.artists=:artist")})
+//@NamedQuery(name = "Music.findByGenre", query = "select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists art where mus.genres=:genre") })
+
 public class Music {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMusic")
@@ -66,6 +71,12 @@ public class Music {
 
 	public Music() {
 		super();
+	}
+	
+	public Music(String title, Integer duration) {
+		super();
+		this.title = title;
+		this.duration = duration;
 	}
 
 	// Getters & Setters
@@ -102,13 +113,13 @@ public class Music {
 		this.musicFile = musicFile;
 	}
 
-	public Set<Genre> getGenres() {
-		return genres;
-	}
-
-	public void setGenres(Set<Genre> genres) {
-		this.genres = genres;
-	}
+//	public Set<Genre> getGenres() {
+//		return genres;
+//	}
+//
+//	public void setGenres(Set<Genre> genres) {
+//		this.genres = genres;
+//	}
 
 	// Methods
 

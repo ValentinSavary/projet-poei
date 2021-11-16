@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @SequenceGenerator(name = "seqUser", sequenceName = "seq_user", allocationSize = 1, initialValue = 100)
 public class User {
 	
@@ -46,11 +46,10 @@ public class User {
 		super();
 	}
 	
-	public User(String login, String password, AccountType accountType) {
+	public User(String login, String password) {
 		super();
 		this.login = login;
 		this.password = password;
-		this.accountType = accountType;
 	}
 
 	public Long getId() {

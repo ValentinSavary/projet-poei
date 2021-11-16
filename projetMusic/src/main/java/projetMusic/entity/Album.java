@@ -48,9 +48,6 @@ public class Album {
 	@ManyToMany
 	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_artist"))
 	private Set<Artist> artists;
-
-//	@Column(name = "album_genre")
-//	private Set<Genre> genres;
 	@Lob
 	@Column(name = "album_cover")
 	private byte[] cover;

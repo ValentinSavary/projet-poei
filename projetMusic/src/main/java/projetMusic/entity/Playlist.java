@@ -21,7 +21,7 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "playlist")
 @NamedQueries({
-		@NamedQuery(name = "Playlist.findByName", query = "select pla from Playlist pla left join fetch pla.musics left join fetch pla.musics.albums left join fetch pla.musics.albums.artists where pla.name=:name") })
+		@NamedQuery(name = "Playlist.findByName", query = "select pla from Playlist pla left join fetch pla.musics as mus left join fetch mus.albums as alb left join fetch alb.artists art where pla.name=:name") })
 @SequenceGenerator(name = "seqPlaylist", sequenceName = "seq_playlist", allocationSize = 1, initialValue = 100)
 public class Playlist {
 

@@ -1,14 +1,10 @@
 package projetMusic;
 
-import static org.junit.Assert.*;
-
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
 
 import org.junit.Test;
 
@@ -25,7 +21,7 @@ public class QueryTest {
 		music1.setTitle("test");
 		Set<Genre> genres = new HashSet<Genre>();
 		genres.add(Genre.Classical);
-		music1.setGenres(genres);
+		//music1.setGenres(genres);
 
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();

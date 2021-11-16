@@ -20,17 +20,19 @@ import javax.persistence.Table;
 @Table(name = "artist")
 // Requêtes
 @NamedQueries({
-		// Selection de tous les artistes et leurs albums par la jointure associée à
-		// l'attribut albums
+		// Selection de tous les artistes et leurs albums par la jointure associée à l'attribut albums
 		@NamedQuery(name = "Artist.findAll", query = "select art from Artist art left join fetch art.albums"),
-		@NamedQuery(name = "Artist.findByName", query = "select art from Artist art left join fetch art.albums left join fetch art.albums.musics where art.name=:name"),
-		// Selection de tous les artistes (et leurs albums) qui ont un album nommé comme
-		// l'input
+		@NamedQuery(name = "Artist.findByName", query = "select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where art.name=:name"),		
+//		// Selection de tous les artistes (et leurs albums) qui ont un album nommé comme l'input
 		@NamedQuery(name = "Artist.findByAlbum", query = "select art from Artist art left join fetch art.albums where art.albums =:album"),
-		// Selection de tous les artistes (et leurs albums) qui ont une musique nommée
-		// comme l'input
-		@NamedQuery(name = "Artist.findByMusic", query = "select art from Artist art left join fetch art.albums left join fetch art.albums.musics where art.albums.musics=:music"),
-		@NamedQuery(name = "Artist.findByGenre", query = "select art from Artist art left join fetch art.albums left join fetch art.albums.musics where art.albums.musics=:genre") })
+//		// Selection de tous les artistes (et leurs albums) qui ont une musique nommée comme l'input
+		@NamedQuery(name = "Artist.findByMusic", query = "select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where alb.musics=:music"),
+		@NamedQuery(name = "Artist.findByGenre", query = "select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where alb.musics=:genre") })
+
+//@NamedQuery(name = "Artist.findByName", query = "select art from Artist art left join fetch art.albums left join fetch art.albums.musics where art.name=:name")})
+//@NamedQuery(name = "Artist.findByMusic", query = "select art from Artist art left join fetch art.albums left join fetch art.albums.musics where art.albums.musics=:music")})
+//@NamedQuery(name = "Artist.findByGenre", query = "select art from Artist art left join fetch art.albums left join fetch art.albums.musics where art.albums.musics=:genre")
+
 @SequenceGenerator(name = "seqArtist", sequenceName = "seq_artist", allocationSize = 1)
 public class Artist {
 	@Id
@@ -41,21 +43,24 @@ public class Artist {
 	private String name;
 	@Column(name = "artist_country", length = 20)
 	private String country;
-
+	@Column(name = "artist_album", length = 40)
+	
 	// Jointure de tables artist et album via colonnes id_artist et id_album ;
 	// l'attribut albums récupère la jointure
-	@Column(name = "artist_album", length = 40)
 	@ManyToMany
 	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_artist"), inverseJoinColumns = @JoinColumn(name = "id_album"))
 	private Set<Album> albums;
-//	@Column(name = "artist_genre")
-//	//jointure
-//	private Set<Genre> genres;
 
 	// Constructeurs
 
 	public Artist() {
 		super();
+	}
+
+	public Artist(String name, String country) {
+		super();
+		this.name = name;
+		this.country = country;
 	}
 
 	// Getters & Setters
@@ -91,14 +96,6 @@ public class Artist {
 	public void setAlbums(Set<Album> albums) {
 		this.albums = albums;
 	}
-
-//	public Set<Genre> getGenres() {
-//		return genres;
-//	}
-//
-//	public void setGenres(Set<Genre> genres) {
-//		this.genres = genres;
-//	}
 
 	// Methods
 
