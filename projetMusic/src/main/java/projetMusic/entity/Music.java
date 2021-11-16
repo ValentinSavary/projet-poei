@@ -3,17 +3,34 @@ package projetMusic.entity;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "music")
+@NamedQueries({
+		@NamedQuery(name = "Music.findAll", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists"),
+		@NamedQuery(name = "Music.findByTitle", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists where mus.title=:title"),
+		@NamedQuery(name = "Music.findByAlbum", query = "select mus from Music mus left join fetch mus.albums where mus.albums=:album"),
+		@NamedQuery(name = "Music.findByPlaylist", query = "select mus from Music mus left join fetch mus.playlists where mus.playlists=:playlist"),
+		@NamedQuery(name = "Music.findByArtist", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists where mus.albums.artists=:artist"),
+		@NamedQuery(name = "Music.findByGenre", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists where mus.genres=:genre") })
 @SequenceGenerator(name = "seqMusic", sequenceName = "seq_music", allocationSize = 1)
 public class Music {
 	@Id
@@ -27,8 +44,23 @@ public class Music {
 	@Lob
 	@Column(name = "music_file")
 	private byte[] musicFile;
-	@Column(name = "music_genre")
-	private Set<Genre> genres;
+
+	// Gestion de l'énumération de genre musical
+
+//	@ElementCollection(targetClass = Genre.class, fetch = FetchType.EAGER)
+//	@CollectionTable(name = "genre", joinColumns = @JoinColumn(name = "music_id", referencedColumnName = "id"))
+//	@Enumerated(EnumType.STRING)
+//	@Column(name = "music_genre")
+//	private Set<Genre> genres;
+
+	// Jointures
+
+	@ManyToMany
+	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_album"))
+	private Set<Album> albums;
+	@ManyToMany
+	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_playlist"))
+	private Set<Playlist> playlists;
 
 	// Constructeurs
 

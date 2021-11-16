@@ -18,12 +18,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "artist")
+// Requêtes
 @NamedQueries({
-	@NamedQuery(name = "Artist.findByAlbum", query = "select a from Artist a left join fetch a.albums where a.albums =:album"),
-	@NamedQuery(name = "Artist.findAll", query = "select a from Artist a left join fetch a.albums"),
-	@NamedQuery(name = "Artist.findByMusic", query = "select a from Artist a left join fetch a.albums ab left join fetch ab.musics where ab.musics=:music"),
-	
-})
+		// Selection de tous les artistes et leurs albums par la jointure associée à
+		// l'attribut albums
+		@NamedQuery(name = "Artist.findAll", query = "select art from Artist art left join fetch art.albums"),
+		@NamedQuery(name = "Artist.findByName", query = "select art from Artist art left join fetch art.albums left join fetch art.albums.musics where art.name=:name"),
+		// Selection de tous les artistes (et leurs albums) qui ont un album nommé comme
+		// l'input
+		@NamedQuery(name = "Artist.findByAlbum", query = "select art from Artist art left join fetch art.albums where art.albums =:album"),
+		// Selection de tous les artistes (et leurs albums) qui ont une musique nommée
+		// comme l'input
+		@NamedQuery(name = "Artist.findByMusic", query = "select art from Artist art left join fetch art.albums left join fetch art.albums.musics where art.albums.musics=:music"),
+		@NamedQuery(name = "Artist.findByGenre", query = "select art from Artist art left join fetch art.albums left join fetch art.albums.musics where art.albums.musics=:genre") })
 @SequenceGenerator(name = "seqArtist", sequenceName = "seq_artist", allocationSize = 1)
 public class Artist {
 	@Id
@@ -34,9 +41,12 @@ public class Artist {
 	private String name;
 	@Column(name = "artist_country", length = 20)
 	private String country;
+
+	// Jointure de tables artist et album via colonnes id_artist et id_album ;
+	// l'attribut albums récupère la jointure
 	@Column(name = "artist_album", length = 40)
 	@ManyToMany
-	@JoinTable (name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_artist"), inverseJoinColumns = @JoinColumn(name = "id_album"))
+	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_artist"), inverseJoinColumns = @JoinColumn(name = "id_album"))
 	private Set<Album> albums;
 //	@Column(name = "artist_genre")
 //	//jointure
@@ -48,8 +58,8 @@ public class Artist {
 		super();
 	}
 
-	//Getters & Setters
-	
+	// Getters & Setters
+
 	public Long getId() {
 		return id;
 	}
@@ -90,9 +100,9 @@ public class Artist {
 //		this.genres = genres;
 //	}
 
-	//Methods
+	// Methods
 
-	//Hashcode & equals
+	// Hashcode & equals
 
 	@Override
 	public int hashCode() {

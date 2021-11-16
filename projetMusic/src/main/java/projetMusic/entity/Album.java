@@ -8,12 +8,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "album")
+// Requêtes
+@NamedQueries({
+		// Selection de tous les albums et leurs musiques par la jointure associée à
+		// l'attribut musics
+		@NamedQuery(name = "Album.findAll", query = "select alb from Album alb left join fetch alb.musics"),
+		@NamedQuery(name = "Album.findByName", query = "select alb from Album alb left join fetch alb.artists left join fetch alb.musics where alb.name =:name"),
+		// Selection de tous les albums (et leurs albums) qui ont une musique nommée
+		// comme l'input
+		@NamedQuery(name = "Album.findByMusic", query = "select alb from Album alb left join fetch alb.musics where alb.musics =:music"),
+		// Selection de tous les albums (et leurs albums) qui ont un artiste nommé comme
+		// l'input
+		@NamedQuery(name = "Album.findByArtist", query = "select alb from Album alb left join fetch alb.artists where alb.artists =:artist"),
+		@NamedQuery(name = "Album.findByGenre", query = "select alb from Album alb left join fetch alb.musics where alb.musics =:genre") })
+
 @SequenceGenerator(name = "seqAlbum", sequenceName = "seq_album", allocationSize = 1)
 public class Album {
 	@Id
@@ -23,9 +42,15 @@ public class Album {
 	@Column(name = "album_name")
 	private String name;
 	@Column(name = "album_music", length = 40)
-	private Music music;
-	@Column(name = "album_genre")
-	private Set<Genre> genres;
+	@ManyToMany
+	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_music"))
+	private Set<Music> musics;
+	@ManyToMany
+	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_artist"))
+	private Set<Artist> artists;
+
+//	@Column(name = "album_genre")
+//	private Set<Genre> genres;
 	@Lob
 	@Column(name = "album_cover")
 	private byte[] cover;
@@ -54,20 +79,20 @@ public class Album {
 		this.name = name;
 	}
 
-	public Music getMusic() {
-		return music;
+	public Set<Music> getMusics() {
+		return musics;
 	}
 
-	public void setMusic(Music music) {
-		this.music = music;
+	public void setMusics(Set<Music> musics) {
+		this.musics = musics;
 	}
 
-	public Set<Genre> getGenres() {
-		return genres;
+	public Set<Artist> getArtists() {
+		return artists;
 	}
 
-	public void setGenres(Set<Genre> genres) {
-		this.genres = genres;
+	public void setArtists(Set<Artist> artists) {
+		this.artists = artists;
 	}
 
 	public byte[] getCover() {
