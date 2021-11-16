@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
 	<!-- definition de l'unite de persistence =>info connexion -->
-	<persistence-unit name="projetPOEI"
+	<persistence-unit name="music"
 		transaction-type="RESOURCE_LOCAL">
 		<!-- implemention de JPA -->
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
@@ -14,7 +14,7 @@
 			<property name="hibernate.connection.driver"
 				value="org.postgresql.Driver" />
 			<property name="hibernate.connection.url"
-				value="jdbc:postgresql://localhost:5432/projetPOEI" />
+				value="jdbc:postgresql://localhost:5432/music" />
 			<property name="hibernate.connection.user" value="postgres" />
 			<property name="hibernate.connection.password"
 				value="postgres" />
