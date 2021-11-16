@@ -8,11 +8,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "artist")
+@NamedQueries({
+	@NamedQuery(name = "Artist.findByAlbum", query = "select a from Artist a left join fetch a.albums where a.albums =:album"),
+	@NamedQuery(name = "Artist.findAll", query = "select a from Artist a left join fetch a.albums"),
+	@NamedQuery(name = "Artist.findByMusic", query = "select a from Artist a left join fetch a.albums ab left join fetch ab.musics where ab.musics=:music"),
+	
+})
 @SequenceGenerator(name = "seqArtist", sequenceName = "seq_artist", allocationSize = 1)
 public class Artist {
 	@Id
@@ -24,9 +35,12 @@ public class Artist {
 	@Column(name = "artist_country", length = 20)
 	private String country;
 	@Column(name = "artist_album", length = 40)
-	private Album album;
-	@Column(name = "artist_genre")
-	private Set<Genre> genres;
+	@ManyToMany
+	@JoinTable (name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_artist"), inverseJoinColumns = @JoinColumn(name = "id_album"))
+	private Set<Album> albums;
+//	@Column(name = "artist_genre")
+//	//jointure
+//	private Set<Genre> genres;
 
 	// Constructeurs
 
@@ -60,21 +74,21 @@ public class Artist {
 		this.country = country;
 	}
 
-	public Album getAlbum() {
-		return album;
+	public Set<Album> getAlbums() {
+		return albums;
 	}
 
-	public void setAlbum(Album album) {
-		this.album = album;
+	public void setAlbums(Set<Album> albums) {
+		this.albums = albums;
 	}
 
-	public Set<Genre> getGenres() {
-		return genres;
-	}
-
-	public void setGenres(Set<Genre> genres) {
-		this.genres = genres;
-	}
+//	public Set<Genre> getGenres() {
+//		return genres;
+//	}
+//
+//	public void setGenres(Set<Genre> genres) {
+//		this.genres = genres;
+//	}
 
 	//Methods
 
