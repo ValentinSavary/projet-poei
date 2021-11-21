@@ -17,31 +17,30 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "users")
+
 @SequenceGenerator(name = "seqUser", sequenceName = "seq_user", allocationSize = 1, initialValue = 100)
 public class User {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUser")
 	@Column(name = "user_id")
 	private Long id;
-	
 	@Column(name = "user_login")
 	private String login;
-	
 	@Column(name = "user_password")
 	private String password;
-	
-	@Enumerated(EnumType.STRING)
 	@Column(name = "user_accountType")
+	@Enumerated(EnumType.STRING)
 	private AccountType accountType;
-	
-	@OneToMany(mappedBy = "user")
-	private Set<Playlist> playlists;
-	
 	@Version
 	@Column(name = "user_version")
 	private int version;
-
+	
+	// Jointure de tables user et playlist ; l'attribut playlists récupère la jointure
+	@OneToMany(mappedBy = "user")
+	private Set<Playlist> playlists;
+	
+	// Constructeurs
+	
 	public User() {
 		super();
 	}
@@ -52,6 +51,8 @@ public class User {
 		this.password = password;
 	}
 
+	// Getters & Setters
+	
 	public Long getId() {
 		return id;
 	}
@@ -100,6 +101,8 @@ public class User {
 		this.version = version;
 	}
 
+	// Hashcode & equals
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

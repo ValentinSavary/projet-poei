@@ -21,17 +21,20 @@ import javax.persistence.Table;
 @Table(name = "album")
 // Requêtes
 @NamedQueries({
-		// Selection de tous les albums et leurs musiques par la jointure associée à
-		// l'attribut musics
+		// Selection de tous les albums (et leurs musiques) par la jointure associée à l'attribut musics
 		@NamedQuery(name = "Album.findAll", query = "select alb from Album alb left join fetch alb.musics"),
+		
+		// Selection de tous les albums (et leurs musiques) nommés comme l'input
 		@NamedQuery(name = "Album.findByName", query = "select alb from Album alb left join fetch alb.artists left join fetch alb.musics where alb.name =:name"),
-		// Selection de tous les albums (et leurs albums) qui ont une musique nommée
-		// comme l'input
+		
+		// Selection de tous les albums (et leurs musiques) qui ont une musique nommée comme l'input
 		@NamedQuery(name = "Album.findByMusic", query = "select alb from Album alb left join fetch alb.musics where alb.musics =:music"),
-		// Selection de tous les albums (et leurs albums) qui ont un artiste nommé comme
-		// l'input
+		
+		// Selection de tous les albums (et leurs musiques) qui ont un artiste nommé comme l'input
 		@NamedQuery(name = "Album.findByArtist", query = "select alb from Album alb left join fetch alb.artists where alb.artists =:artist"),
-		@NamedQuery(name = "Album.findByGenre", query = "select alb from Album alb left join fetch alb.musics where alb.musics =:genre") })
+		
+		// Selection de tous les albums (et leurs musiques) qui ont un genre nommé comme l'input
+		@NamedQuery(name = "Album.findByGenre", query = "select alb from Album alb left join fetch alb.musics where alb.musics =:genre")})
 
 @SequenceGenerator(name = "seqAlbum", sequenceName = "seq_album", allocationSize = 1)
 public class Album {
@@ -41,16 +44,22 @@ public class Album {
 	private Long id;
 	@Column(name = "album_name")
 	private String name;
+	@Column(name = "album_cover")
+	@Lob
+	private byte[] cover;
+	
+	// Jointure de tables album et artist via colonnes id_album et id_artist ;
+	// l'attribut artists récupère la jointure ; la colonne est déjà nommée dans la classe artist
+	@ManyToMany
+	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_artist"))
+	private Set<Artist> artists;
+
+	// Jointure de tables album  et music via colonnes id_artist et id_music ;
+	// l'attribut musics récupère la jointure
 	@Column(name = "album_music", length = 40)
 	@ManyToMany
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_music"))
 	private Set<Music> musics;
-	@ManyToMany
-	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_artist"))
-	private Set<Artist> artists;
-	@Lob
-	@Column(name = "album_cover")
-	private byte[] cover;
 
 	// Constructeurs
 
@@ -120,5 +129,4 @@ public class Album {
 		Album other = (Album) obj;
 		return Objects.equals(id, other.id);
 	}
-
 }

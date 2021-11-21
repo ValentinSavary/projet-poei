@@ -3,13 +3,8 @@ package projetMusic.entity;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,18 +20,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "music")
 @NamedQueries({
-		@NamedQuery(name = "Music.findAll", query = "select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art"),
-		@NamedQuery(name = "Music.findByTitle", query = "select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art where mus.title=:title"),
-		@NamedQuery(name = "Music.findByAlbum", query = "select mus from Music mus left join fetch mus.albums where mus.albums=:album"),
-		@NamedQuery(name = "Music.findByPlaylist", query = "select mus from Music mus left join fetch mus.playlists where mus.playlists=:playlist"),
-		@NamedQuery(name = "Music.findByArtist", query = "select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art where art=:artist")})
+	// Selection de toutes les musiques (et leurs albums et artistes)
+	@NamedQuery(name = "Music.findAll", query = "select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art"),
+
+	// Selection de toutes les musiques (et leurs albums et artistes) nommées comme l'input
+	@NamedQuery(name = "Music.findByTitle", query = "select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art where mus.title=:title"),
+
+	// Selection de toutes les musiques (et leurs albums) qui ont un album nommé comme l'input
+	@NamedQuery(name = "Music.findByAlbum", query = "select mus from Music mus left join fetch mus.albums where mus.albums=:album"),
+
+	// Selection de toutes les musiques (et leurs playlists) qui ont une playlist nommée comme l'input
+	@NamedQuery(name = "Music.findByPlaylist", query = "select mus from Music mus left join fetch mus.playlists where mus.playlists=:playlist"),
+
+	// Selection de toutes les musiques (et leurs albums et artistes) qui ont un artiste nommé comme l'input
+	@NamedQuery(name = "Music.findByArtist", query = "select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art where art=:artist") })
+
 @SequenceGenerator(name = "seqMusic", sequenceName = "seq_music", allocationSize = 1)
-
-//@NamedQuery(name = "Music.findAll", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists")})
-//@NamedQuery(name = "Music.findByTitle", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists where mus.title=:title")
-//@NamedQuery(name = "Music.findByArtist", query = "select mus from Music mus left join fetch mus.albums left join fetch mus.albums.artists where mus.albums.artists=:artist")})
-//@NamedQuery(name = "Music.findByGenre", query = "select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists art where mus.genres=:genre") })
-
 public class Music {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMusic")
@@ -58,11 +57,16 @@ public class Music {
 //	@Column(name = "music_genre")
 //	private Set<Genre> genres;
 
-	// Jointures
-
+	// Jointure de tables album et music via colonnes id_album et id_music ;
+	// l'attribut albums récupère la jointure ; la colonne est déjà nommée dans la
+	// classe album
 	@ManyToMany
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_album"))
 	private Set<Album> albums;
+
+	// Jointure de tables playlist et music via colonnes id_music et id_playlist ;
+	// l'attribut playlists récupère la jointure ; la colonne est déjà nommée dans
+	// la classe playlist
 	@ManyToMany
 	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_playlist"))
 	private Set<Playlist> playlists;
@@ -72,7 +76,7 @@ public class Music {
 	public Music() {
 		super();
 	}
-	
+
 	public Music(String title, Integer duration) {
 		super();
 		this.title = title;

@@ -21,10 +21,11 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "playlist")
 @NamedQueries({
-		@NamedQuery(name = "Playlist.findByName", query = "select pla from Playlist pla left join fetch pla.musics as mus left join fetch mus.albums as alb left join fetch alb.artists art where pla.name=:name") })
+	// Selection des playlists (et leurs musiques) nommée comme l'input ????? besoin d'un user associé à la recherche ????
+	@NamedQuery(name = "Playlist.findByName", query = "select pla from Playlist pla left join fetch pla.musics as mus left join fetch mus.albums as alb left join fetch alb.artists art where pla.name=:name") })
+
 @SequenceGenerator(name = "seqPlaylist", sequenceName = "seq_playlist", allocationSize = 1, initialValue = 100)
 public class Playlist {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPlaylist")
 	@Column(name = "playlist_id")
@@ -33,18 +34,23 @@ public class Playlist {
 	@Column(name = "playlist_name")
 	private String name;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
-
+	// Jointure de tables playlist et music via colonnes id_playlist et id_music ; l'attribut musics récupère la jointure
+	@Column(name = "playlist_music", length = 40)
 	@ManyToMany
 	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_playlist"), inverseJoinColumns = @JoinColumn(name = "id_music"))
 	private Set<Music> musics;
 
+	// Jointure de tables user et playlists
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
 	@Version
 	@Column(name = "playlist_version")
 	private int version;
 
+	// Constructeurs
+	
 	public Playlist() {
 		super();
 	}
@@ -54,6 +60,8 @@ public class Playlist {
 		this.name = name;
 	}
 
+	// Getters & Setters
+	
 	public Long getId() {
 		return id;
 	}
@@ -95,6 +103,8 @@ public class Playlist {
 	public void delete() {
 	}
 
+	// Hashcode & equals
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
