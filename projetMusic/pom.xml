@@ -14,7 +14,7 @@
 		<hibernate-version>5.5.8.Final</hibernate-version>
 	</properties>
 	<dependencies>
-	<dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.3.1</version>
@@ -76,7 +76,6 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>2.5.5</version>
 		</dependency>
-<<<<<<< HEAD
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -94,7 +93,5 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-=======
->>>>>>> master
 	</dependencies>
 </project>

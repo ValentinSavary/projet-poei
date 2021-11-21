@@ -12,9 +12,4 @@ public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
 
 	@Query("select pla from Playlist pla left join fetch pla.musics as mus left join fetch mus.albums as alb left join fetch alb.artists art where pla.name=:name")
 	List<Playlist> findByName(@Param("name") String name);
-<<<<<<< HEAD
 }
-=======
-
-}
->>>>>>> master

@@ -18,7 +18,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "artist")
-// Requêtes
 @NamedQueries({
 		// Selection de tous les artistes (et leurs albums) par la jointure associée à l'attribut albums
 		@NamedQuery(name = "Artist.findAll", query = "select art from Artist art left join fetch art.albums"),

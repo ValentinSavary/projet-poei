@@ -4,7 +4,7 @@ import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.validation.Validation;
-import javax.validation.Validator;
+import javax.xml.validation.Validator;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +20,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-<<<<<<< HEAD
 @ComponentScan({ "projetMusic.services" })
-=======
 @ComponentScan({ "projetMusic.dao", "projetMusic.services" })
->>>>>>> master
 @EnableTransactionManagement
 @PropertySource("classpath:infos.properties")
 @EnableJpaRepositories("projetMusic.repositories")
@@ -74,8 +71,4 @@ public class AppConfig {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		return validator;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master

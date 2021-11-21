@@ -19,7 +19,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "album")
-// Requêtes
 @NamedQueries({
 		// Selection de tous les albums (et leurs musiques) par la jointure associée à l'attribut musics
 		@NamedQuery(name = "Album.findAll", query = "select alb from Album alb left join fetch alb.musics"),

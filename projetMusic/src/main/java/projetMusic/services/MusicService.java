@@ -1,32 +1,25 @@
 package projetMusic.services;
 
-<<<<<<< HEAD
 import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
-=======
->>>>>>> master
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import projetMusic.entity.Music;
 import projetMusic.exceptions.MusicException;
 import projetMusic.repositories.AlbumRepository;
 import projetMusic.repositories.ArtistRepository;
-=======
->>>>>>> master
 import projetMusic.repositories.MusicRepository;
 
 @Service
 public class MusicService {
 
 	@Autowired
-<<<<<<< HEAD
 	private AlbumRepository albumRepository;
 	@Autowired
 	private ArtistRepository artistRepository;
@@ -44,10 +37,10 @@ public class MusicService {
 			throw new MusicException();
 		}
 	}
-	
+
 	// Suppression d'une musique
 	public void delete(Music music) {
-		Music musicEnBase = musicRepository.findById(music.getId()).orElseThrow(MusicException::new);		
+		Music musicEnBase = musicRepository.findById(music.getId()).orElseThrow(MusicException::new);
 		// Suppression de l'artiste pour les musiques et albums associés
 		musicEnBase.getAlbums().forEach(album -> {
 			album.getArtists().forEach(artist -> {
@@ -57,7 +50,7 @@ public class MusicService {
 			album.removeMusic(musicEnBase);
 			albumRepository.save(album);
 		});
-		
+
 		// Suppression de la musique
 		musicRepository.delete(musicEnBase);
 	}
@@ -70,11 +63,3 @@ public class MusicService {
 		return musicRepository.findById(id).orElseThrow(MusicException::new);
 	}
 }
-=======
-	private MusicRepository musicRepository;
-
-	@Autowired
-	private Validator validator;
-
-}
->>>>>>> master
