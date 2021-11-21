@@ -18,6 +18,8 @@ public class PlaylistService {
 
 	@Autowired
 	private PlaylistRepository playlistRepository;
+	@Autowired
+	private Validator validator;
 
 	public void save(Playlist playlist) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();

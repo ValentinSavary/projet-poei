@@ -18,6 +18,8 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private Validator validator;
 
 	public void save(User user) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();

@@ -25,6 +25,8 @@ public class ArtistService {
 	private ArtistRepository artistRepository;
 	@Autowired
 	private MusicRepository musicRepository;
+	@Autowired
+	private Validator validator;
 
 	public void save(Artist artist) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
