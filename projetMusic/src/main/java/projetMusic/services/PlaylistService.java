@@ -1,16 +1,22 @@
 package projetMusic.services;
 
+<<<<<<< HEAD
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
+=======
+>>>>>>> master
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
 import projetMusic.entity.Playlist;
 import projetMusic.exceptions.PlaylistException;
+=======
+>>>>>>> master
 import projetMusic.repositories.PlaylistRepository;
 
 @Service
@@ -18,6 +24,7 @@ public class PlaylistService {
 
 	@Autowired
 	private PlaylistRepository playlistRepository;
+<<<<<<< HEAD
 	@Autowired
 	private Validator validator;
 
@@ -31,3 +38,10 @@ public class PlaylistService {
 		}
 	}
 }
+=======
+
+	@Autowired
+	private Validator validator;
+
+}
+>>>>>>> master

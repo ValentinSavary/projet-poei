@@ -6,4 +6,8 @@ import projetMusic.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

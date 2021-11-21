@@ -20,7 +20,11 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
+<<<<<<< HEAD
 @ComponentScan({ "projetMusic.services" })
+=======
+@ComponentScan({ "projetMusic.dao", "projetMusic.services" })
+>>>>>>> master
 @EnableTransactionManagement
 @PropertySource("classpath:infos.properties")
 @EnableJpaRepositories("projetMusic.repositories")
@@ -70,4 +74,8 @@ public class AppConfig {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		return validator;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

@@ -24,4 +24,8 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
 
 	@Query("select alb from Album alb left join fetch alb.musics where alb.musics =:genre")
 	List<Album> findByGenre(@Param("genre") String genre);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

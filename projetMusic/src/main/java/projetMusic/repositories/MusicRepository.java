@@ -24,4 +24,8 @@ public interface MusicRepository extends JpaRepository<Music, Long> {
 
 	@Query("select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art where art=:artist")
 	List<Music> findByArtist(@Param("artist") String artist);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master
