@@ -13,6 +13,8 @@ import projetMusic.entity.User;
 import projetMusic.exceptions.UserException;
 import projetMusic.repositories.UserRepository;
 
+//Service : code où l'on applique les requetes
+
 @Service
 public class UserService {
 	@Autowired

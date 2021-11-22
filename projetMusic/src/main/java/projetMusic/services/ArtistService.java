@@ -19,6 +19,8 @@ import projetMusic.repositories.AlbumRepository;
 import projetMusic.repositories.ArtistRepository;
 import projetMusic.repositories.MusicRepository;
 
+//Service : code où l'on applique les requetes
+
 @Service
 public class ArtistService {
 

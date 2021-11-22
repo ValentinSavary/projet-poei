@@ -16,9 +16,10 @@ import projetMusic.repositories.AlbumRepository;
 import projetMusic.repositories.ArtistRepository;
 import projetMusic.repositories.MusicRepository;
 
+//Service : code où l'on applique les requetes
+
 @Service
 public class AlbumService {
-
 	@Autowired
 	private AlbumRepository albumRepository;
 	@Autowired
@@ -28,6 +29,7 @@ public class AlbumService {
 	@Autowired
 	private Validator validator;
 
+	// Création / modification d'un album
 	public void save(Album album) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Album>> violations = validator.validate(album);
@@ -39,21 +41,17 @@ public class AlbumService {
 	}
 
 	// Suppression d'un album
-//	public void delete(Album album) {
-//		Album albumEnBase = albumRepository.findById(album.getId()).orElseThrow(AlbumException::new);
-//		// Suppression de l'album pour les musiques associées
-//		albumEnBase.getMusics().forEach(music -> {
-//			music.removeAlbum(albumEnBase);
-//			musicRepository.save(music);
-//		});
-//		// Suppression de l'album pour les artistes associés
-//		albumEnBase.getArtists().forEach(artist -> {
-//			artist.removeAlbum(albumEnBase);
-//			artistRepository.save(artist);
-//		});
-//		// Suppression de l'album
-//		albumRepository.delete(albumEnBase);
-//	}
+	public void delete(Album album) {
+		Album albumEnBase = albumRepository.findById(album.getId()).orElseThrow(AlbumException::new);
+		// Suppression de l'album pour les musiques associées
+		albumEnBase.getMusics().forEach(music -> {
+			if (music.getAlbums().size() == 1) {
+				MusicService.delete(music);
+			}
+		});
+		// Suppression de l'album
+		albumRepository.delete(albumEnBase);
+	}
 
 	public List<Album> allAlbum() {
 		return albumRepository.findAll();
