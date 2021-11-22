@@ -28,6 +28,8 @@ public class AlbumService {
 	private MusicRepository musicRepository;
 	@Autowired
 	private Validator validator;
+	@Autowired
+	private MusicService musicService;
 
 	// Création / modification d'un album
 	public void save(Album album) {
@@ -46,7 +48,7 @@ public class AlbumService {
 		// Suppression de l'album pour les musiques associées
 		albumEnBase.getMusics().forEach(music -> {
 			if (music.getAlbums().size() == 1) {
-				MusicService.delete(music);
+				musicService.delete(music);
 			}
 		});
 		// Suppression de l'album
