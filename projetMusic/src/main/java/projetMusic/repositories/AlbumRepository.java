@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import projetMusic.entity.Album;
+import projetMusic.entity.Artist;
 
 //Repository : code où l'on définit les requetes
 
@@ -20,10 +21,11 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
 
 	@Query("select alb from Album alb left join fetch alb.musics where alb.musics =:music")
 	List<Album> findByMusic(@Param("music") String music);
-
+	
 	@Query("select alb from Album alb left join fetch alb.artists where alb.artists =:artist")
-	List<Album> findByArtist(@Param("artist") String artist);
+	List<Album> findByArtist(@Param("artist") Artist artist);
 
 	@Query("select alb from Album alb left join fetch alb.musics where alb.musics =:genre")
 	List<Album> findByGenre(@Param("genre") String genre);
+
 }

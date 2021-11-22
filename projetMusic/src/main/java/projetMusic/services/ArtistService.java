@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,20 +11,14 @@ import org.springframework.stereotype.Service;
 
 import projetMusic.entity.Album;
 import projetMusic.entity.Artist;
-import projetMusic.entity.Playlist;
 import projetMusic.exceptions.ArtistException;
-import projetMusic.exceptions.PlaylistException;
-import projetMusic.repositories.AlbumRepository;
 import projetMusic.repositories.ArtistRepository;
-import projetMusic.repositories.MusicRepository;
 
 //Service : code où l'on applique les requetes
 
 @Service
 public class ArtistService {
 
-	@Autowired
-	private AlbumRepository albumRepository;
 	@Autowired
 	private ArtistRepository artistRepository;
 	@Autowired
@@ -35,7 +28,6 @@ public class ArtistService {
 
 	// Création d'un artiste / Mise à jour d'un artiste
 	public void save(Artist artist) {
-		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Artist>> violations = validator.validate(artist);
 		if (violations.isEmpty()) {
 			artistRepository.save(artist);
@@ -85,5 +77,11 @@ public class ArtistService {
 		});
 		// Suppression de l'artiste
 		artistRepository.delete(artistEnBase);
+	}
+	
+	// Cette fonction ajoute un artiste dans l'album
+	public void addAlbum(Album album, Artist artist) {
+		artist.getAlbums().add(album);
+		artistRepository.save(artist);
 	}
 }

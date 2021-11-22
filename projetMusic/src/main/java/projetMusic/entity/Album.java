@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,7 +52,7 @@ public class Album {
 	// Jointure de tables album et artist via colonnes id_album et id_artist ;
 	// l'attribut artists récupère la jointure ; la colonne est déjà nommée dans la classe artist
 	// rajout de HashSet pour éviter les null pointer exceptions
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_artist"))
 	private Set<Artist> artists =new HashSet<Artist>();
 
@@ -59,7 +60,7 @@ public class Album {
 	// l'attribut musics récupère la jointure
 	// rajout de HashSet pour éviter les null pointer exceptions
 	@Column(name = "album_music", length = 40)
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_music"))
 	private Set<Music> musics = new HashSet<Music>();
 

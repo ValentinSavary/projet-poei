@@ -10,6 +10,8 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import projetMusic.entity.Album;
+import projetMusic.entity.Artist;
 import projetMusic.entity.Music;
 import projetMusic.exceptions.MusicException;
 import projetMusic.repositories.AlbumRepository;
@@ -78,5 +80,11 @@ public class MusicService {
 
 	public Music byId(Long id) {
 		return musicRepository.findById(id).orElseThrow(MusicException::new);
+	}
+	
+	// Cette fonction ajoute une musique dans l'album
+	public void addAlbum(Album album, Music music) {
+		music.getAlbums().add(album);
+		musicRepository.save(music);
 	}
 }
