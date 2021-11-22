@@ -11,7 +11,7 @@ import projetMusic.entity.Artist;
 public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
 	@Query("select art from Artist art left join fetch art.albums")
-	List<Artist> findAlll();
+	List<Artist> findAll();
 
 	@Query("select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where art.name=:name")
 	List<Artist> findByName(@Param("name") String name);
@@ -24,4 +24,6 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
 	@Query("select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where alb.musics=:genre")
 	List<Artist> findByGenre(@Param("genre") String genre);
+	
+	
 }
