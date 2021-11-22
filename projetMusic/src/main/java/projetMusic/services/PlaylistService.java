@@ -14,6 +14,8 @@ import projetMusic.entity.Artist;
 import projetMusic.entity.Music;
 import projetMusic.entity.Playlist;
 import projetMusic.exceptions.PlaylistException;
+import projetMusic.repositories.AlbumRepository;
+import projetMusic.repositories.ArtistRepository;
 import projetMusic.repositories.MusicRepository;
 import projetMusic.repositories.PlaylistRepository;
 
@@ -25,6 +27,7 @@ public class PlaylistService {
 	private MusicRepository musicRepository;
 	@Autowired
 	private Validator validator;
+
 
 	// Créer une playlist / Modifier une playlist
 	public void save(Playlist playlist) {
