@@ -4,7 +4,7 @@ import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.validation.Validation;
-import javax.xml.validation.Validator;
+import javax.validation.Validator;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
