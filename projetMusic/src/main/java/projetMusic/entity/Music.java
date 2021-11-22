@@ -6,6 +6,9 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,15 +57,16 @@ public class Music {
 
 //	@ElementCollection(targetClass = Genre.class, fetch = FetchType.EAGER)
 //	@CollectionTable(name = "genre", joinColumns = @JoinColumn(name = "music_id", referencedColumnName = "id"))
-//	@Enumerated(EnumType.STRING)
-//	@Column(name = "music_genre")
+	@Enumerated(EnumType.STRING)
+	@Column(name = "music_genre")
 //	private Set<Genre> genres;
+	private Genre genre;
 
 	// Jointure de tables album et music via colonnes id_album et id_music ;
 	// l'attribut albums récupère la jointure ; la colonne est déjà nommée dans la
 	// classe album
 	// rajout de HashSet pour éviter les null pointer exceptions
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_album"))
 	private Set<Album> albums = new HashSet<Album>();
 
@@ -71,7 +75,7 @@ public class Music {
 	// l'attribut playlists récupère la jointure ; la colonne est déjà nommée dans
 	// la classe playlist
 	// rajout de HashSet pour éviter les null pointer exceptions
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_playlist"))
 	private Set<Playlist> playlists = new HashSet<Playlist>();
 
@@ -137,15 +141,13 @@ public class Music {
 		this.musicFile = musicFile;
 	}
 
-//	public Set<Genre> getGenres() {
-//		return genres;
-//	}
-//
-//	public void setGenres(Set<Genre> genres) {
-//		this.genres = genres;
-//	}
+	public Genre getGenre() {
+		return genre;
+	}
 
-	// Methods
+	public void setGenre(Genre genre) {
+		this.genre = genre;
+	}
 
 	public void getInfo() {
 	}

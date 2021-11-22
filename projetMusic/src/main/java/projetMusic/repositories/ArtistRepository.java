@@ -18,14 +18,13 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
 	@Query("select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where art.name=:name")
 	List<Artist> findByName(@Param("name") String name);
 
-	@Query("select art from Artist art left join fetch art.albums where art.albums =:album")
-	List<Artist> findByAlbum(@Param("album") String album);
+	@Query("select art from Artist art left join fetch art.albums as alb where alb.name =:name")
+	List<Artist> findByAlbum(@Param("name") String name);
 
-	@Query("select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where alb.musics=:music")
-	List<Artist> findByMusic(@Param("music") String music);
+	@Query("select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where mus.title=:title")
+	List<Artist> findByMusic(@Param("title") String title);
 
 	@Query("select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where alb.musics=:genre")
 	List<Artist> findByGenre(@Param("genre") String genre);
-	
-	
+
 }

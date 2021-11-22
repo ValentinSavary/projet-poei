@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import projetMusic.entity.Album;
 import projetMusic.entity.Artist;
+import projetMusic.entity.Genre;
 import projetMusic.entity.Music;
 import projetMusic.exceptions.AlbumException;
 import projetMusic.repositories.AlbumRepository;
@@ -62,20 +63,18 @@ public class AlbumService {
 	}
 
 	// Cette méthode renvoie la liste de tous les albums par musique
-	public List<Album> ByMusic(String music) {
-		return albumRepository.findByMusic(music);
+	public List<Album> ByMusic(String title) {
+		return albumRepository.findByMusic(title);
 	}
 
 	// Cette méthode renvoie la liste de tous les albums par artiste
 	public List<Album> ByArtist(String name) {
-		artistRepository.findByName(name).forEach(artist -> {
-			return albumRepository.findByArtist(artist);
-		});
+		return albumRepository.findByArtist(name);
 	}
 
 	// Cette méthode renvoie la liste de tous les albums par artiste
-	public List<Album> ByGenre(String genre) {
-		return albumRepository.findByGenre(genre);
+	public List<Album> ByGenre(Genre genre) {
+		return albumRepository.findByGenre(genre.toString());
 	}
 
 	public Album byId(Long id) {
