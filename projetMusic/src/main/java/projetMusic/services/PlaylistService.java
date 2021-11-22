@@ -34,6 +34,10 @@ public class PlaylistService {
 			throw new PlaylistException();
 		}
 	}
+	
+	public Playlist byId(Long id) {
+		return playlistRepository.findById(id).orElseThrow(PlaylistException::new);
+	}
 
 	// Cette fonction ajoute une musique dans la playlist
 	public void addMusic(Music music, Playlist playlist) {

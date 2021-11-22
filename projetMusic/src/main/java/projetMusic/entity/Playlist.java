@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,10 +42,9 @@ public class Playlist {
 	// Jointure de tables playlist et music via colonnes id_playlist et id_music ;
 	// l'attribut musics récupère la jointure
 	@Column(name = "playlist_music", length = 40)
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_playlist"), inverseJoinColumns = @JoinColumn(name = "id_music"))
 	private Set<Music> musics = new HashSet<Music>();
-	
 
 	// Jointure de tables user et playlists
 	@ManyToOne
