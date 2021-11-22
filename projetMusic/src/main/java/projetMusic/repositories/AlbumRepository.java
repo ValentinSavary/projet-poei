@@ -12,10 +12,10 @@ import projetMusic.entity.Album;
 
 public interface AlbumRepository extends JpaRepository<Album, Long> {
 
-	@Query("select alb from Album alb left join fetch alb.musics")
+	@Query("select distinct alb from Album alb left join fetch alb.musics")
 	List<Album> findAll();
 
-	@Query("select alb from Album alb left join fetch alb.artists left join fetch alb.musics where alb.name =:name")
+	@Query("select alb from Album alb left join fetch alb.artists left join fetch alb.musics where alb.name like %:name%")
 	List<Album> findByName(@Param("name") String name);
 
 	@Query("select alb from Album alb left join fetch alb.musics as mus where mus.title =:title")

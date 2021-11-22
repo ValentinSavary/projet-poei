@@ -52,8 +52,8 @@ public class ArtistService {
 	}
 
 	// Cette méthode renvoie la liste de tous les artistes par album
-	public List<Artist> ByAlbum(String album) {
-		return artistRepository.findByAlbum(album);
+	public List<Artist> ByAlbum(String name) {
+		return artistRepository.findByAlbum(name);
 	}
 
 	// Cette méthode renvoie la liste de tous les artistes par music
