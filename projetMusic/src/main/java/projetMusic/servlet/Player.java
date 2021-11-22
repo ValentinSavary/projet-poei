@@ -41,20 +41,20 @@ public class Player extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private RequestDispatcher Play(HttpServletRequest request, HttpServletResponse response) {
-
-	}
-
-	private RequestDispatcher Pause(HttpServletRequest request, HttpServletResponse response) {
-
-	}
-
-	private RequestDispatcher nextTrack(HttpServletRequest request, HttpServletResponse response) {
-
-	}
-
-	private RequestDispatcher previousTrack(HttpServletRequest request, HttpServletResponse response) {
-
-	}
+//	private RequestDispatcher Play(HttpServletRequest request, HttpServletResponse response) {
+//
+//	}
+//
+//	private RequestDispatcher Pause(HttpServletRequest request, HttpServletResponse response) {
+//
+//	}
+//
+//	private RequestDispatcher nextTrack(HttpServletRequest request, HttpServletResponse response) {
+//
+//	}
+//
+//	private RequestDispatcher previousTrack(HttpServletRequest request, HttpServletResponse response) {
+//
+//	}
 
 }

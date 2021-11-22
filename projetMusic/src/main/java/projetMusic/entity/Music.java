@@ -1,5 +1,6 @@
 package projetMusic.entity;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -62,14 +63,15 @@ public class Music {
 	// classe album
 	@ManyToMany
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_album"))
-	private Set<Album> albums;
+	private Set<Album> albums = new HashSet<Album>();
+	// rajout de HashSet pour éviter les null pointer exceptions
 
 	// Jointure de tables playlist et music via colonnes id_music et id_playlist ;
 	// l'attribut playlists récupère la jointure ; la colonne est déjà nommée dans
 	// la classe playlist
 	@ManyToMany
 	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_playlist"))
-	private Set<Playlist> playlists;
+	private Set<Playlist> playlists = new HashSet<Playlist>();
 
 	// Constructeurs
 
@@ -107,6 +109,22 @@ public class Music {
 
 	public void setDuration(Integer duration) {
 		this.duration = duration;
+	}
+
+	public Set<Album> getAlbums() {
+		return albums;
+	}
+
+	public void setAlbums(Set<Album> albums) {
+		this.albums = albums;
+	}
+
+	public Set<Playlist> getPlaylists() {
+		return playlists;
+	}
+
+	public void setPlaylists(Set<Playlist> playlists) {
+		this.playlists = playlists;
 	}
 
 	public byte[] getMusicFile() {

@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 import projetMusic.entity.Music;
 
+// Repository : code où l'on définit les requetes
+
 public interface MusicRepository extends JpaRepository<Music, Long> {
 
 	@Query("select mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art")

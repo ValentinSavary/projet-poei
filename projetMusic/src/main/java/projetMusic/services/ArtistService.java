@@ -39,20 +39,20 @@ public class ArtistService {
 	}
 
 	// Suppression d'un artiste
-	public void delete(Artist artist) {
-		Artist artistEnBase = artistRepository.findById(artist.getId()).orElseThrow(ArtistException::new);
-		// Suppression de l'artiste pour les musiques et albums associés
-		artistEnBase.getAlbums().forEach(album -> {
-			album.getMusics().forEach(music -> {
-				music.removeArtist(artistEnBase);
-				musicRepository.save(music);
-			});
-			album.removeArtist(artistEnBase);
-			albumRepository.save(album);
-		});
-		// Suppression de l'artiste
-		artistRepository.delete(artistEnBase);
-	}
+//	public void delete(Artist artist) {
+//		Artist artistEnBase = artistRepository.findById(artist.getId()).orElseThrow(ArtistException::new);
+//		// Suppression de l'artiste pour les musiques et albums associés
+//		artistEnBase.getAlbums().forEach(album -> {
+//			album.getMusics().forEach(music -> {
+//				music.removeArtist(artistEnBase);
+//				musicRepository.save(music);
+//			});
+//			album.removeArtist(artistEnBase);
+//			albumRepository.save(album);
+//		});
+//		// Suppression de l'artiste
+//		artistRepository.delete(artistEnBase);
+//	}
 
 	public List<Artist> allArtist() {
 		return artistRepository.findAll();

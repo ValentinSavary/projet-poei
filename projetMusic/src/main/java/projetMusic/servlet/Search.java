@@ -41,21 +41,21 @@ public class Search extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-	private RequestDispatcher searchByArtist(HttpServletRequest request, HttpServletResponse response) {
-
-	}
-
-	private RequestDispatcher searchByAlbum(HttpServletRequest request, HttpServletResponse response) {
-
-	}
-
-	private RequestDispatcher searchByTrack(HttpServletRequest request, HttpServletResponse response) {
-
-	}
-
-	private RequestDispatcher searchByGenre(HttpServletRequest request, HttpServletResponse response) {
-
-	}
+//
+//	private RequestDispatcher searchByArtist(HttpServletRequest request, HttpServletResponse response) {
+//
+//	}
+//
+//	private RequestDispatcher searchByAlbum(HttpServletRequest request, HttpServletResponse response) {
+//
+//	}
+//
+//	private RequestDispatcher searchByTrack(HttpServletRequest request, HttpServletResponse response) {
+//
+//	}
+//
+//	private RequestDispatcher searchByGenre(HttpServletRequest request, HttpServletResponse response) {
+//
+//	}
 
 }

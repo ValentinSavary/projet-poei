@@ -1,5 +1,6 @@
 package projetMusic.entity;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -37,7 +38,7 @@ public class User {
 	
 	// Jointure de tables user et playlist ; l'attribut playlists récupère la jointure
 	@OneToMany(mappedBy = "user")
-	private Set<Playlist> playlists;
+	private Set<Playlist> playlists = new HashSet<Playlist>();
 	
 	// Constructeurs
 	

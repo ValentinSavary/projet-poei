@@ -16,6 +16,8 @@ import projetMusic.repositories.AlbumRepository;
 import projetMusic.repositories.ArtistRepository;
 import projetMusic.repositories.MusicRepository;
 
+// Service : code où l'on applique les requetes
+
 @Service
 public class MusicService {
 
@@ -39,21 +41,21 @@ public class MusicService {
 	}
 
 	// Suppression d'une musique
-	public void delete(Music music) {
-		Music musicEnBase = musicRepository.findById(music.getId()).orElseThrow(MusicException::new);
-		// Suppression de l'artiste pour les musiques et albums associés
-		musicEnBase.getAlbums().forEach(album -> {
-			album.getArtists().forEach(artist -> {
-				artist.removeMusic(musicEnBase);
-				artistRepository.save(artist);
-			});
-			album.removeMusic(musicEnBase);
-			albumRepository.save(album);
-		});
-
-		// Suppression de la musique
-		musicRepository.delete(musicEnBase);
-	}
+//	public void delete(Music music) {
+//		Music musicEnBase = musicRepository.findById(music.getId()).orElseThrow(MusicException::new);
+//		// Suppression de l'artiste pour les musiques et albums associés
+//		musicEnBase.getAlbums().forEach(album -> {
+//			album.getArtists().forEach(artist -> {
+//				artist.removeMusic(musicEnBase);
+//				artistRepository.save(artist);
+//			});
+//			album.removeMusic(musicEnBase);
+//			albumRepository.save(album);
+//		});
+//
+//		// Suppression de la musique
+//		musicRepository.delete(musicEnBase);
+//	}
 
 	public List<Music> allMusic() {
 		return musicRepository.findAll();
