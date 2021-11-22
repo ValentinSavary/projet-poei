@@ -40,9 +40,8 @@ public class MusicService {
 		}
 	}
 
-	// Suppression d'une musique
-//	public void delete(Music music) {
-//		Music musicEnBase = musicRepository.findById(music.getId()).orElseThrow(MusicException::new);
+	public void delete(Music music) {
+		Music musicEnBase = musicRepository.findById(music.getId()).orElseThrow(MusicException::new);
 //		// Suppression de l'artiste pour les musiques et albums associés
 //		musicEnBase.getAlbums().forEach(album -> {
 //			album.getArtists().forEach(artist -> {
@@ -52,13 +51,29 @@ public class MusicService {
 //			album.removeMusic(musicEnBase);
 //			albumRepository.save(album);
 //		});
-//
-//		// Suppression de la musique
-//		musicRepository.delete(musicEnBase);
-//	}
+
+		// Suppression de la musique
+		musicRepository.delete(musicEnBase);
+	}
 
 	public List<Music> allMusic() {
 		return musicRepository.findAll();
+	}
+
+	public List<Music> byArtist(String artist) {
+		return musicRepository.findByArtist(artist);
+	}
+
+	public List<Music> byAlbum(String album) {
+		return musicRepository.findByAlbum(album);
+	}
+
+	public List<Music> byTitle(String title) {
+		return musicRepository.findByTitle(title);
+	}
+
+	public List<Music> byPlaylist(String playlist) {
+		return musicRepository.findByPlaylist(playlist);
 	}
 
 	public Music byId(Long id) {
