@@ -23,8 +23,8 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "playlist")
 @NamedQueries({
-		// Selection des playlists (et leurs musiques) nommée comme l'input
-		@NamedQuery(name = "Playlist.findByName", query = "select pla from Playlist pla left join fetch pla.musics as mus left join fetch mus.albums as alb left join fetch alb.artists art where pla.name=:name") })
+	// Selection des playlists (et leurs musiques) nommée comme l'input
+	@NamedQuery(name = "Playlist.findByName", query = "select pla from Playlist pla left join fetch pla.musics as mus left join fetch mus.albums as alb left join fetch alb.artists art where pla.name=:name") })
 
 @SequenceGenerator(name = "seqPlaylist", sequenceName = "seq_playlist", allocationSize = 1, initialValue = 100)
 public class Playlist {
@@ -41,6 +41,7 @@ public class Playlist {
 
 	// Jointure de tables playlist et music via colonnes id_playlist et id_music ;
 	// l'attribut musics récupère la jointure
+	// rajout de HashSet pour éviter les null pointer exceptions
 	@Column(name = "playlist_music", length = 40)
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_playlist"), inverseJoinColumns = @JoinColumn(name = "id_music"))

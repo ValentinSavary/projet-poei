@@ -67,8 +67,7 @@ mdp oublié
 supprimer un user
 
 playlist :
-créer / supprimer la playlist
-changer le nom de la playlist
+créer / supprimer / rename la playlist
 ajouter / supprimer une musique
 ajouter un album
 ajouter le répertoire d'un artiste

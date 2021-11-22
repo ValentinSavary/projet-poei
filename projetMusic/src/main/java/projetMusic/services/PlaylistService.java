@@ -9,6 +9,8 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import projetMusic.entity.Album;
+import projetMusic.entity.Artist;
 import projetMusic.entity.Music;
 import projetMusic.entity.Playlist;
 import projetMusic.exceptions.PlaylistException;
@@ -34,9 +36,13 @@ public class PlaylistService {
 			throw new PlaylistException();
 		}
 	}
-	
+
 	public Playlist byId(Long id) {
+		// if (playlist typePrivate == true){
+		// Throw(PlaylistException::new);}
+		// if playlist typePrivate == false){
 		return playlistRepository.findById(id).orElseThrow(PlaylistException::new);
+		// }
 	}
 
 	// Cette fonction ajoute une musique dans la playlist
@@ -45,16 +51,33 @@ public class PlaylistService {
 		playlistRepository.save(playlist);
 	}
 
+	// Cette fonction ajoute toutes les musiques d'un album dans la playlist
+	public void addAlbum(Album album, Playlist playlist) {
+		album.getMusics().forEach(music -> {
+			playlist.getMusics().add(music);
+		});
+		playlistRepository.save(playlist);
+	}
+
+	// Cette fonction ajoute toutes les musiques de tous albums d'un artiste dans la
+	// playlist
+	public void addArtist(Artist artist, Playlist playlist) {
+		artist.getAlbums().forEach(album -> {
+			album.getMusics().forEach(music -> {
+				playlist.getMusics().add(music);
+			});
+		});
+		playlistRepository.save(playlist);
+	}
+
 	// Cette fonction supprime une musique de la playlist
 	public void removeMusic(Music music, Playlist playlist) {
 		playlist.getMusics().remove(music);
 		playlistRepository.save(playlist);
 	}
-	
+
 	// Cette fonction supprime une playlist
 	public void delete(Playlist playlist) {
 		playlistRepository.delete(playlist);
 	}
-	
-
 }

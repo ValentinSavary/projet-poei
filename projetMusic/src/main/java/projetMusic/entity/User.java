@@ -37,6 +37,7 @@ public class User {
 	private int version;
 	
 	// Jointure de tables user et playlist ; l'attribut playlists récupère la jointure
+	// rajout de HashSet pour éviter les null pointer exceptions
 	@OneToMany(mappedBy = "user")
 	private Set<Playlist> playlists = new HashSet<Playlist>();
 	

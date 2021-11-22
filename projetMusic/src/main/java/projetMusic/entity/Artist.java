@@ -52,6 +52,7 @@ public class Artist {
 
 	// Jointure de tables artist et album via colonnes id_artist et id_album ;
 	// l'attribut albums récupère la jointure
+	// rajout de HashSet pour éviter les null pointer exceptions
 	@Column(name = "artist_album", length = 40)
 	@ManyToMany
 	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_artist"), inverseJoinColumns = @JoinColumn(name = "id_album"))

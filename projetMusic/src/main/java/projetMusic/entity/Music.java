@@ -61,14 +61,16 @@ public class Music {
 	// Jointure de tables album et music via colonnes id_album et id_music ;
 	// l'attribut albums récupère la jointure ; la colonne est déjà nommée dans la
 	// classe album
+	// rajout de HashSet pour éviter les null pointer exceptions
 	@ManyToMany
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_album"))
 	private Set<Album> albums = new HashSet<Album>();
-	// rajout de HashSet pour éviter les null pointer exceptions
+
 
 	// Jointure de tables playlist et music via colonnes id_music et id_playlist ;
 	// l'attribut playlists récupère la jointure ; la colonne est déjà nommée dans
 	// la classe playlist
+	// rajout de HashSet pour éviter les null pointer exceptions
 	@ManyToMany
 	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_playlist"))
 	private Set<Playlist> playlists = new HashSet<Playlist>();
