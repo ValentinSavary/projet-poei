@@ -52,3 +52,41 @@ V3 : luxe
 systeme de recherche avancé (prise en compte des fautes, etc)
 lecteur de musique : afficher albumCover, durée totale / restante, lecture, pause, recommencer, next
 
+Fonctions à réaliser :
+* admin
+
+genre :
+créer / supprimer un genre*
+
+user :
+changer l'account Type (free<->premium<->admin)
+créer un user
+se connecter / se déconnecter
+changer mdp
+mdp oublié
+supprimer un user
+
+playlist :
+créer / supprimer la playlist
+changer le nom de la playlist
+ajouter / supprimer une musique
+ajouter un album
+ajouter le répertoire d'un artiste
+afficher toutes les musiques
+jouer la playlist
+
+music:
+créer / supprimer une musique*
+affichage musiques (tout, critères, etc)
+jouer la musique
+
+album:
+créer / supprimer un album*
+affichage albums (tout, critères, etc)
+jouer l'album
+
+artiste:
+créer / supprimer un artiste*
+affichage artistes (tout, critères, etc)
+jouer le répertoire de l'artiste
+

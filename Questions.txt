@@ -1,5 +1,1 @@
 fichiers questions pour Olivier
-
-
-Errors :
-- Duplicate query named ... defined in the persistence unit
