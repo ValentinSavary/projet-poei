@@ -40,14 +40,14 @@ public class PlaylistServiceTest {
 	private Album album;
 	private Artist artist;
 
-	@Test
+	//@Test
 	public void createTest() {
 		Playlist p = new Playlist();
 		p.setName("playlistA");
 		playlistService.save(p);
 	}
 
-	@Test
+	//@Test
 	public void changeNameTest() {
 		Playlist p = new Playlist();
 		p = playlistService.byId(101L);
@@ -55,7 +55,7 @@ public class PlaylistServiceTest {
 		playlistService.save(p);
 	}
 
-	@Test
+	//@Test
 	public void addMusicTest() {
 		playlist = new Playlist();
 		playlist = playlistService.byId(104L);
@@ -64,7 +64,7 @@ public class PlaylistServiceTest {
 		playlistService.addMusic(music, playlist);
 	}
 
-	@Test
+	//@Test
 	public void addAlbumTest() {
 		playlist = new Playlist();
 		playlist = playlistService.byId(104L);
@@ -73,7 +73,7 @@ public class PlaylistServiceTest {
 		playlistService.addAlbum(album, playlist);
 	}
 
-	@Test
+	//@Test
 	public void addArtistTest() {
 		playlist = new Playlist();
 		playlist = playlistService.byId(104L);
@@ -82,7 +82,7 @@ public class PlaylistServiceTest {
 		playlistService.addArtist(artist, playlist);
 	}
 
-	@Test
+	//@Test
 	public void removeMusicTest() {
 		Playlist playlist = new Playlist();
 		playlist = playlistService.byId(104L);
@@ -93,7 +93,7 @@ public class PlaylistServiceTest {
 		System.out.println(playlist.getMusics());
 	}
 
-	@Test
+	//@Test
 	public void deleteTest() {
 		Playlist playlist = new Playlist();
 		playlist = playlistService.byId(106L);
