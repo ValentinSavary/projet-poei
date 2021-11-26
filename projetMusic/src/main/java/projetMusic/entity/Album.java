@@ -67,7 +67,7 @@ public class Album {
 	// rajout de HashSet pour éviter les null pointer exceptions
 	@Column(name = "album_music", length = 40)
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JsonView(JsonViews.ArtistAvecAlbum.class)
+	@JsonView(JsonViews.AlbumAvecMusic.class)
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_music"))
 	private Set<Music> musics = new HashSet<Music>();
 

@@ -53,7 +53,7 @@ public class Artist {
 	@JsonView(JsonViews.Common.class)
 	private String name;
 	@Column(name = "artist_country", length = 20)
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Artist.class)
 	private String country;
 
 	// Jointure de tables artist et album via colonnes id_artist et id_album ;

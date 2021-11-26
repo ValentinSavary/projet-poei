@@ -1,0 +1,9 @@
+Attributs : 
+- id : Admin
+- name : PourLesJointures (extends Common) Name
+- username : PourLesJointures (extends Common) Name
+- autresAttributs : Common
+
+Jointures :
+- -> : Name
+- <- : Name

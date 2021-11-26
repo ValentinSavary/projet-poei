@@ -10,11 +10,11 @@ public class JsonViews {
 
 	}
 
-	public static class ArtistAvecAlbum extends Common {
+	public static class User extends Common {
 
 	}
 
-	public static class AlbumAvecArtist extends Common {
+	public static class AlbumAvecArtist extends MusicAvecAlbum {
 
 	}
 
@@ -22,19 +22,23 @@ public class JsonViews {
 
 	}
 
-	public static class MusicAvecAlbum extends Common {
-
-	}
-
-	public static class MusicAvecPlaylist extends Common {
-
-	}
-
-	public static class User extends Common {
-
-	}
-
 	public static class PlaylistAvecMusic extends Common {
+
+	}
+
+	public static class Artist extends Common {
+
+	}
+
+	public static class Music extends Common {
+
+	}
+
+	public static class MusicAvecAlbum extends Music {
+
+	}
+
+	public static class ArtistAvecAlbum extends Artist {
 
 	}
 
