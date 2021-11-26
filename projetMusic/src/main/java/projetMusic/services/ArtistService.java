@@ -27,10 +27,10 @@ public class ArtistService {
 	private AlbumService albumService;
 
 	// Création d'un artiste / Mise à jour d'un artiste
-	public void save(Artist artist) {
+	public Artist save(Artist artist) {
 		Set<ConstraintViolation<Artist>> violations = validator.validate(artist);
 		if (violations.isEmpty()) {
-			artistRepository.save(artist);
+			return artistRepository.save(artist);
 		} else {
 			throw new ArtistException();
 		}
@@ -78,7 +78,11 @@ public class ArtistService {
 		// Suppression de l'artiste
 		artistRepository.delete(artistEnBase);
 	}
-	
+
+	public void delete(Long id) {
+		delete(artistRepository.findById(id).get());
+	}
+
 	// Cette fonction ajoute un artiste dans l'album
 	public void addAlbum(Album album, Artist artist) {
 		artist.getAlbums().add(album);

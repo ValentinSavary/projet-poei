@@ -31,10 +31,10 @@ public class AlbumService {
 	private MusicService musicService;
 
 	// Création / modification d'un album
-	public void save(Album album) {
+	public Album save(Album album) {
 		Set<ConstraintViolation<Album>> violations = validator.validate(album);
 		if (violations.isEmpty()) {
-			albumRepository.save(album);
+			return albumRepository.save(album);
 		} else {
 			throw new AlbumException();
 		}
@@ -51,6 +51,9 @@ public class AlbumService {
 		});
 		// Suppression de l'album
 		albumRepository.delete(albumEnBase);
+	}
+	public void delete(Long id) {
+		delete(albumRepository.findById(id).get());
 	}
 
 	public List<Album> allAlbum() {

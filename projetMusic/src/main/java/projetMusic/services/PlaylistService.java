@@ -29,11 +29,11 @@ public class PlaylistService {
 	private Validator validator;
 
 	// Créer une playlist / Modifier une playlist
-	public void save(Playlist playlist) {
+	public Playlist save(Playlist playlist) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Playlist>> violations = validator.validate(playlist);
 		if (violations.isEmpty()) {
-			playlistRepository.save(playlist);
+			return playlistRepository.save(playlist);
 		} else {
 			throw new PlaylistException();
 		}
@@ -81,5 +81,9 @@ public class PlaylistService {
 	// Cette fonction supprime une playlist
 	public void delete(Playlist playlist) {
 		playlistRepository.delete(playlist);
+	}
+	
+	public void delete(Long id) {
+		delete(playlistRepository.getById(id));
 	}
 }

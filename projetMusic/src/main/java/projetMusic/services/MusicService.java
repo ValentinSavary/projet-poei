@@ -32,11 +32,11 @@ public class MusicService {
 	@Autowired
 	private Validator validator;
 
-	public void save(Music music) {
+	public Music save(Music music) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Music>> violations = validator.validate(music);
 		if (violations.isEmpty()) {
-			musicRepository.save(music);
+			return musicRepository.save(music);
 		} else {
 			throw new MusicException();
 		}
@@ -56,6 +56,10 @@ public class MusicService {
 
 		// Suppression de la musique
 		musicRepository.delete(musicEnBase);
+	}
+	
+	public void delete(Long id) {
+		delete(musicRepository.findById(id).get());
 	}
 
 	public List<Music> allMusic() {
