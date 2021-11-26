@@ -21,6 +21,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+
 @Entity
 @Table(name = "music")
 @NamedQueries({
@@ -44,13 +47,17 @@ public class Music {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMusic")
 	@Column(name = "music_id")
+	@JsonView(JsonViews.Admin.class)
 	private Long id;
 	@Column(name = "music_title")
+	@JsonView(JsonViews.Common.class)
 	private String title;
 	@Column(name = "music_duration")
+	@JsonView(JsonViews.Common.class)
 	private Integer duration;
 	@Lob
 	@Column(name = "music_file")
+	@JsonView(JsonViews.Admin.class)
 	private byte[] musicFile;
 
 	// Gestion de l'énumération de genre musical
@@ -59,6 +66,7 @@ public class Music {
 //	@CollectionTable(name = "genre", joinColumns = @JoinColumn(name = "music_id", referencedColumnName = "id"))
 	@Enumerated(EnumType.STRING)
 	@Column(name = "music_genre")
+	@JsonView(JsonViews.Common.class)
 //	private Set<Genre> genres;
 	private Genre genre;
 
@@ -67,6 +75,7 @@ public class Music {
 	// classe album
 	// rajout de HashSet pour éviter les null pointer exceptions
 	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonView(JsonViews.MusicAvecAlbum.class)
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_album"))
 	private Set<Album> albums = new HashSet<Album>();
 
@@ -76,6 +85,7 @@ public class Music {
 	// la classe playlist
 	// rajout de HashSet pour éviter les null pointer exceptions
 	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonView(JsonViews.MusicAvecPlaylist.class)
 	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_playlist"))
 	private Set<Playlist> playlists = new HashSet<Playlist>();
 

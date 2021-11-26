@@ -16,6 +16,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "users")
 
@@ -24,29 +26,37 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUser")
 	@Column(name = "user_id")
+	@JsonView(JsonViews.Admin.class)
 	private Long id;
+	@Column(name = "user_username")
+	@JsonView(JsonViews.Common.class)
+	private String username;
 	@Column(name = "user_login")
+	@JsonView(JsonViews.User.class)
 	private String login;
 	@Column(name = "user_password")
+	@JsonView(JsonViews.User.class)
 	private String password;
 	@Column(name = "user_accountType")
 	@Enumerated(EnumType.STRING)
+	@JsonView(JsonViews.User.class)
 	private AccountType accountType;
 	@Version
 	@Column(name = "user_version")
 	private int version;
-	
-	// Jointure de tables user et playlist ; l'attribut playlists récupère la jointure
+
+	// Jointure de tables user et playlist ; l'attribut playlists récupère la
+	// jointure
 	// rajout de HashSet pour éviter les null pointer exceptions
 	@OneToMany(mappedBy = "user")
 	private Set<Playlist> playlists = new HashSet<Playlist>();
-	
+
 	// Constructeurs
-	
+
 	public User() {
 		super();
 	}
-	
+
 	public User(String login, String password) {
 		super();
 		this.login = login;
@@ -54,39 +64,39 @@ public class User {
 	}
 
 	// Getters & Setters
-	
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getLogin() {
 		return login;
 	}
-	
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public AccountType getAccountType() {
 		return accountType;
 	}
-	
+
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
-	
+
 	public Set<Playlist> getPlaylists() {
 		return playlists;
 	}
@@ -104,12 +114,12 @@ public class User {
 	}
 
 	// Hashcode & equals
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -19,6 +19,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "album")
 @NamedQueries({
@@ -42,17 +44,21 @@ public class Album {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqAlbum")
 	@Column(name = "album_id")
+	@JsonView(JsonViews.Admin.class)
 	private Long id;
 	@Column(name = "album_name")
+	@JsonView(JsonViews.Common.class)
 	private String name;
 	@Column(name = "album_cover")
 	@Lob
+	@JsonView(JsonViews.Common.class)
 	private byte[] cover;
 	
 	// Jointure de tables album et artist via colonnes id_album et id_artist ;
 	// l'attribut artists récupère la jointure ; la colonne est déjà nommée dans la classe artist
 	// rajout de HashSet pour éviter les null pointer exceptions
 	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonView(JsonViews.AlbumAvecArtist.class)
 	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_artist"))
 	private Set<Artist> artists =new HashSet<Artist>();
 
@@ -61,6 +67,7 @@ public class Album {
 	// rajout de HashSet pour éviter les null pointer exceptions
 	@Column(name = "album_music", length = 40)
 	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonView(JsonViews.ArtistAvecAlbum.class)
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_music"))
 	private Set<Music> musics = new HashSet<Music>();
 

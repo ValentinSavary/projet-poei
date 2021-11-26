@@ -18,6 +18,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "artist")
 @NamedQueries({
@@ -45,10 +47,13 @@ public class Artist {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqArtist")
 	@Column(name = "artist_id")
+	@JsonView(JsonViews.Admin.class)
 	private Long id;
 	@Column(name = "artist_name", nullable = false, length = 50)
+	@JsonView(JsonViews.Common.class)
 	private String name;
 	@Column(name = "artist_country", length = 20)
+	@JsonView(JsonViews.Common.class)
 	private String country;
 
 	// Jointure de tables artist et album via colonnes id_artist et id_album ;
@@ -56,6 +61,7 @@ public class Artist {
 	// rajout de HashSet pour éviter les null pointer exceptions
 	@Column(name = "artist_album", length = 40)
 	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonView(JsonViews.ArtistAvecAlbum.class)
 	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_artist"), inverseJoinColumns = @JoinColumn(name = "id_album"))
 	private Set<Album> albums = new HashSet<Album>();
 
