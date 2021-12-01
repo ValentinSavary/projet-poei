@@ -1,5 +1,7 @@
 package formation.sopra.projetMusicBoot.entities;
 
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -54,6 +56,8 @@ public class Album {
 	@JsonView({ JsonViews.Common.class, JsonViews.Album.class, JsonViews.Artist.class, JsonViews.Music.class,
 			JsonViews.Playlist.class })
 	private String name;
+	@Column(name = "album_year")
+	private Year year;
 	@Column(name = "album_cover")
 	@Lob
 	@JsonView({ JsonViews.Common.class, JsonViews.Album.class, JsonViews.Artist.class, JsonViews.Music.class,
@@ -116,6 +120,14 @@ public class Album {
 
 	public void setArtists(Set<Artist> artists) {
 		this.artists = artists;
+	}
+
+	public Year getYear() {
+		return year;
+	}
+
+	public void setYear(Year year) {
+		this.year = year;
 	}
 
 	public byte[] getCover() {

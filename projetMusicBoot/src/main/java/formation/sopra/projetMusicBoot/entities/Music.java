@@ -4,7 +4,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -53,32 +55,30 @@ public class Music {
 	@JsonView(JsonViews.Admin.class)
 	private Long id;
 	@Column(name = "music_title")
-	@JsonView({JsonViews.Common.class, JsonViews.Album.class, JsonViews.Music.class, JsonViews.Playlist.class})
+	@JsonView({ JsonViews.Common.class, JsonViews.Album.class, JsonViews.Music.class, JsonViews.Playlist.class })
 	private String title;
 	@Column(name = "music_duration")
-	@JsonView({JsonViews.Common.class, JsonViews.Album.class, JsonViews.Music.class, JsonViews.Playlist.class})
+	@JsonView({ JsonViews.Common.class, JsonViews.Album.class, JsonViews.Music.class, JsonViews.Playlist.class })
 	private Integer duration;
 	@Lob
 	@Column(name = "music_file")
 	@JsonView(JsonViews.Admin.class)
 	private byte[] musicFile;
 
-	// Gestion de l'�num�ration de genre musical
+	// Gestion de l'enumeration de genre musical
 
-//	@ElementCollection(targetClass = Genre.class, fetch = FetchType.EAGER)
-//	@CollectionTable(name = "genre", joinColumns = @JoinColumn(name = "music_id", referencedColumnName = "id"))
+	@CollectionTable(name = "GENRES")
 	@Enumerated(EnumType.STRING)
-	@Column(name = "music_genre")
+	@ElementCollection(targetClass = Genre.class)
 	@JsonView(JsonViews.Music.class)
-//	private Set<Genre> genres;
-	private Genre genre;
+	private Set<Genre> genres;
 
 	// Jointure de tables album et music via colonnes id_album et id_music ;
 	// l'attribut albums r�cup�re la jointure ; la colonne est d�j� nomm�e dans la
 	// classe album
 	// rajout de HashSet pour �viter les null pointer exceptions
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JsonView({JsonViews.Music.class, JsonViews.Playlist.class})
+	@JsonView({ JsonViews.Music.class, JsonViews.Playlist.class })
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_album"))
 	private Set<Album> albums = new HashSet<Album>();
 
@@ -87,7 +87,7 @@ public class Music {
 	// la classe playlist
 	// rajout de HashSet pour �viter les null pointer exceptions
 	@ManyToMany(fetch = FetchType.EAGER)
-	//@JsonView(JsonViews.MusicAvecPlaylist.class)
+	// @JsonView(JsonViews.MusicAvecPlaylist.class)
 	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_playlist"))
 	private Set<Playlist> playlists = new HashSet<Playlist>();
 
@@ -153,12 +153,13 @@ public class Music {
 		this.musicFile = musicFile;
 	}
 
-	public Genre getGenre() {
-		return genre;
+
+	public Set<Genre> getGenres() {
+		return genres;
 	}
 
-	public void setGenre(Genre genre) {
-		this.genre = genre;
+	public void setGenres(Set<Genre> genres) {
+		this.genres = genres;
 	}
 
 	public void getInfo() {

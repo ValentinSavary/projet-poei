@@ -24,7 +24,7 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
 	@Query("select alb from Album alb left join fetch alb.artists as art where art.name = :name")// order by alb.artists.name
 	List<Album> findByArtist(@Param("name") String name);
 
-	@Query("select alb from Album alb left join fetch alb.musics as mus where mus.genre =:genre")
-	List<Album> findByGenre(@Param("genre") String genre);
+	@Query("select alb from Album alb left join fetch alb.musics as mus where mus.genres =:genres")
+	List<Album> findByGenre(@Param("genres") String genres);
 
 }
