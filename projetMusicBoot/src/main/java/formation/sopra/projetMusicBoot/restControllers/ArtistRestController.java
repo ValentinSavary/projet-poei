@@ -42,6 +42,12 @@ public class ArtistRestController {
 		return artistService.byId(id);
 	}
 
+	@GetMapping("/name/{name}")
+	@JsonView(JsonViews.Artist.class)
+	public List<Artist> byName(@PathVariable("name") String name) {
+		return artistService.ByName(name);
+	}
+
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Artist.class)

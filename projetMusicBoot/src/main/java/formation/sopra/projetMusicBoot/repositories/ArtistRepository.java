@@ -12,19 +12,19 @@ import formation.sopra.projetMusicBoot.entities.Artist;
 
 public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
-	@Query("select distinct art from Artist art left join fetch art.albums")
+	@Query("select distinct art from Artist as art left join fetch art.albums")
 	List<Artist> findAll();
 
-	@Query("select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where art.name like %:name%")
+	@Query("select distinct art from Artist art left join fetch art.albums as alb where lower(art.name) like lower(concat('%',:name,'%'))")
 	List<Artist> findByName(@Param("name") String name);
 
-	@Query("select art from Artist art left join fetch art.albums as alb where alb.name like %:name%")
+	@Query("select distinct art from Artist art left join fetch art.albums as alb where lower(alb.name) like lower(concat('%',:name,'%'))")
 	List<Artist> findByAlbum(@Param("name") String name);
 
-	@Query("select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where mus.title like %:title%")
+	@Query("select distinct art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where lower(mus.title) like lower(concat('%',:title,'%'))")
 	List<Artist> findByMusic(@Param("title") String title);
 
-	@Query("select art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where mus.genres=:genres")
+	@Query("select distinct art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where lower(mus.genres) like lower(concat('%',:genres,'%'))")
 	List<Artist> findByGenre(@Param("genres") String genres);
 
 }
