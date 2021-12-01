@@ -1,0 +1,30 @@
+server:
+  error:
+    include-message: always
+  servlet:
+    context-path: /music
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/music
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        format_sql: true
+        show_sql: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+logging:
+  level:
+    root: ERROR
+#    '[formation.sopra.formationSpringBoot.restcontroller.ClientRestController]': INFO    
+  file:
+    name: logs.log
+    path: /log
