@@ -1,0 +1,38 @@
+Si on prend un album, quelles informations veut-on en tirer ?
+
+name, cover
+Artist : name
+Music : title, file
+
+
+
+Si on prend un artiste quelles informations veut-on en tirer ?
+
+Name, country
+Album : noms et ses musics_title
+
+
+
+
+Si on prend une musique quelles informations veut-on en tirer ?
+
+title, duration, music file, genre
+Albums : name
+Artiste : name
+
+
+
+Si on prend une playlist quelles informations veut-on en tirer ?
+
+name, typePrivate, 
+Music : name, file, duration
+User : username
+
+
+
+
+
+Si on prend un user quelles informations veut-on en tirer ?
+
+username, accountType
+Playlist : name et ses musics_title
