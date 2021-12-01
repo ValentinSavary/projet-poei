@@ -1,4 +1,4 @@
-package formation.sopra.projetMusicBoot.entity;
+package formation.sopra.projetMusicBoot.entities;
 
 import java.util.HashSet;
 import java.util.Objects;

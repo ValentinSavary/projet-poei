@@ -9,10 +9,10 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import formation.sopra.projetMusicBoot.entity.Album;
-import formation.sopra.projetMusicBoot.entity.Artist;
-import formation.sopra.projetMusicBoot.entity.Genre;
-import formation.sopra.projetMusicBoot.entity.Music;
+import formation.sopra.projetMusicBoot.entities.Album;
+import formation.sopra.projetMusicBoot.entities.Artist;
+import formation.sopra.projetMusicBoot.entities.Genre;
+import formation.sopra.projetMusicBoot.entities.Music;
 import formation.sopra.projetMusicBoot.exceptions.AlbumException;
 import formation.sopra.projetMusicBoot.repositories.AlbumRepository;
 import formation.sopra.projetMusicBoot.repositories.ArtistRepository;

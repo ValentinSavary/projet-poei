@@ -1,4 +1,4 @@
-package formation.sopra.projetMusicBoot.entity;
+package formation.sopra.projetMusicBoot.entities;
 
 public enum Genre {
 	Rock("Rock"), Metal("Metal"), Classical("Classical"), Pop("Pop"), Rap("Rap"), RnB("RnB"), VarieteFrancaise("VarieteFrancaise");

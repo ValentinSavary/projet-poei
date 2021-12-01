@@ -1,4 +1,4 @@
-package formation.sopra.projetMusicBoot.entity;
+package formation.sopra.projetMusicBoot.entities;
 
 public class JsonViews {
 

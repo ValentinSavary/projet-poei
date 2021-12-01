@@ -1,4 +1,4 @@
-package formation.sopra.projetMusicBoot.entity;
+package formation.sopra.projetMusicBoot.entities;
 
 public enum AccountType {
 	free, premium, admin;

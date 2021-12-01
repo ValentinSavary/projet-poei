@@ -9,8 +9,8 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import formation.sopra.projetMusicBoot.entity.Album;
-import formation.sopra.projetMusicBoot.entity.Artist;
+import formation.sopra.projetMusicBoot.entities.Album;
+import formation.sopra.projetMusicBoot.entities.Artist;
 import formation.sopra.projetMusicBoot.exceptions.ArtistException;
 import formation.sopra.projetMusicBoot.repositories.ArtistRepository;
 

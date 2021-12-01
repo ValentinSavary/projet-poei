@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import formation.sopra.projetMusicBoot.entity.Album;
+import formation.sopra.projetMusicBoot.entities.Album;
 
 //Repository : code o� l'on d�finit les requetes
 

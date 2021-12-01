@@ -10,7 +10,7 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import formation.sopra.projetMusicBoot.entity.User;
+import formation.sopra.projetMusicBoot.entities.User;
 import formation.sopra.projetMusicBoot.exceptions.UserException;
 import formation.sopra.projetMusicBoot.repositories.UserRepository;
 
