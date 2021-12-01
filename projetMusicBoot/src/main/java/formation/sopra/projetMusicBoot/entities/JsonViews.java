@@ -6,39 +6,27 @@ public class JsonViews {
 
 	}
 
-	public static class Admin extends User {
+	public static class Admin extends Common {
 
 	}
 
-	public static class User extends Common {
+	public static class User {
 
 	}
 
-	public static class AlbumAvecArtist extends MusicAvecAlbum {
+	public static class Album {
 
 	}
 
-	public static class AlbumAvecMusic extends Common {
+	public static class Artist {
 
 	}
 
-	public static class PlaylistAvecMusic extends Common {
+	public static class Music {
 
 	}
 
-	public static class Artist extends Common {
-
-	}
-
-	public static class Music extends Common {
-
-	}
-
-	public static class MusicAvecAlbum extends Music {
-
-	}
-
-	public static class ArtistAvecAlbum extends Artist {
+	public static class Playlist {
 
 	}
 

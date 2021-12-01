@@ -53,10 +53,10 @@ public class Music {
 	@JsonView(JsonViews.Admin.class)
 	private Long id;
 	@Column(name = "music_title")
-	@JsonView(JsonViews.Common.class)
+	@JsonView({JsonViews.Common.class, JsonViews.Album.class, JsonViews.Music.class, JsonViews.Playlist.class})
 	private String title;
 	@Column(name = "music_duration")
-	@JsonView(JsonViews.Common.class)
+	@JsonView({JsonViews.Common.class, JsonViews.Album.class, JsonViews.Music.class, JsonViews.Playlist.class})
 	private Integer duration;
 	@Lob
 	@Column(name = "music_file")
@@ -78,7 +78,7 @@ public class Music {
 	// classe album
 	// rajout de HashSet pour �viter les null pointer exceptions
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JsonView(JsonViews.MusicAvecAlbum.class)
+	@JsonView({JsonViews.Music.class, JsonViews.Playlist.class})
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_album"))
 	private Set<Album> albums = new HashSet<Album>();
 

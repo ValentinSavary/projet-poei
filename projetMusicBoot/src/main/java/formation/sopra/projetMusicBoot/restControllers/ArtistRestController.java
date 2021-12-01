@@ -31,26 +31,26 @@ public class ArtistRestController {
 	ArtistService artistService;
 
 	@GetMapping("")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Artist.class)
 	public List<Artist> all() {
 		return artistService.allArtist();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Artist.class)
 	public Artist byId(@PathVariable("id") Long id) {
 		return artistService.byId(id);
 	}
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Artist.class)
 	public Artist create(@Valid @RequestBody Artist artist, BindingResult br) {
 		return artistService.save(artist);
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Artist.class)
 	public Artist update(@Valid @RequestBody Artist artist, BindingResult br, @PathVariable("id") Long id) {
 		Artist artistEnBase = artistService.byId(id);
 		artistEnBase.setName(artist.getName());

@@ -29,17 +29,16 @@ public class User {
 	@JsonView(JsonViews.Admin.class)
 	private Long id;
 	@Column(name = "user_username")
-	@JsonView(JsonViews.Common.class)
+	@JsonView({JsonViews.Common.class, JsonViews.Playlist.class})
 	private String username;
 	@Column(name = "user_login")
 	@JsonView(JsonViews.User.class)
 	private String login;
 	@Column(name = "user_password")
-	@JsonView(JsonViews.User.class)
 	private String password;
 	@Column(name = "user_accountType")
 	@Enumerated(EnumType.STRING)
-	@JsonView(JsonViews.User.class)
+//	@JsonView(JsonViews.User.class)
 	private AccountType accountType;
 	@Version
 	@Column(name = "user_version")
@@ -49,6 +48,7 @@ public class User {
 	// jointure
 	// rajout de HashSet pour �viter les null pointer exceptions
 	@OneToMany(mappedBy = "user")
+	@JsonView(JsonViews.User.class)
 	private Set<Playlist> playlists = new HashSet<Playlist>();
 
 	// Constructeurs

@@ -31,26 +31,26 @@ public class UserRestController {
 	UserService userService;
 
 	@GetMapping("")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.User.class)
 	public List<User> all() {
 		return userService.all();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.User.class)
 	public User byId(@PathVariable("id") Long id) {
 		return userService.byId(id);
 	}
 
 	@PostMapping("")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.User.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public User create(@Valid @RequestBody User user, BindingResult br) {
 		return userService.save(user);
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.User.class)
 	public User update(@Valid @RequestBody User user, BindingResult br, @PathVariable("id") Long id) {
 		User userEnBase = userService.byId(id);
 		userEnBase.setLogin(user.getLogin());

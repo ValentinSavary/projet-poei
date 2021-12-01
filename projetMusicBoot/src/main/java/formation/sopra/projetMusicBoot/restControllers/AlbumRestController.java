@@ -31,26 +31,26 @@ public class AlbumRestController {
 	private AlbumService albumService;
 
 	@GetMapping("")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Album.class)
 	public List<Album> all() {
 		return albumService.allAlbum();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Album.class)
 	public Album byId(@PathVariable("id") Long id) {
 		return albumService.byId(id);
 	}
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Album.class)
 	public Album create(@Valid @RequestBody Album album, BindingResult br) {
 		return albumService.save(album);
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Album.class)
 	public Album update(@PathVariable("id") Long id, @Valid @RequestBody Album album, BindingResult br) {
 		Album albumEnBase = albumService.byId(id);
 		albumEnBase.setName(album.getName());

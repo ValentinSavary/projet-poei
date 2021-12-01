@@ -37,11 +37,11 @@ public class Playlist {
 	private Long id;
 
 	@Column(name = "playlist_name")
-	@JsonView(JsonViews.Common.class)
+	@JsonView({JsonViews.Common.class, JsonViews.Playlist.class, JsonViews.User.class})
 	private String name;
 
 	@Column(name = "playlist_typePrivate")
-	@JsonView(JsonViews.Common.class)
+	@JsonView({JsonViews.Common.class, JsonViews.Playlist.class})
 	private boolean typePrivate = false;
 
 	// Jointure de tables playlist et music via colonnes id_playlist et id_music ;
@@ -49,13 +49,13 @@ public class Playlist {
 	// rajout de HashSet pour �viter les null pointer exceptions
 	@Column(name = "playlist_music", length = 40)
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JsonView(JsonViews.PlaylistAvecMusic.class)
+	@JsonView(JsonViews.Playlist.class)
 	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_playlist"), inverseJoinColumns = @JoinColumn(name = "id_music"))
 	private Set<Music> musics = new HashSet<Music>();
 
 	// Jointure de tables user et playlists
 	@ManyToOne
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Playlist.class)
 	@JoinColumn(name = "user_id")
 	private User user;
 

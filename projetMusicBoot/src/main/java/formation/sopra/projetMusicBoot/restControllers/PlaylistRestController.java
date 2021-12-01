@@ -28,26 +28,26 @@ public class PlaylistRestController {
 	PlaylistService playlistService;
 
 //	@GetMapping("")
-//	@JsonView(JsonViews.Common.class)
+//	@JsonView(JsonViews.Playlist.class)
 //	public List<Playlist> all(){
 //		return playlistService.all();
 //	}
 
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Playlist.class)
 	public Playlist byId(@PathVariable("id") Long id) {
 		return playlistService.byId(id);
 	}
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Playlist.class)
 	public Playlist create(@Valid @RequestBody Playlist playlist, BindingResult br) {
 		return playlistService.save(playlist);
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Playlist.class)
 	public Playlist update(@Valid @RequestBody Playlist playlist, BindingResult br, @PathVariable("id") Long id) {
 		Playlist playlistEnBase = playlistService.byId(id);
 		playlistEnBase.setName(playlist.getName());

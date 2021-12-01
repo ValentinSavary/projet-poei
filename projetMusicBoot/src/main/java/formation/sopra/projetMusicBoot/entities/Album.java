@@ -24,20 +24,24 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "album")
 @NamedQueries({
-		// Selection de tous les albums (et leurs musiques) par la jointure associ�e � l'attribut musics
+		// Selection de tous les albums (et leurs musiques) par la jointure associ�e �
+		// l'attribut musics
 		@NamedQuery(name = "Album.findAll", query = "select alb from Album alb left join fetch alb.musics"),
-		
+
 		// Selection de tous les albums (et leurs musiques) nomm�s comme l'input
 		@NamedQuery(name = "Album.findByName", query = "select alb from Album alb left join fetch alb.artists left join fetch alb.musics where alb.name =:name"),
-		
-		// Selection de tous les albums (et leurs musiques) qui ont une musique nomm�e comme l'input
+
+		// Selection de tous les albums (et leurs musiques) qui ont une musique nomm�e
+		// comme l'input
 		@NamedQuery(name = "Album.findByMusic", query = "select alb from Album alb left join fetch alb.musics where alb.musics =:music"),
-		
-		// Selection de tous les albums (et leurs musiques) qui ont un artiste nomm� comme l'input
+
+		// Selection de tous les albums (et leurs musiques) qui ont un artiste nomm�
+		// comme l'input
 		@NamedQuery(name = "Album.findByArtist", query = "select alb from Album alb left join fetch alb.artists where alb.artists =:artist"),
-		
-		// Selection de tous les albums (et leurs musiques) qui ont un genre nomm� comme l'input
-		@NamedQuery(name = "Album.findByGenre", query = "select alb from Album alb left join fetch alb.musics where alb.musics =:genre")})
+
+		// Selection de tous les albums (et leurs musiques) qui ont un genre nomm� comme
+		// l'input
+		@NamedQuery(name = "Album.findByGenre", query = "select alb from Album alb left join fetch alb.musics where alb.musics =:genre") })
 
 @SequenceGenerator(name = "seqAlbum", sequenceName = "seq_album", allocationSize = 1)
 public class Album {
@@ -47,27 +51,30 @@ public class Album {
 	@JsonView(JsonViews.Admin.class)
 	private Long id;
 	@Column(name = "album_name")
-	@JsonView(JsonViews.Common.class)
+	@JsonView({ JsonViews.Common.class, JsonViews.Album.class, JsonViews.Artist.class, JsonViews.Music.class,
+			JsonViews.Playlist.class })
 	private String name;
 	@Column(name = "album_cover")
 	@Lob
-	@JsonView(JsonViews.Common.class)
+	@JsonView({ JsonViews.Common.class, JsonViews.Album.class, JsonViews.Artist.class, JsonViews.Music.class,
+			JsonViews.Playlist.class })
 	private byte[] cover;
-	
+
 	// Jointure de tables album et artist via colonnes id_album et id_artist ;
-	// l'attribut artists r�cup�re la jointure ; la colonne est d�j� nomm�e dans la classe artist
+	// l'attribut artists r�cup�re la jointure ; la colonne est d�j� nomm�e dans la
+	// classe artist
 	// rajout de HashSet pour �viter les null pointer exceptions
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JsonView(JsonViews.AlbumAvecArtist.class)
+	@JsonView({ JsonViews.Album.class, JsonViews.Playlist.class })
 	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_artist"))
-	private Set<Artist> artists =new HashSet<Artist>();
+	private Set<Artist> artists = new HashSet<Artist>();
 
-	// Jointure de tables album  et music via colonnes id_artist et id_music ;
+	// Jointure de tables album et music via colonnes id_artist et id_music ;
 	// l'attribut musics r�cup�re la jointure
 	// rajout de HashSet pour �viter les null pointer exceptions
 	@Column(name = "album_music", length = 40)
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JsonView(JsonViews.AlbumAvecMusic.class)
+	@JsonView(JsonViews.Album.class)
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_music"))
 	private Set<Music> musics = new HashSet<Music>();
 

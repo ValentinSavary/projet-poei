@@ -31,26 +31,26 @@ public class MusicRestController {
 	MusicService musicService;
 
 	@GetMapping("")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Music.class)
 	public List<Music> all() {
 		return musicService.allMusic();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Music.class)
 	public Music byId(@PathVariable("id") Long id) {
 		return musicService.byId(id);
 	}
 
 	@PostMapping("")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Music.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Music create(@Valid @RequestBody Music music, BindingResult br) {
 		return musicService.save(music);
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Music.class)
 	public Music update(@Valid @RequestBody Music music, BindingResult br, @PathVariable("id") Long id) {
 		Music musicEnBase = musicService.byId(id);
 		musicEnBase.setTitle(music.getTitle());
