@@ -56,7 +56,7 @@ public class MusicService {
 		// Suppression de la musique
 		musicRepository.delete(musicEnBase);
 	}
-	
+
 	public void delete(Long id) {
 		delete(musicRepository.findById(id).get());
 	}
@@ -81,10 +81,14 @@ public class MusicService {
 		return musicRepository.findByPlaylist(playlist);
 	}
 
+	public List<Music> byGenre(String genre) {
+		return musicRepository.findByGenre(genre);
+	}
+
 	public Music byId(Long id) {
 		return musicRepository.findById(id).orElseThrow(MusicException::new);
 	}
-	
+
 	// Cette fonction ajoute une musique dans l'album
 	public void addAlbum(Album album, Music music) {
 		music.getAlbums().add(album);

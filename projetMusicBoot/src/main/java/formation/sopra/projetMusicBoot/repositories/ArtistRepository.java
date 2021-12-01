@@ -24,7 +24,7 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
 	@Query("select distinct art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where lower(mus.title) like lower(concat('%',:title,'%'))")
 	List<Artist> findByMusic(@Param("title") String title);
 
-	@Query("select distinct art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where lower(mus.genres) like lower(concat('%',:genres,'%'))")
-	List<Artist> findByGenre(@Param("genres") String genres);
+//	@Query("select distinct art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where lower(mus.genres) like lower(concat('%',:genres,'%'))")
+//	List<Artist> findByGenre(@Param("genres") String genres);
 
 }

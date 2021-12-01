@@ -1,5 +1,7 @@
 package formation.sopra.projetMusicBoot.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -16,8 +18,9 @@ import formation.sopra.projetMusicBoot.entities.Playlist;
 import formation.sopra.projetMusicBoot.exceptions.PlaylistException;
 import formation.sopra.projetMusicBoot.repositories.MusicRepository;
 import formation.sopra.projetMusicBoot.repositories.PlaylistRepository;
+import net.bytebuddy.implementation.bytecode.Throw;
 
-//Service : code o� l'on applique les requetes
+//Service : code ou l'on applique les requetes
 
 @Service
 public class PlaylistService {
@@ -39,12 +42,34 @@ public class PlaylistService {
 		}
 	}
 
+	// Cette fonction retrouve une playlist publique à partir de son ID
 	public Playlist byId(Long id) {
-		// if (playlist typePrivate == true){
-		// Throw(PlaylistException::new);}
-		// if playlist typePrivate == false){
-		return playlistRepository.findById(id).orElseThrow(PlaylistException::new);
-		// }
+		if (playlistRepository.findById(id).get().isTypePrivate() == true) {
+			throw new PlaylistException();
+		} else {
+			return playlistRepository.findById(id).orElseThrow(PlaylistException::new);
+		}
+	}
+
+	// Cette fonction retrouve une playlist publique à partir de son nom
+	public List<Playlist> byName(String name) {
+		List<Playlist> playlists = new ArrayList<Playlist>();
+		playlistRepository.findByName(name).forEach(playlistEnBase -> {
+			if (playlistEnBase.isTypePrivate() == false) {
+				playlists.add(playlistEnBase);
+			}
+		});
+		return playlists;
+	}
+
+	public List<Playlist> byUser(String username) {
+		List<Playlist> playlists = new ArrayList<Playlist>();
+		playlistRepository.findByUser(username).forEach(playlistEnBase -> {
+			if (playlistEnBase.isTypePrivate() == false) {
+				playlists.add(playlistEnBase);
+			}
+		});
+		return playlists;
 	}
 
 	// Cette fonction ajoute une musique dans la playlist
@@ -82,7 +107,7 @@ public class PlaylistService {
 	public void delete(Playlist playlist) {
 		playlistRepository.delete(playlist);
 	}
-	
+
 	public void delete(Long id) {
 		delete(playlistRepository.getById(id));
 	}

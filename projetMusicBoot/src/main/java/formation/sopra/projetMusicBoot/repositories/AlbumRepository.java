@@ -8,23 +8,23 @@ import org.springframework.data.repository.query.Param;
 
 import formation.sopra.projetMusicBoot.entities.Album;
 
-//Repository : code o� l'on d�finit les requetes
+//Repository : code ou l'on definit les requetes pour recuperer un album
 
 public interface AlbumRepository extends JpaRepository<Album, Long> {
 
-	@Query("select distinct alb from Album alb left join fetch alb.musics")
+	@Query("select distinct alb from Album alb left join fetch alb.musics as mus left join fetch alb.artists as art")
 	List<Album> findAll();
 
-	@Query("select alb from Album alb left join fetch alb.artists left join fetch alb.musics where alb.name like %:name%")
+	@Query("select distinct alb from Album alb left join fetch alb.musics as mus left join fetch alb.artists as art where lower(alb.name) like lower(concat('%',:name,'%'))")
 	List<Album> findByName(@Param("name") String name);
 
-	@Query("select alb from Album alb left join fetch alb.musics as mus where mus.title =:title")
+	@Query("select distinct alb from Album alb left join fetch alb.musics as mus left join fetch alb.artists as art where lower(mus.title) like lower(concat('%',:title,'%'))")
 	List<Album> findByMusic(@Param("title") String title);
 	
-	@Query("select alb from Album alb left join fetch alb.artists as art where art.name = :name")// order by alb.artists.name
+	@Query("select distinct alb from Album alb left join fetch alb.musics as mus left join fetch alb.artists as art where lower(art.name) like lower(concat('%',:name,'%'))")
 	List<Album> findByArtist(@Param("name") String name);
 
-	@Query("select alb from Album alb left join fetch alb.musics as mus where mus.genres =:genres")
-	List<Album> findByGenre(@Param("genres") String genres);
+//	@Query("select distinct alb from Album alb left join fetch alb.musics as mus left join fetch alb.artists as art where lower(mus.genres) like lower(concat('%',:genres,'%'))")
+//	List<Album> findByGenre(@Param("genres") String genres);
 
 }

@@ -60,11 +60,11 @@ public class ArtistRestController {
 		return artistService.ByMusic(title);
 	}
 
-	@GetMapping("/genre/{genres}")
-	@JsonView(JsonViews.Artist.class)
-	public List<Artist> byGenre(@PathVariable("genres") String genre) {
-		return artistService.ByGenre(genre);
-	}
+//	@GetMapping("/genre/{genres}")
+//	@JsonView(JsonViews.Artist.class)
+//	public List<Artist> byGenre(@PathVariable("genres") String genre) {
+//		return artistService.ByGenre(genre);
+//	}
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)

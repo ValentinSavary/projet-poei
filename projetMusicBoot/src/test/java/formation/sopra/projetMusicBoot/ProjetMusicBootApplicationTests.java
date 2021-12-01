@@ -8,14 +8,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import formation.sopra.projetMusicBoot.entities.AccountType;
 import formation.sopra.projetMusicBoot.entities.Album;
 import formation.sopra.projetMusicBoot.entities.Artist;
 import formation.sopra.projetMusicBoot.entities.Genre;
 import formation.sopra.projetMusicBoot.entities.Music;
 import formation.sopra.projetMusicBoot.entities.Playlist;
+import formation.sopra.projetMusicBoot.entities.User;
 import formation.sopra.projetMusicBoot.services.AlbumService;
 import formation.sopra.projetMusicBoot.services.ArtistService;
 import formation.sopra.projetMusicBoot.services.MusicService;
+import formation.sopra.projetMusicBoot.services.PlaylistService;
+import formation.sopra.projetMusicBoot.services.UserService;
 
 @SpringBootTest
 class ProjetMusicBootApplicationTests {
@@ -26,12 +30,16 @@ class ProjetMusicBootApplicationTests {
 	private AlbumService albumService;
 	@Autowired
 	private MusicService musicService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private PlaylistService playlistService;
 
 	// @Test
 	void contextLoads() {
 	}
 
-	@Test
+	// @Test
 	void loadDB() {
 		Artist thyArt = new Artist();
 		thyArt.setName("Thy Art Is Murder");
@@ -39,11 +47,11 @@ class ProjetMusicBootApplicationTests {
 		Set<Genre> genreThyArt = new HashSet<Genre>();
 		genreThyArt.add(Genre.Metal);
 		genreThyArt.add(Genre.TechnicalDeathcore);
-		
+
 		Album human = new Album();
 		human.setName("Human Target");
 		human.setYear(Year.of(2019));
-		
+
 		Music atonement = new Music();
 		atonement.setTitle("Atonement");
 		atonement.setDuration(239);
@@ -54,35 +62,35 @@ class ProjetMusicBootApplicationTests {
 		eternalSuffering.setDuration(305);
 		eternalSuffering.setGenres(genreThyArt);
 		musicService.save(eternalSuffering);
-		
+
 		Set<Music> musHuman = new HashSet<Music>();
 		musHuman.add(eternalSuffering);
 		musHuman.add(atonement);
 		human.setMusics(musHuman);
 		albumService.save(human);
-		
+
 		Album holy = new Album();
 		holy.setName("Holy War");
 		holy.setYear(Year.of(2015));
-		
+
 		Music lightBearer = new Music();
 		lightBearer.setTitle("Light Bearer");
 		lightBearer.setDuration(235);
 		lightBearer.setGenres(genreThyArt);
 		musicService.save(lightBearer);
-		
+
 		Music coffinDragger = new Music();
 		coffinDragger.setTitle("Coffin Dragger");
 		coffinDragger.setDuration(175);
 		coffinDragger.setGenres(genreThyArt);
 		musicService.save(coffinDragger);
-		
+
 		Set<Music> musHoly = new HashSet<Music>();
 		musHoly.add(lightBearer);
 		musHoly.add(coffinDragger);
 		holy.setMusics(musHoly);
 		albumService.save(holy);
-		
+
 		Set<Album> albThyArt = new HashSet<Album>();
 		albThyArt.add(holy);
 		albThyArt.add(human);
@@ -204,10 +212,26 @@ class ProjetMusicBootApplicationTests {
 		artSeb.setAlbums(albumsArtSeb);
 		artistService.save(artSeb);
 
-//		artistsA.add(artSeb);
-//		albumService.save(albumSebA);
-//		artistsB.add(artSeb);
-//		albumService.save(albumSebB);
+		// Creation users
 
+		User user1 = new User();
+		user1.setUsername("Olivier");
+		user1.setLogin("og@fff.com");
+		user1.setAccountType(AccountType.premium);
+		user1.setPassword("oooo");
+		userService.save(user1);
+
+		// Creation playlists
+		Playlist playlist1 = new Playlist();
+		playlist1.setName("pla1");
+		playlist1.setTypePrivate(false);
+		playlist1.setUser(user1);
+
+		Set<Music> musPla = new HashSet<Music>();
+		musPla.add(musicSebB);
+		musPla.add(lightBearer);
+		musPla.add(mus2);
+		playlist1.setMusics(musPla);
+		playlistService.save(playlist1);
 	}
 }

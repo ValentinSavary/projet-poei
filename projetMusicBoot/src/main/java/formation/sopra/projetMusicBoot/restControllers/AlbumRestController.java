@@ -42,6 +42,30 @@ public class AlbumRestController {
 		return albumService.byId(id);
 	}
 
+	@GetMapping("/name/{name}")
+	@JsonView(JsonViews.Album.class)
+	public List<Album> byName(@PathVariable("name") String name) {
+		return albumService.ByName(name);
+	}
+
+	@GetMapping("/artist/{name}")
+	@JsonView(JsonViews.Album.class)
+	public List<Album> byArtist(@PathVariable("name") String name) {
+		return albumService.ByArtist(name);
+	}
+
+	@GetMapping("/music/{title}")
+	@JsonView(JsonViews.Album.class)
+	public List<Album> byMusic(@PathVariable("title") String title) {
+		return albumService.ByMusic(title);
+	}
+	
+//	@GetMapping("/genre/{genres}")
+//	@JsonView(JsonViews.Album.class)
+//	public List<Album> byGenre(@PathVariable("genres") String genre) {
+//		return albumService.ByGenre(genre);
+//	}
+
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Album.class)

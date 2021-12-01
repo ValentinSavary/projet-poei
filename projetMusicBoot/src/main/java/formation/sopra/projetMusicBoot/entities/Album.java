@@ -68,7 +68,7 @@ public class Album {
 	// l'attribut artists r�cup�re la jointure ; la colonne est d�j� nomm�e dans la
 	// classe artist
 	// rajout de HashSet pour �viter les null pointer exceptions
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JsonView({ JsonViews.Album.class, JsonViews.Playlist.class })
 	@JoinTable(name = "ArtistAlbumAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_artist"))
 	private Set<Artist> artists = new HashSet<Artist>();
@@ -77,7 +77,7 @@ public class Album {
 	// l'attribut musics r�cup�re la jointure
 	// rajout de HashSet pour �viter les null pointer exceptions
 	@Column(name = "album_music", length = 40)
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JsonView(JsonViews.Album.class)
 	@JoinTable(name = "AlbumMusicAssociation", joinColumns = @JoinColumn(name = "id_album"), inverseJoinColumns = @JoinColumn(name = "id_music"))
 	private Set<Music> musics = new HashSet<Music>();

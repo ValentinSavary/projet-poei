@@ -17,7 +17,7 @@ import formation.sopra.projetMusicBoot.exceptions.AlbumException;
 import formation.sopra.projetMusicBoot.repositories.AlbumRepository;
 import formation.sopra.projetMusicBoot.repositories.ArtistRepository;
 
-//Service : code o� l'on applique les requetes
+//Service : code ou on applique les requetes
 
 @Service
 public class AlbumService {
@@ -30,7 +30,7 @@ public class AlbumService {
 	@Autowired
 	private MusicService musicService;
 
-	// Cr�ation / modification d'un album
+	// Creation / modification d'un album
 	public Album save(Album album) {
 		Set<ConstraintViolation<Album>> violations = validator.validate(album);
 		if (violations.isEmpty()) {
@@ -60,25 +60,25 @@ public class AlbumService {
 		return albumRepository.findAll();
 	}
 
-	// Cette m�thode renvoie la liste de tous les albums par nom
+	// Cette methode renvoie la liste de tous les albums par nom
 	public List<Album> ByName(String name) {
 		return albumRepository.findByName(name);
 	}
 
-	// Cette m�thode renvoie la liste de tous les albums par musique
+	// Cette methode renvoie la liste de tous les albums par musique
 	public List<Album> ByMusic(String title) {
 		return albumRepository.findByMusic(title);
 	}
 
-	// Cette m�thode renvoie la liste de tous les albums par artiste
+	// Cette methode renvoie la liste de tous les albums par artiste
 	public List<Album> ByArtist(String name) {
 		return albumRepository.findByArtist(name);
 	}
 
-	// Cette m�thode renvoie la liste de tous les albums par artiste
-	public List<Album> ByGenre(Genre genre) {
-		return albumRepository.findByGenre(genre.toString());
-	}
+	// Cette methode renvoie la liste de tous les albums par artiste
+//	public List<Album> ByGenre(String genre) {
+//		return albumRepository.findByGenre(genre);
+//	}
 
 	public Album byId(Long id) {
 		return albumRepository.findById(id).orElseThrow(AlbumException::new);

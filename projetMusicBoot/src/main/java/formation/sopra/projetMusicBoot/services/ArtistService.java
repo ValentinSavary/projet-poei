@@ -62,9 +62,9 @@ public class ArtistService {
 	}
 
 	// Cette m�thode renvoie la liste de tous les artistes par genre
-	public List<Artist> ByGenre(String genre) {
-		return artistRepository.findByGenre(genre);
-	}
+//	public List<Artist> ByGenre(String genre) {
+//		return artistRepository.findByGenre(genre);
+//	}
 
 	// Suppression d'un artiste
 	public void delete(Artist artist) {

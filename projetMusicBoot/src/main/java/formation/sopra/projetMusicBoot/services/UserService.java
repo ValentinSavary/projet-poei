@@ -14,7 +14,7 @@ import formation.sopra.projetMusicBoot.entities.User;
 import formation.sopra.projetMusicBoot.exceptions.UserException;
 import formation.sopra.projetMusicBoot.repositories.UserRepository;
 
-//Service : code o� l'on applique les requetes
+//Service : code ou l'on applique les requetes
 
 @Service
 public class UserService {
@@ -39,8 +39,14 @@ public class UserService {
 		return userRepository.findById(id).orElseThrow(UserException::new);
 	}
 
+	// Cette fonction retourne tous les users
 	public List<User> all() {
 		return userRepository.findAll();
+	}
+	
+	// Cette fonction retourne tous les users par le nom de la playlist
+	public List<User> ByPlaylist(String name) {
+		return userRepository.findByPlaylist(name);
 	}
 
 	public void delete(User user) {

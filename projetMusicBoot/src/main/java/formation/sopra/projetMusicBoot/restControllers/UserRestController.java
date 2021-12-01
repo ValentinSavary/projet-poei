@@ -42,6 +42,12 @@ public class UserRestController {
 		return userService.byId(id);
 	}
 
+	@GetMapping("/playlist/{name}")
+	@JsonView(JsonViews.User.class)
+	public List<User> byPlaylist(@PathVariable("name") String name) {
+		return userService.ByPlaylist(name);
+	}
+
 	@PostMapping("")
 	@JsonView(JsonViews.User.class)
 	@ResponseStatus(code = HttpStatus.CREATED)

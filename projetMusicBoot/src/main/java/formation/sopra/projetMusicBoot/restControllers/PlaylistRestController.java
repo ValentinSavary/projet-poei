@@ -1,5 +1,7 @@
 package formation.sopra.projetMusicBoot.restControllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,18 @@ public class PlaylistRestController {
 	@JsonView(JsonViews.Playlist.class)
 	public Playlist byId(@PathVariable("id") Long id) {
 		return playlistService.byId(id);
+	}
+
+	@GetMapping("/name/{name}")
+	@JsonView(JsonViews.Playlist.class)
+	public List<Playlist> byName(@PathVariable("name") String name) {
+		return playlistService.byName(name);
+	}
+
+	@GetMapping("/user/{username}")
+	@JsonView(JsonViews.Playlist.class)
+	public List<Playlist> byUser(@PathVariable("username") String username) {
+		return playlistService.byUser(username);
 	}
 
 	@PostMapping("")
