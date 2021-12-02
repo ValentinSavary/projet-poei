@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import formation.sopra.projetMusicBoot.entities.Genre;
 import formation.sopra.projetMusicBoot.entities.Music;
 
 // Repository : code o� l'on d�finit les requetes
@@ -27,12 +28,17 @@ public interface MusicRepository extends JpaRepository<Music, Long> {
 	@Query("select distinct mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art where lower(art.name) like lower(concat('%',:name,'%'))")
 	List<Music> findByArtist(@Param("name") String name);
 
-	@Query("select distinct mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art where mus.genres in (select gen from Genre gen where lower(gen.name) like lower(concat('%',:name,'%')))")
+	@Query("select distinct mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art where :name in (select gen from Genre gen where mus.genres)")
 	List<Music> findByGenre(@Param("name") String name);
+
+//	@Query("select gen from Genres gen left join fetch gen.musics where gen.musics=:title")
+//	List<Genre> findGenreByMusic(@Param("title") String title);
 
 //	mus.genres.any().in(:genres)
 
 //requete avec requete imbriquee
+//	(select gen from Genre gen where lower(gen.name) like lower(concat('%',:name,'%')))
+
 //	@Query("select distinct mus from Music mus left join fetch mus.albums as alb left join fetch alb.artists as art where lower(mus.genres.any().in(:genres))")
 //	List<Music> findByGenre(@Param("genres") String genre);
 //

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import formation.sopra.projetMusicBoot.entities.Genre;
 import formation.sopra.projetMusicBoot.entities.JsonViews;
 import formation.sopra.projetMusicBoot.entities.Music;
 import formation.sopra.projetMusicBoot.services.MusicService;
