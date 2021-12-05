@@ -1,0 +1,11 @@
+Liste des urls de notre futur site :
+
+- music/home
+- music/login
+- music/artist/
+- music/artist/album/
+- music/playlist
+- music/profile/
+- music/profile/artists
+- music/profile/albums
+- music/profile/playlists
