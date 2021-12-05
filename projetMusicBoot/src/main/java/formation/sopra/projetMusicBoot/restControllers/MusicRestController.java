@@ -67,9 +67,9 @@ public class MusicRestController {
 		return musicService.byPlaylist(name);
 	}
 
-	@GetMapping("/genre/{genres}")
+	@GetMapping("/genre/{genre}")
 	@JsonView(JsonViews.Music.class)
-	public List<Music> byGenre(@PathVariable("genres") String genre) {
+	public List<Music> byGenre(@PathVariable("genre") String genre) {
 		return musicService.byGenre(genre);
 	}
 
