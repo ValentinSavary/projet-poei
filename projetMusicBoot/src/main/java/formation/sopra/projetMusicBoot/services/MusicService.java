@@ -82,7 +82,10 @@ public class MusicService {
 		return musicRepository.findByPlaylist(playlist);
 	}
 
-	public List<Music> byGenre(String genre) {
+//	public List<Music> byGenre(String genre) {
+//		return musicRepository.findByGenre(genre);
+//	}
+	public List<Music> byGenre(Set<Genre> genre) {
 		return musicRepository.findByGenre(genre);
 	}
 
