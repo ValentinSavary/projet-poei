@@ -7,6 +7,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import formation.sopra.projetMusicBoot.entities.AccountType;
 import formation.sopra.projetMusicBoot.entities.Album;
@@ -34,12 +35,14 @@ class ProjetMusicBootApplicationTests {
 	private UserService userService;
 	@Autowired
 	private PlaylistService playlistService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	// @Test
 	void contextLoads() {
 	}
 
-	@Test
+	//@Test
 	void loadDB() {
 		Artist thyArt = new Artist();
 		thyArt.setName("Thy Art Is Murder");
@@ -217,9 +220,9 @@ class ProjetMusicBootApplicationTests {
 		User user1 = new User();
 		user1.setUsername("Olivier");
 		user1.setLogin("og@fff.com");
-		user1.setAccountType(AccountType.premium);
-		user1.setPassword("oooo");
-		userService.save(user1);
+		user1.setAccountType(AccountType.ROLE_PREMIUM);
+		user1.setPassword(passwordEncoder.encode("oooo"));
+		userService.create(user1);
 
 		// Creation playlists
 		Playlist playlist1 = new Playlist();

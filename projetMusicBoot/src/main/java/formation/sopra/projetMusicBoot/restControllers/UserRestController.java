@@ -6,7 +6,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,10 +27,13 @@ import formation.sopra.projetMusicBoot.services.UserService;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin(origins = "*")
 public class UserRestController {
 
 	@Autowired
 	UserService userService;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@GetMapping("")
 	@JsonView(JsonViews.User.class)
@@ -52,7 +57,7 @@ public class UserRestController {
 	@JsonView(JsonViews.User.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public User create(@Valid @RequestBody User user, BindingResult br) {
-		return userService.save(user);
+		return userService.create(user);
 	}
 
 	@PutMapping("/{id}")
@@ -60,11 +65,11 @@ public class UserRestController {
 	public User update(@Valid @RequestBody User user, BindingResult br, @PathVariable("id") Long id) {
 		User userEnBase = userService.byId(id);
 		userEnBase.setLogin(user.getLogin());
-		userEnBase.setPassword(user.getPassword());
+		userEnBase.setPassword(passwordEncoder.encode(user.getPassword()));
 		userEnBase.setAccountType(user.getAccountType());
 		userEnBase.setVersion(user.getVersion());
 		userEnBase.setPlaylists(user.getPlaylists());
-		return userService.save(userEnBase);
+		return userService.update(userEnBase);
 	}
 
 	@DeleteMapping("/{id}")

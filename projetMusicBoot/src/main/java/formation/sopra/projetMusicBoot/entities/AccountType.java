@@ -1,5 +1,6 @@
 package formation.sopra.projetMusicBoot.entities;
 
 public enum AccountType {
-	free, premium, admin;
+	//Definition liste des roles
+	ROLE_FREE, ROLE_PREMIUM, ROLE_ADMIN;
 }

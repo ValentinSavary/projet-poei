@@ -8,8 +8,10 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import formation.sopra.projetMusicBoot.entities.AccountType;
 import formation.sopra.projetMusicBoot.entities.User;
 import formation.sopra.projetMusicBoot.exceptions.UserException;
 import formation.sopra.projetMusicBoot.repositories.UserRepository;
@@ -22,15 +24,34 @@ public class UserService {
 	private UserRepository userRepository;
 	@Autowired
 	private PlaylistService playlistService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
-	public User save(User user) {
+//	public User save(User user) {
+//		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+//		Set<ConstraintViolation<User>> violations = validator.validate(user);
+//		if (violations.isEmpty()) {
+//			return userRepository.save(user);
+//		} else {
+//			throw new UserException();
+//		}
+//	}
+	
+	public User create(User	user) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<User>> violations = validator.validate(user);
 		if (violations.isEmpty()) {
-			return userRepository.save(user);
+				user.setPassword(passwordEncoder.encode(user.getPassword()));
+				user.setAccountType(AccountType.ROLE_FREE);   
+				userRepository.save(user);
+				return user;
 		} else {
 			throw new UserException();
 		}
+	}
+	
+	public User update(User user) {
+		return userRepository.save(user);
 	}
 
 	public User byId(Long id) {
