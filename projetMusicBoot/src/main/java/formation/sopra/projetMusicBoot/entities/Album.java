@@ -25,25 +25,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "album")
-@NamedQueries({
-		// Selection de tous les albums (et leurs musiques) par la jointure associ�e �
-		// l'attribut musics
-		@NamedQuery(name = "Album.findAll", query = "select alb from Album alb left join fetch alb.musics"),
-
-		// Selection de tous les albums (et leurs musiques) nomm�s comme l'input
-		@NamedQuery(name = "Album.findByName", query = "select alb from Album alb left join fetch alb.artists left join fetch alb.musics where alb.name =:name"),
-
-		// Selection de tous les albums (et leurs musiques) qui ont une musique nomm�e
-		// comme l'input
-		@NamedQuery(name = "Album.findByMusic", query = "select alb from Album alb left join fetch alb.musics where alb.musics =:music"),
-
-		// Selection de tous les albums (et leurs musiques) qui ont un artiste nomm�
-		// comme l'input
-		@NamedQuery(name = "Album.findByArtist", query = "select alb from Album alb left join fetch alb.artists where alb.artists =:artist"),
-
-		// Selection de tous les albums (et leurs musiques) qui ont un genre nomm� comme
-		// l'input
-		@NamedQuery(name = "Album.findByGenre", query = "select alb from Album alb left join fetch alb.musics where alb.musics =:genre") })
 
 @SequenceGenerator(name = "seqAlbum", sequenceName = "seq_album", allocationSize = 1)
 public class Album {

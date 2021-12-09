@@ -14,23 +14,15 @@ import formation.sopra.projetMusicBoot.entities.Album;
 import formation.sopra.projetMusicBoot.entities.Genre;
 import formation.sopra.projetMusicBoot.entities.Music;
 import formation.sopra.projetMusicBoot.exceptions.MusicException;
-import formation.sopra.projetMusicBoot.repositories.AlbumRepository;
-import formation.sopra.projetMusicBoot.repositories.ArtistRepository;
 import formation.sopra.projetMusicBoot.repositories.MusicRepository;
 
-// Service : code o� l'on applique les requetes
+// Service : code ou l'on applique les requetes
 
 @Service
 public class MusicService {
 
 	@Autowired
-	private AlbumRepository albumRepository;
-	@Autowired
-	private ArtistRepository artistRepository;
-	@Autowired
 	private MusicRepository musicRepository;
-	@Autowired
-	private Validator validator;
 
 	public Music save(Music music) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
@@ -44,16 +36,6 @@ public class MusicService {
 
 	public void delete(Music music) {
 		Music musicEnBase = musicRepository.findById(music.getId()).orElseThrow(MusicException::new);
-//		// Suppression de l'artiste pour les musiques et albums associ�s
-//		musicEnBase.getAlbums().forEach(album -> {
-//			album.getArtists().forEach(artist -> {
-//				artist.removeMusic(musicEnBase);
-//				artistRepository.save(artist);
-//			});
-//			album.removeMusic(musicEnBase);
-//			albumRepository.save(album);
-//		});
-
 		// Suppression de la musique
 		musicRepository.delete(musicEnBase);
 	}
@@ -82,9 +64,6 @@ public class MusicService {
 		return musicRepository.findByPlaylist(playlist);
 	}
 
-//	public List<Music> byGenre(String genre) {
-//		return musicRepository.findByGenre(genre);
-//	}
 	public List<Music> byGenre(Set<Genre> genre) {
 		return musicRepository.findByGenre(genre);
 	}

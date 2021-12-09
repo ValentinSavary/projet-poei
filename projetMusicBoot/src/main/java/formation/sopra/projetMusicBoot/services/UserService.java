@@ -22,8 +22,6 @@ public class UserService {
 	private UserRepository userRepository;
 	@Autowired
 	private PlaylistService playlistService;
-	@Autowired
-	private Validator validator;
 
 	public User save(User user) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();

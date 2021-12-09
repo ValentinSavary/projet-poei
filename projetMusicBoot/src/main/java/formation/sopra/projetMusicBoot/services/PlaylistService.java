@@ -16,9 +16,7 @@ import formation.sopra.projetMusicBoot.entities.Artist;
 import formation.sopra.projetMusicBoot.entities.Music;
 import formation.sopra.projetMusicBoot.entities.Playlist;
 import formation.sopra.projetMusicBoot.exceptions.PlaylistException;
-import formation.sopra.projetMusicBoot.repositories.MusicRepository;
 import formation.sopra.projetMusicBoot.repositories.PlaylistRepository;
-import net.bytebuddy.implementation.bytecode.Throw;
 
 //Service : code ou l'on applique les requetes
 
@@ -26,12 +24,8 @@ import net.bytebuddy.implementation.bytecode.Throw;
 public class PlaylistService {
 	@Autowired
 	private PlaylistRepository playlistRepository;
-	@Autowired
-	private MusicRepository musicRepository;
-	@Autowired
-	private Validator validator;
 
-	// Cr�er une playlist / Modifier une playlist
+	// Creer une playlist / Modifier une playlist
 	public Playlist save(Playlist playlist) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Playlist>> violations = validator.validate(playlist);

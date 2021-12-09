@@ -69,15 +69,9 @@ public class MusicRestController {
 		return musicService.byPlaylist(name);
 	}
 
-//	@GetMapping("/genre/{genre}")
-//	@JsonView(JsonViews.Music.class)
-//	public List<Music> byGenre(@PathVariable("genre") String genre) {
-//		return musicService.byGenre(genre);
-//	}
 	@GetMapping("/genre/{genre}")
 	@JsonView(JsonViews.Music.class)
 	public List<Music> byGenre(@PathVariable("genre") String genreEnString) {
-		Genre.Metal.getName();
 		Set<Genre> genres = new HashSet<Genre>();
 		genres.add(Genre.valueOf(genreEnString));
 		return musicService.byGenre(genres);

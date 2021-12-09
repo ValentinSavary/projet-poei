@@ -22,12 +22,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// @formatter:off
 		
 		http
+			// precision de l URL de l api
 			.antMatcher("/api/**")
+			// mise en place des tokens
 				.csrf().ignoringAntMatchers("/api/**")
 			.and()
+			// creation session
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 			.antMatcher("/**")
+			// autorisations acces
 				.authorizeRequests()
 					.antMatchers("/home","/home/**").permitAll()
 					.antMatchers("/profile/**","/playlist/**").authenticated()
@@ -50,7 +54,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService);
-
 	}
 
 	@Bean

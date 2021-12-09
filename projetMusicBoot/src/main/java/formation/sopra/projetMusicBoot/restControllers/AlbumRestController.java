@@ -1,6 +1,8 @@
 package formation.sopra.projetMusicBoot.restControllers;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import formation.sopra.projetMusicBoot.entities.Album;
+import formation.sopra.projetMusicBoot.entities.Genre;
 import formation.sopra.projetMusicBoot.entities.JsonViews;
 import formation.sopra.projetMusicBoot.services.AlbumService;
 
@@ -59,12 +62,14 @@ public class AlbumRestController {
 	public List<Album> byMusic(@PathVariable("title") String title) {
 		return albumService.ByMusic(title);
 	}
-	
-//	@GetMapping("/genre/{genres}")
-//	@JsonView(JsonViews.Album.class)
-//	public List<Album> byGenre(@PathVariable("genres") String genre) {
-//		return albumService.ByGenre(genre);
-//	}
+
+	@GetMapping("/genre/{genre}")
+	@JsonView(JsonViews.Album.class)
+	public List<Album> byGenre(@PathVariable("genre") String genreEnString) {
+		Set<Genre> genres = new HashSet<Genre>();
+		genres.add(Genre.valueOf(genreEnString));
+		return albumService.byGenre(genres);
+	}
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)

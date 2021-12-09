@@ -1,14 +1,16 @@
 package formation.sopra.projetMusicBoot.repositories;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import formation.sopra.projetMusicBoot.entities.Artist;
+import formation.sopra.projetMusicBoot.entities.Genre;
 
-//Repository : code o� l'on d�finit les requetes
+//Repository : code ou l'on definit les requetes
 
 public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
@@ -23,8 +25,7 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
 	@Query("select distinct art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where lower(mus.title) like lower(concat('%',:title,'%'))")
 	List<Artist> findByMusic(@Param("title") String title);
-
-//	@Query("select distinct art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where lower(mus.genres) like lower(concat('%',:genres,'%'))")
-//	List<Artist> findByGenre(@Param("genres") String genres);
-
+	
+	@Query("select distinct art from Artist art left join fetch art.albums as alb left join fetch alb.musics as mus where :#{#genre} member of mus.genres")
+	List<Artist> findByGenre(@Param("genre") Set<Genre> genre);
 }

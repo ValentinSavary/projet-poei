@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import formation.sopra.projetMusicBoot.entities.Album;
 import formation.sopra.projetMusicBoot.entities.Artist;
+import formation.sopra.projetMusicBoot.entities.Genre;
 import formation.sopra.projetMusicBoot.exceptions.ArtistException;
 import formation.sopra.projetMusicBoot.repositories.ArtistRepository;
 
@@ -61,10 +62,9 @@ public class ArtistService {
 		return artistRepository.findByMusic(music);
 	}
 
-	// Cette m�thode renvoie la liste de tous les artistes par genre
-//	public List<Artist> ByGenre(String genre) {
-//		return artistRepository.findByGenre(genre);
-//	}
+	public List<Artist> byGenre(Set<Genre> genre) {
+		return artistRepository.findByGenre(genre);
+	}
 
 	// Suppression d'un artiste
 	public void delete(Artist artist) {

@@ -39,7 +39,7 @@ class ProjetMusicBootApplicationTests {
 	void contextLoads() {
 	}
 
-	// @Test
+	@Test
 	void loadDB() {
 		Artist thyArt = new Artist();
 		thyArt.setName("Thy Art Is Murder");

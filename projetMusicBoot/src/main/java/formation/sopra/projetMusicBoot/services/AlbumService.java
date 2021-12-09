@@ -15,7 +15,6 @@ import formation.sopra.projetMusicBoot.entities.Genre;
 import formation.sopra.projetMusicBoot.entities.Music;
 import formation.sopra.projetMusicBoot.exceptions.AlbumException;
 import formation.sopra.projetMusicBoot.repositories.AlbumRepository;
-import formation.sopra.projetMusicBoot.repositories.ArtistRepository;
 
 //Service : code ou on applique les requetes
 
@@ -25,8 +24,6 @@ public class AlbumService {
 	private AlbumRepository albumRepository;
 	@Autowired
 	private Validator validator;
-	@Autowired
-	private ArtistRepository artistRepository;
 	@Autowired
 	private MusicService musicService;
 
@@ -52,6 +49,7 @@ public class AlbumService {
 		// Suppression de l'album
 		albumRepository.delete(albumEnBase);
 	}
+
 	public void delete(Long id) {
 		delete(albumRepository.findById(id).get());
 	}
@@ -65,6 +63,10 @@ public class AlbumService {
 		return albumRepository.findByName(name);
 	}
 
+	public List<Album> byGenre(Set<Genre> genre) {
+		return albumRepository.findByGenre(genre);
+	}
+
 	// Cette methode renvoie la liste de tous les albums par musique
 	public List<Album> ByMusic(String title) {
 		return albumRepository.findByMusic(title);
@@ -74,11 +76,6 @@ public class AlbumService {
 	public List<Album> ByArtist(String name) {
 		return albumRepository.findByArtist(name);
 	}
-
-	// Cette methode renvoie la liste de tous les albums par artiste
-//	public List<Album> ByGenre(String genre) {
-//		return albumRepository.findByGenre(genre);
-//	}
 
 	public Album byId(Long id) {
 		return albumRepository.findById(id).orElseThrow(AlbumException::new);
