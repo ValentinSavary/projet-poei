@@ -9,6 +9,9 @@ import { AlbumComponent } from './components/album/album.component';
 import { MusicComponent } from './components/music/music.component';
 import { UserComponent } from './components/user/user.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { routes } from './routes';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,7 @@ import { PlaylistComponent } from './components/playlist/playlist.component';
     UserComponent,
     PlaylistComponent,
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule, RouterModule.forRoot(routes), FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
