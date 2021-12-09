@@ -31,13 +31,14 @@ public class Album {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqAlbum")
 	@Column(name = "album_id")
-	@JsonView(JsonViews.Admin.class)
+	@JsonView({JsonViews.Admin.class, JsonViews.Album.class})
 	private Long id;
 	@Column(name = "album_name")
 	@JsonView({ JsonViews.Common.class, JsonViews.Album.class, JsonViews.Artist.class, JsonViews.Music.class,
 			JsonViews.Playlist.class })
 	private String name;
 	@Column(name = "album_year")
+	@JsonView({ JsonViews.Common.class, JsonViews.Album.class, JsonViews.Artist.class })
 	private Year year;
 	@Column(name = "album_cover")
 	@Lob
