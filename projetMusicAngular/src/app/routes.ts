@@ -1,3 +1,5 @@
+import { FormMusicComponent } from './components/music/form-music/form-music.component';
+import { FormAlbumComponent } from './components/album/form-album/form-album.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
@@ -11,7 +13,11 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'artist', component: ArtistComponent },
   { path: 'album', component: AlbumComponent },
+  { path: 'album/form', component: FormAlbumComponent },
+  { path: 'album/form/:id', component: FormAlbumComponent },
   { path: 'music', component: MusicComponent },
+  { path: 'music/form', component: FormMusicComponent },
+  { path: 'music/form/:id', component: FormMusicComponent },
   { path: 'playlist', component: PlaylistComponent },
   { path: 'user', component: UserComponent },
   { path: 'login', component: LoginComponent },

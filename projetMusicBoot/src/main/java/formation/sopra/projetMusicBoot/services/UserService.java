@@ -55,6 +55,14 @@ public class UserService {
 	public User byId(Long id) {
 		return userRepository.findById(id).orElseThrow(UserException::new);
 	}
+	
+	public User byLogin(String login) {
+		return userRepository.findByLogin(login).orElseThrow(UserException::new);
+	}
+	
+	public boolean isUsed(String login) {
+		return userRepository.findByLogin(login).isPresent();
+	}
 
 	// Cette fonction retourne tous les users
 	public List<User> all() {

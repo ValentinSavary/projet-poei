@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import formation.sopra.projetMusicBoot.entities.JsonViews;
 import formation.sopra.projetMusicBoot.entities.User;
+import formation.sopra.projetMusicBoot.repositories.UserRepository;
 import formation.sopra.projetMusicBoot.services.UserService;
 
 @RestController
@@ -32,6 +33,8 @@ public class UserRestController {
 
 	@Autowired
 	UserService userService;
+	@Autowired
+	UserRepository userRepository;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
@@ -45,6 +48,17 @@ public class UserRestController {
 	@JsonView(JsonViews.User.class)
 	public User byId(@PathVariable("id") Long id) {
 		return userService.byId(id);
+	}
+	
+	@GetMapping("/{login}")
+	@JsonView(JsonViews.User.class)
+	public User byLogin(@PathVariable("login") String login) {
+		return userService.byLogin(login);
+	}
+	
+	@GetMapping("/register/{login}")
+	public boolean isUsed(@PathVariable("login") String login) {
+		return userService.isUsed(login);
 	}
 
 	@GetMapping("/playlist/{name}")

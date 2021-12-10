@@ -1,3 +1,4 @@
+import { AccountType } from './../model/accountType';
 import { User } from './../model/user';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -26,6 +27,13 @@ export class UserService {
   // Methode qui permet de recuperer un user par son ID
   public byId(id: number): Observable<any> {
     return this.http.get<User[]>(`${UserService.URL}/${id}`, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  // Methode qui permet de recuperer un user par son Login
+  public byLogin(login: string): Observable<any> {
+    return this.http.get<User[]>(`${UserService.URL}/${login}`, {
       headers: this.httpHeaders,
     });
   }
@@ -61,5 +69,15 @@ export class UserService {
     return this.http.put<User>(`${UserService.URL}/${user.id}`, user, {
       headers: this.httpHeaders,
     });
+  }
+
+  public checkLogin(login: string): Observable<boolean> {
+    return this.http.get<boolean>(
+      'http://localhost:8080/music/api/user/register/' + login
+    );
+  }
+
+  public getAccountType(user: any): AccountType | undefined {
+    return user.accountType;
   }
 }

@@ -1,0 +1,50 @@
+<form (ngSubmit)="save()" formGroup="form">
+  <div class="form-group">
+    <label>Name :</label>
+    <input class="form-control" formControlName="name" />
+  </div>
+  <div
+    *ngIf="form.controls['name'].dirty && form.controls['name'].invalid"
+    class="alert alert-danger"
+  >
+    Put a valid name for the album
+  </div>
+
+  <div class="form-group">
+    <label>Year :</label>
+    <input class="form-control" formControlName="year" type="number" />
+    <div
+      *ngIf="form.controls['year'].dirty && form.controls['year'].invalid"
+      class="alert alert-danger"
+    >
+      Put a valid year for the album
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Cover :</label>
+    <input class="form-control" formControlName="cover" />
+    <div
+      *ngIf="form.controls['cover'].dirty && form.controls['cover'].invalid"
+      class="alert alert-danger"
+    >
+      Put a cover for the album
+    </div>
+  </div>
+
+  <div>
+    <button
+      type="submit"
+      class="btn btn-outline-success"
+      [disabled]="form.invalid"
+    >
+      Create Album
+    </button>
+    <a
+      [routerLink]="['/album']"
+      routerLinkActive="active"
+      class="btn btn-outline-warning"
+      >Cancel</a
+    >
+  </div>
+</form>

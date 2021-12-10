@@ -1,3 +1,4 @@
+import { FormArtistComponent } from './components/artist/form-artist/form-artist.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -12,7 +13,10 @@ import { AlbumComponent } from './components/album/album.component';
 import { MusicComponent } from './components/music/music.component';
 import { UserComponent } from './components/user/user.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
+import { FormMusicComponent } from './components/music/form-music/form-music.component';
+import { FormAlbumComponent } from './components/album/form-album/form-album.component';
 import { routes } from './routes';
+import { RegisterComponent } from './components/user/register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,10 @@ import { routes } from './routes';
     MusicComponent,
     UserComponent,
     PlaylistComponent,
+    FormMusicComponent,
+    FormAlbumComponent,
+    FormArtistComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

@@ -53,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.DELETE,"/api/album/**").hasRole("ADMIN")
 			.antMatchers(HttpMethod.DELETE,"/api/artist/**").hasRole("ADMIN")
 			.antMatchers(HttpMethod.DELETE,"/api/playlist/**").authenticated()
+			.antMatchers("/api/auth").authenticated()
 			.and()
 			//authentification Basic (cf PostMan)
 			.httpBasic();
