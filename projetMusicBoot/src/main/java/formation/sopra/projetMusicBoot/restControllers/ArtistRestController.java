@@ -25,6 +25,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import formation.sopra.projetMusicBoot.entities.Artist;
 import formation.sopra.projetMusicBoot.entities.Genre;
 import formation.sopra.projetMusicBoot.entities.JsonViews;
+import formation.sopra.projetMusicBoot.entities.Playlist;
+import formation.sopra.projetMusicBoot.services.AlbumService;
 import formation.sopra.projetMusicBoot.services.ArtistService;
 
 @RestController
@@ -34,6 +36,8 @@ public class ArtistRestController {
 
 	@Autowired
 	ArtistService artistService;
+	@Autowired
+	AlbumService albumService;
 
 	@GetMapping("")
 	@JsonView(JsonViews.Artist.class)
@@ -86,8 +90,19 @@ public class ArtistRestController {
 		Artist artistEnBase = artistService.byId(id);
 		artistEnBase.setName(artist.getName());
 		artistEnBase.setCountry(artist.getCountry());
+		artistEnBase.setAlbums(artist.getAlbums());
 		return artistService.save(artistEnBase);
 	}
+
+//	@PutMapping("/add-album/{idArtist}/{idAlbum")
+//	public void addAlbum(@Valid @ RequestBody Artist artist, BindingResult br, @PathVariable("idArtist") Long idArtist, @PathVariable("idAlbum") Long idAlbum) {
+//		artistService.addAlbum(albumService.byId(idAlbum), artistService.byId(idArtist));
+//	}
+//	
+//	@PutMapping("/remove-album/{idArtist}/{idAlbum")
+//	public void removeAlbum(@Valid @ RequestBody Artist artist, BindingResult br, @PathVariable("idArtist") Long idArtist, @PathVariable("idAlbum") Long idAlbum) {
+//		artistService.removeAlbum(albumService.byId(idAlbum), artistService.byId(idArtist));
+//	}
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)

@@ -219,10 +219,24 @@ class ProjetMusicBootApplicationTests {
 
 		User user1 = new User();
 		user1.setUsername("Olivier");
-		user1.setLogin("og@fff.com");
-		user1.setAccountType(AccountType.ROLE_PREMIUM);
-		user1.setPassword(passwordEncoder.encode("oooo"));
+		user1.setLogin("loginOlivier");
+		user1.setAccountType(AccountType.ROLE_ADMIN);
+		user1.setPassword("oooo");
 		userService.create(user1);
+		
+		User user2 = new User();
+		user2.setUsername("Valentin");
+		user2.setLogin("loginValentin");
+		user2.setAccountType(AccountType.ROLE_ADMIN);
+		user2.setPassword("vvvv");
+		userService.create(user2);
+		
+		User user3 = new User();
+		user3.setUsername("Sebastien");
+		user3.setLogin("loginSebastien");
+		user3.setAccountType(AccountType.ROLE_ADMIN);
+		user3.setPassword("ssss");
+		userService.create(user3);
 
 		// Creation playlists
 		Playlist playlist1 = new Playlist();
@@ -236,5 +250,10 @@ class ProjetMusicBootApplicationTests {
 		musPla.add(mus2);
 		playlist1.setMusics(musPla);
 		playlistService.save(playlist1);
+		
+		Playlist playlist2 = new Playlist();
+		playlist2.setName("pla2");
+		playlist2.setTypePrivate(false);
+		playlist2.setUser(user2);
 	}
 }

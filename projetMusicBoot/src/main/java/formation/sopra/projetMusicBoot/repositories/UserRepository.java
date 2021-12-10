@@ -20,7 +20,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	List<User> findByPlaylist(@Param("name") String name);
 	
 	@Query("select distinct use from User use where use.username=:username")
-//	@Query("select distinct use from User use where lower(use.username) like lower(concat('&',:uername,'&'))")
 	Optional<User> findByUsername(@Param("username") String username);
+	
+	@Query("select distinct use from User use where use.login=:login")
+	Optional<User> findByLogin(@Param("login") String login);
 	
 }

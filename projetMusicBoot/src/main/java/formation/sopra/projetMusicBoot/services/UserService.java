@@ -41,8 +41,6 @@ public class UserService {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<User>> violations = validator.validate(user);
 		if (violations.isEmpty()) {
-				user.setPassword(passwordEncoder.encode(user.getPassword()));
-				user.setAccountType(AccountType.ROLE_FREE);   
 				userRepository.save(user);
 				return user;
 		} else {

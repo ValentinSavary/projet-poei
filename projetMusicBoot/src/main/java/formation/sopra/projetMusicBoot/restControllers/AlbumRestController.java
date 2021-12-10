@@ -25,7 +25,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 import formation.sopra.projetMusicBoot.entities.Album;
 import formation.sopra.projetMusicBoot.entities.Genre;
 import formation.sopra.projetMusicBoot.entities.JsonViews;
+import formation.sopra.projetMusicBoot.entities.Playlist;
 import formation.sopra.projetMusicBoot.services.AlbumService;
+import formation.sopra.projetMusicBoot.services.ArtistService;
+import formation.sopra.projetMusicBoot.services.MusicService;
 
 @RestController
 @RequestMapping("/api/album")
@@ -34,6 +37,10 @@ public class AlbumRestController {
 
 	@Autowired
 	private AlbumService albumService;
+	@Autowired
+	private MusicService musicService;
+	@Autowired
+	private ArtistService artistService;
 
 	@GetMapping("")
 	@JsonView(JsonViews.Album.class)
@@ -80,6 +87,20 @@ public class AlbumRestController {
 		return albumService.save(album);
 	}
 
+//	// Cette fonction ajoute une musique dans l'album
+//	@PutMapping("/add-music/{idAlbum}/{idMusic")
+//	public void addMusic(@Valid @RequestBody Playlist playlist, BindingResult br,
+//			@PathVariable("idPlaylist") Long idPlaylist, @PathVariable("idMusic") Long idMusic) {
+//		albumService.addMusic(musicService.byId(idMusic), albumService.byId(idPlaylist));
+//	}
+//
+//	// Cette fonction ajoute un artiste dans l'album
+//	@PutMapping("/add-artist/{idAlbum}/{idArtist")
+//	public void addArtist(@Valid @RequestBody Playlist playlist, BindingResult br,
+//			@PathVariable("idPlaylist") Long idPlaylist, @PathVariable("idArtist") Long idArtist) {
+//		albumService.addArtist(artistService.byId(idArtist), albumService.byId(idPlaylist));
+//	}
+
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Album.class)
 	public Album update(@PathVariable("id") Long id, @Valid @RequestBody Album album, BindingResult br) {
@@ -88,6 +109,7 @@ public class AlbumRestController {
 		albumEnBase.setCover(album.getCover());
 		albumEnBase.setArtists(album.getArtists());
 		albumEnBase.setMusics(album.getMusics());
+		albumEnBase.setYear(album.getYear());
 		return albumService.save(albumEnBase);
 	}
 
@@ -96,5 +118,4 @@ public class AlbumRestController {
 	public void delete(@PathVariable("id") Long id) {
 		albumService.delete(id);
 	}
-
 }

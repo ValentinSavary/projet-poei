@@ -29,13 +29,15 @@ public class User {
 	@JsonView(JsonViews.Admin.class)
 	private Long id;
 	@Column(name = "user_username")
-	@JsonView({JsonViews.Common.class, JsonViews.Playlist.class})
+	@JsonView({JsonViews.User.class, JsonViews.Playlist.class})
 	private String username;
 	@Column(name = "user_login")
 	@JsonView(JsonViews.User.class)
 	private String login;
+	@JsonView(JsonViews.User.class)
 	@Column(name = "user_password")
 	private String password;
+	@JsonView(JsonViews.User.class)
 	@Column(name = "user_accountType")
 	@Enumerated(EnumType.STRING)
 //	@JsonView(JsonViews.User.class)

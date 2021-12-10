@@ -83,9 +83,15 @@ public class ArtistService {
 		delete(artistRepository.findById(id).get());
 	}
 
-	// Cette fonction ajoute un artiste dans l'album
-	public void addAlbum(Album album, Artist artist) {
-		artist.getAlbums().add(album);
-		artistRepository.save(artist);
-	}
+//	// Cette fonction ajoute un artiste dans l'album
+//	public void addAlbum(Album album, Artist artist) {
+//		artist.getAlbums().add(album);
+//		artistRepository.save(artist);
+//	}
+//
+//	// Cette fonction supprime un artiste dans l'album
+//	public void removeAlbum(Album album, Artist artist) {
+//		artist.getAlbums().remove(album);
+//		artistRepository.save(artist);
+//	}
 }

@@ -1,8 +1,11 @@
+import { Album } from './album';
+
 export class Artist {
   public constructor(
     private _id?: number | undefined,
     private _name?: string | undefined,
-    private _country?: string | undefined
+    private _country?: string | undefined,
+    private _albums?: Album[] | undefined
   ) {}
 
   /**
@@ -30,6 +33,14 @@ export class Artist {
   }
 
   /**
+   * Getter artists
+   * @return {Album[]}
+   */
+  public get artists(): Album[] | undefined {
+    return this.albums;
+  }
+
+  /**
    * Setter id
    * @param {number} value
    */
@@ -51,5 +62,13 @@ export class Artist {
    */
   public set country(value: string | undefined) {
     this._country = value;
+  }
+
+  /**
+   * Setter artists
+   * @param {Album[]} value
+   */
+  public set albums(value: Album[] | undefined) {
+    this.albums = value;
   }
 }

@@ -81,16 +81,16 @@ public class AlbumService {
 		return albumRepository.findById(id).orElseThrow(AlbumException::new);
 	}
 
-	// Cette fonction ajoute une musique dans l'album
-	public void addMusic(Music music, Album album) {
-		album.getMusics().add(music);
-		albumRepository.save(album);
-	}
-
-	// Cette fonction ajoute un artiste dans l'album
-	public void addArtist(Artist artist, Album album) {
-		album.getArtists().add(artist);
-		albumRepository.save(album);
-	}
+//	// Cette fonction ajoute une musique dans l'album
+//	public void addMusic(Music music, Album album) {
+//		album.getMusics().add(music);
+//		albumRepository.save(album);
+//	}
+//
+//	// Cette fonction ajoute un artiste dans l'album
+//	public void addArtist(Artist artist, Album album) {
+//		album.getArtists().add(artist);
+//		albumRepository.save(album);
+//	}
 
 }

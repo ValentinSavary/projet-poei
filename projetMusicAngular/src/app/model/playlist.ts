@@ -1,8 +1,10 @@
+import { Music } from './music';
 export class Playlist {
   public constructor(
     private _id?: number | undefined,
     private _name?: string | undefined,
-    private _typePrivate?: boolean | undefined
+    private _typePrivate?: boolean | undefined,
+    private _musics?: Music[] | undefined
   ) {}
 
   /**
@@ -30,6 +32,14 @@ export class Playlist {
   }
 
   /**
+   * Getter musics
+   * @return {Music[]}
+   */
+  public get musics(): Music[] | undefined {
+    return this._musics;
+  }
+
+  /**
    * Setter id
    * @param {number} value
    */
@@ -51,5 +61,13 @@ export class Playlist {
    */
   public set typePrivate(value: boolean | undefined) {
     this._typePrivate = value;
+  }
+
+  /**
+   * Setter musics
+   * @param {Music[]} value
+   */
+  public set musics(value: Music[] | undefined) {
+    this._musics = value;
   }
 }

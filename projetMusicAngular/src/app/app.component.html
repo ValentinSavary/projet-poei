@@ -18,8 +18,11 @@
         <li class="nav-items" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/music']"> Musics</a>
         </li>
-        <li *ngIf="logged" class="nav-items" routerLinkActive="active">
+        <li *ngIf="!logged" class="nav-items" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/playlist']"> Playlists</a>
+        </li>
+        <li *ngIf="!logged" class="nav-items" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/user']"> Users</a>
         </li>
       </ul>
     </div>

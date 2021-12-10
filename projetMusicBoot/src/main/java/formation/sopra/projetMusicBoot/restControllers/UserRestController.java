@@ -57,6 +57,7 @@ public class UserRestController {
 	@JsonView(JsonViews.User.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public User create(@Valid @RequestBody User user, BindingResult br) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userService.create(user);
 	}
 

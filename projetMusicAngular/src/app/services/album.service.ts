@@ -40,7 +40,7 @@ export class AlbumService {
     });
   }
 
-  // Methode qui permet de recuperer un/des albumsgrace au nom de l artiste
+  // Methode qui permet de recuperer un/des albums grace au nom de l artiste
   public byArtist(name: string): Observable<Album> {
     return this.http.get<Album>(`${AlbumService.URL}/artist/${name}`, {
       headers: this.httpHeaders,

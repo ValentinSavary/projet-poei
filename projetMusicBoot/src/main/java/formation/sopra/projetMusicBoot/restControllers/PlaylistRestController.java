@@ -21,6 +21,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import formation.sopra.projetMusicBoot.entities.JsonViews;
 import formation.sopra.projetMusicBoot.entities.Playlist;
+import formation.sopra.projetMusicBoot.services.AlbumService;
+import formation.sopra.projetMusicBoot.services.ArtistService;
+import formation.sopra.projetMusicBoot.services.MusicService;
 import formation.sopra.projetMusicBoot.services.PlaylistService;
 
 @RestController
@@ -30,6 +33,12 @@ public class PlaylistRestController {
 
 	@Autowired
 	PlaylistService playlistService;
+	@Autowired
+	MusicService musicService;
+	@Autowired
+	ArtistService artistService;
+	@Autowired
+	AlbumService albumService;
 
 //	@GetMapping("")
 //	@JsonView(JsonViews.Playlist.class)
@@ -73,4 +82,24 @@ public class PlaylistRestController {
 		playlistEnBase.setVersion(playlist.getVersion());
 		return playlistService.save(playlistEnBase);
 	}
+	
+//	@PutMapping("/add-music/{idPlaylist}/{idMusic")
+//	public void addMusic(@Valid @ RequestBody Playlist playlist, BindingResult br, @PathVariable("idPlaylist") Long idPlaylist, @PathVariable("idMusic") Long idMusic) {
+//		playlistService.addMusic(musicService.byId(idMusic), playlistService.byId(idPlaylist));
+//	}
+//	
+//	@PutMapping("/add-artist/{idPlaylist}/{idArtist")
+//	public void addArtist(@Valid @ RequestBody Playlist playlist, BindingResult br, @PathVariable("idPlaylist") Long idPlaylist, @PathVariable("idArtist") Long idArtist) {
+//		playlistService.addArtist(artistService.byId(idArtist), playlistService.byId(idPlaylist));
+//	}
+//	
+//	@PutMapping("/add-artist/{idPlaylist}/{idAlbum")
+//	public void addAlbum(@Valid @ RequestBody Playlist playlist, BindingResult br, @PathVariable("idPlaylist") Long idPlaylist, @PathVariable("idAlbum") Long idAlbum) {
+//		playlistService.addAlbum(albumService.byId(idAlbum), playlistService.byId(idPlaylist));
+//	}
+//	
+//	@PutMapping("/remove-music/{idPlaylist}/{idMusic")
+//	public void removeMusic(@Valid @ RequestBody Playlist playlist, BindingResult br, @PathVariable("idPlaylist") Long idPlaylist, @PathVariable("idMusic") Long idMusic) {
+//		playlistService.removeMusic(musicService.byId(idMusic), playlistService.byId(idPlaylist));
+//	}
 }
