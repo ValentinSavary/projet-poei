@@ -33,4 +33,12 @@ export class MusicComponent implements OnInit {
       }
     });
   }
+
+  delete(id: number | undefined) {
+    if (!!id) {
+      this.musicService.delete(id).subscribe((result) => {
+        this.initMusics();
+      });
+    }
+  }
 }

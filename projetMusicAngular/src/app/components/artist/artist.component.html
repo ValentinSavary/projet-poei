@@ -1,36 +1,44 @@
-<table class="table">
-  <tbody>
-    <tr *ngFor="let artist of artists">
-      <td>{{ artist.id }}</td>
-      <td>
-        <a
-          [routerLink]="['/artist']"
-          routerLinkActive="active"
-          class="btn btn-link"
-          >{{ artist.name }}</a
-        >
-      </td>
-      <td>{{ artist.country }}</td>
-      <td>{{ artist.albums }}</td>
-      <!-- <td>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id :</th>
+        <th>Name :</th>
+        <th>Country :</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let artist of artists">
+        <td>{{ artist.id }}</td>
+        <td>
+          <a
+            [routerLink]="['/artist']"
+            routerLinkActive="active"
+            class="btn btn-link"
+            >{{ artist.name }}</a
+          >
+        </td>
+        <td>{{ artist.country }}</td>
+        <!-- <td>
         <a
           [routerLink]="['/albums', 'edit', album.id]"
           routerLinkActive="active"
           >editer</a
         >
       </td> -->
-      <!-- <td>
+        <!-- <td>
         <button (click)="delete(album.id)" class="btn btn-outline-danger">
           supprimer
         </button>
       </td> -->
-    </tr>
-  </tbody>
-</table>
+      </tr>
+    </tbody>
+  </table>
 
-<a
-  [routerLink]="['/artists', 'edit']"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >creation artist</a
->
+  <a
+    [routerLink]="['/artists', 'edit']"
+    routerLinkActive="active"
+    class="btn btn-link"
+    >creation artist</a
+  >
+</div>

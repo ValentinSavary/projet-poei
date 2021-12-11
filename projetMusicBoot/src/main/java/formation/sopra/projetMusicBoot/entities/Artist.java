@@ -13,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,7 +26,7 @@ public class Artist {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqArtist")
 	@Column(name = "artist_id")
-	@JsonView(JsonViews.Admin.class)
+	@JsonView(JsonViews.Artist.class)
 	private Long id;
 	@Column(name = "artist_name", nullable = false, length = 50)
 	@JsonView({JsonViews.Common.class, JsonViews.Album.class, JsonViews.Artist.class, JsonViews.Music.class, JsonViews.Playlist.class})
@@ -38,8 +36,8 @@ public class Artist {
 	private String country;
 
 	// Jointure de tables artist et album via colonnes id_artist et id_album ;
-	// l'attribut albums r�cup�re la jointure
-	// rajout de HashSet pour �viter les null pointer exceptions
+	// l'attribut albums recupere la jointure
+	// rajout de HashSet pour eviter les null pointer exceptions
 	@Column(name = "artist_album", length = 40)
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JsonView(JsonViews.Artist.class)

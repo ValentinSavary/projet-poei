@@ -1,68 +1,78 @@
-<form (ngSubmit)="save()" formGroup="form">
-  <div class="form-group">
-    <label>Title :</label>
-    <input class="form-control" formControlName="title" type="text" />
-  </div>
-  <div
-    *ngIf="form.controls['duration'].dirty && form.controls['duration'].invalid"
-    class="alert alert-danger"
-  >
-    Put a valid title
-  </div>
+<form (ngSubmit)="save(form)" #form="ngForm">
+  <div class="container">
+    <div class="form-group">
+      <label>Id</label>
+      <input [(ngModel)]="music.id" readonly class="form-control" />
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input
+        [(ngModel)]="music.title"
+        class="form-control"
+        name="titleControl"
+        type="text"
+        #titleControl="ngModel"
+        required
+      />
+    </div>
 
-  <div class="form-group">
-    <label>Duration : </label>
-    <input class="form-control" formControlName="duration" type="number" />
     <div
-      *ngIf="
-        form.controls['duration'].dirty && form.controls['duration'].invalid
-      "
+      *ngIf="titleControl.dirty && titleControl.invalid"
+      class="alert alert-danger"
+    >
+      Put a valid title
+    </div>
+
+    <div class="form-group">
+      <label>Duration</label>
+      <input
+        [(ngModel)]="music.duration"
+        class="form-control"
+        name="durationControl"
+        type="number"
+        #durationControl="ngModel"
+        required
+        min="1"
+        placeholder="Duration"
+      />
+    </div>
+
+    <div
+      *ngIf="durationControl.dirty && durationControl.invalid"
       class="alert alert-danger"
     >
       Put a valid duration
     </div>
-  </div>
 
-  <div class="form-group">
-    <label>Genre :</label>
-    <select class="form-control" formControlName="genre">
-      <option *ngFor="let enum of genres | keyvalue" [value]="enum.key">
-        {{ enum.value }}
-      </option>
-    </select>
-  </div>
+    <div class="form-group">
+      <label>Music file</label>
+      <input [(ngModel)]="music.musicFile" class="form-control" />
+    </div>
 
-  <div class="form-group">
-    <label>File :</label>
-    <input
-      type="file"
-      class="file-upload"
-      onchange="console.log(event.target.files)"
-    />
-  </div>
-  <div
-    *ngIf="
-      form.controls['musicFile'].dirty && form.controls['musicFile'].invalid
-    "
-    class="alert alert-danger"
-  >
-    Put a valid music file
-  </div>
+    <div class="form-group">
+      <label>Genre</label>
+      <select [(ngModel)]="music.genre" class="form-control">
+        <option *ngFor="let enum of genres | keyvalue" [value]="enum.key">
+          {{ enum.value }}
+        </option>
+      </select>
+    </div>
 
-  <div>
-    <button
-      type="submit"
-      class="btn btn-outline-success"
-      [disabled]="form.invalid"
-    >
-      enregistrer {{ form.invalid }}
-    </button>
+    <div>
+      <button
+        type="submit"
+        [disabled]="form.invalid && titleControl.dirty"
+        class="btn btn-outline-success"
+      >
+        Send
+      </button>
 
-    <a
-      [routerLink]="['/music']"
-      routerLinkActive="active"
-      class="btn btn-outline-warning"
-      >annuler</a
-    >
+      <a
+        [routerLink]="['/music']"
+        routerLinkActive="active"
+        class="btn btn-outline-warning"
+        >Cancel</a
+      >
+    </div>
   </div>
 </form>

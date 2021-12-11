@@ -34,7 +34,6 @@ public class User {
 	@Column(name = "user_login")
 	@JsonView(JsonViews.User.class)
 	private String login;
-	@JsonView(JsonViews.User.class)
 	@Column(name = "user_password")
 	private String password;
 	@JsonView(JsonViews.User.class)
@@ -48,9 +47,9 @@ public class User {
 
 	// Jointure de tables user et playlist ; l'attribut playlists r�cup�re la
 	// jointure
-	// rajout de HashSet pour �viter les null pointer exceptions
+	// rajout de HashSet pour eviter les null pointer exceptions
 	@OneToMany(mappedBy = "user")
-	@JsonView(JsonViews.User.class)
+	//@JsonView(JsonViews.User.class)
 	private Set<Playlist> playlists = new HashSet<Playlist>();
 
 	// Constructeurs

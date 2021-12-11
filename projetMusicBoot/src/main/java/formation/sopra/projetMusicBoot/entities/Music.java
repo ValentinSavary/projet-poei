@@ -18,8 +18,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,7 +31,7 @@ public class Music {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMusic")
 	@Column(name = "music_id")
-	@JsonView(JsonViews.Admin.class)
+	@JsonView(JsonViews.Music.class)
 	private Long id;
 	@Column(name = "music_title")
 	@JsonView({ JsonViews.Common.class, JsonViews.Album.class, JsonViews.Music.class, JsonViews.Playlist.class })
@@ -43,7 +41,7 @@ public class Music {
 	private Integer duration;
 	@Lob
 	@Column(name = "music_file")
-	@JsonView(JsonViews.Admin.class)
+	@JsonView(JsonViews.Music.class)
 	private byte[] musicFile;
 
 	// Gestion de l'enumeration de genre musical
@@ -55,7 +53,7 @@ public class Music {
 	private Set<Genre> genres;
 
 	// Jointure de tables album et music via colonnes id_album et id_music ;
-	// l'attribut albums r�cup�re la jointure ; la colonne est d�j� nomm�e dans la
+	// l'attribut albums recupere la jointure ; la colonne est deja nommee dans la
 	// classe album
 	// rajout de HashSet pour �viter les null pointer exceptions
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -64,9 +62,9 @@ public class Music {
 	private Set<Album> albums = new HashSet<Album>();
 
 	// Jointure de tables playlist et music via colonnes id_music et id_playlist ;
-	// l'attribut playlists r�cup�re la jointure ; la colonne est d�j� nomm�e dans
+	// l'attribut playlists recupere la jointure ; la colonne est deja nommee dans
 	// la classe playlist
-	// rajout de HashSet pour �viter les null pointer exceptions
+	// rajout de HashSet pour eviter les null pointer exceptions
 	@ManyToMany(fetch = FetchType.LAZY)
 	// @JsonView(JsonViews.MusicAvecPlaylist.class)
 	@JoinTable(name = "PlaylistMusicAssociation", joinColumns = @JoinColumn(name = "id_music"), inverseJoinColumns = @JoinColumn(name = "id_playlist"))

@@ -221,21 +221,21 @@ class ProjetMusicBootApplicationTests {
 		user1.setUsername("Olivier");
 		user1.setLogin("loginOlivier");
 		user1.setAccountType(AccountType.ROLE_ADMIN);
-		user1.setPassword("oooo");
+		user1.setPassword(passwordEncoder.encode("oooo"));
 		userService.create(user1);
 		
 		User user2 = new User();
 		user2.setUsername("Valentin");
 		user2.setLogin("loginValentin");
 		user2.setAccountType(AccountType.ROLE_ADMIN);
-		user2.setPassword("vvvv");
+		user2.setPassword(passwordEncoder.encode("vvvv"));
 		userService.create(user2);
 		
 		User user3 = new User();
 		user3.setUsername("Sebastien");
 		user3.setLogin("loginSebastien");
 		user3.setAccountType(AccountType.ROLE_ADMIN);
-		user3.setPassword("ssss");
+		user3.setPassword(passwordEncoder.encode("ssss"));
 		userService.create(user3);
 
 		// Creation playlists

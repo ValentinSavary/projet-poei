@@ -8,6 +8,7 @@ import { AlbumComponent } from './components/album/album.component';
 import { ArtistComponent } from './components/artist/artist.component';
 import { HomeComponent } from './components/home/home.component';
 import { Routes } from '@angular/router';
+import { Login1Component } from './login1/login1.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,8 +18,12 @@ export const routes: Routes = [
   { path: 'album/form/:id', component: FormAlbumComponent },
   { path: 'music', component: MusicComponent },
   { path: 'music/form', component: FormMusicComponent },
-  { path: 'music/form/:id', component: FormMusicComponent },
+  {
+    path: 'music/form/:id',
+    component: FormMusicComponent,
+  },
   { path: 'playlist', component: PlaylistComponent },
   { path: 'user', component: UserComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'login1', component: Login1Component },
 ];

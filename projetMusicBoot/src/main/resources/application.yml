@@ -23,7 +23,7 @@ spring:
       suffix: .jsp
 logging:
   level:
-    root: ERROR
+    root: INFO
 #    '[formation.sopra.formationSpringBoot.restcontroller.ClientRestController]': INFO    
   file:
     name: logs.log

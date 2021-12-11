@@ -1,37 +1,51 @@
-<table class="table">
-  <tbody>
-    <tr *ngFor="let music of musics">
-      <td>{{ music.id }}</td>
-      <td>
-        <a
-          [routerLink]="['/music']"
-          routerLinkActive="active"
-          class="btn btn-link"
-          >{{ music.title }}</a
-        >
-      </td>
-      <td>{{ music.duration }}</td>
-      <td>{{ music.musicFile }}</td>
-      <td>{{ music.genre }}</td>
-      <!-- <td>
-        <a
-          [routerLink]="['/albums', 'edit', album.id]"
-          routerLinkActive="active"
-          >editer</a
-        >
-      </td> -->
-      <!-- <td>
-        <button (click)="delete(album.id)" class="btn btn-outline-danger">
-          supprimer
-        </button>
-      </td> -->
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id :</th>
+        <th>Title :</th>
+        <th>Duration in s :</th>
+        <th>Music file :</th>
+        <th>Genre :</th>
+        <th>Edit :</th>
+        <th>Delete :</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let music of musics">
+        <td>{{ music.id }}</td>
+        <td>
+          <a
+            [routerLink]="['/music']"
+            routerLinkActive="active"
+            class="btn btn-link"
+            >{{ music.title }}</a
+          >
+        </td>
+        <td>{{ music.duration }}</td>
+        <td>{{ music.musicFile }}</td>
+        <td>{{ music.genre }}</td>
+        <td>
+          <a
+            class="btn btn-outline-success"
+            [routerLink]="['/music', 'form', music.id]"
+            routerLinkActive="active"
+            >Edit</a
+          >
+        </td>
+        <td>
+          <button (click)="delete(music.id)" class="btn btn-outline-danger">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<a
-  [routerLink]="['/music', 'form']"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >creation music</a
->
+  <a
+    [routerLink]="['/music', 'form']"
+    routerLinkActive="active"
+    class="btn btn-outline-primary"
+    >Music Creation</a
+  >
+</div>

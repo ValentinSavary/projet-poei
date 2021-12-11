@@ -24,8 +24,8 @@ export class MusicService {
   }
 
   // Methode qui permet de recuperer une musique par son ID
-  public byId(id: number): Observable<any> {
-    return this.http.get<Music[]>(`${MusicService.URL}/${id}`, {
+  public byId(id: number): Observable<Music> {
+    return this.http.get<Music>(`${MusicService.URL}/${id}`, {
       headers: this.httpHeaders,
     });
   }
@@ -70,10 +70,13 @@ export class MusicService {
     const a = {
       title: music.title,
       duration: music.duration,
-      musicFile: music.musicFile,
+      musicFile: null,
       genre: music.genre,
     };
-    return this.http.post<Music>(MusicService.URL, a);
+    console.log(a);
+    return this.http.post<Music>(MusicService.URL, a, {
+      headers: this.httpHeaders,
+    });
   }
 
   // Methode pour la mise a jour d une musique dans la BDD
