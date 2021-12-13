@@ -1,6 +1,6 @@
 <h1>Authentification :</h1>
 
-<form (ngSubmit)="submit()" formGroup="form">
+<form (ngSubmit)="submit()" [formGroup]="form">
   <div class="form-group">
     <label>Login :</label>
     <input class="form-control" formControlName="login" type="text" />
@@ -11,10 +11,15 @@
 
   <div class="form-group">
     <label>Password :</label>
-    <input class="form-control" formControlName="password" type="text" />
+    <input class="form-control" formControlName="password" type="password" />
     <div *ngIf="form.controls['password'].pristine" class="alert alert-danger">
       Mot de passe obligatoire
     </div>
+  </div>
+
+  <br />
+  <div *ngIf="showMessage">
+    {{ message }}
   </div>
 
   <div>

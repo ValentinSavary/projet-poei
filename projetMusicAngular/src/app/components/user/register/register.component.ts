@@ -102,4 +102,14 @@ export class RegisterComponent implements OnInit {
     }
     return '200 characters maximum';
   }
+
+  confirmPasswordError() {
+    if (
+      this.form.controls['password'].value !=
+      this.form.controls['confirm'].value
+    ) {
+      return 'Confirmation different from password';
+    }
+    return '';
+  }
 }

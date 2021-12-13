@@ -1,3 +1,4 @@
+import { AccountType } from './../model/accountType';
 import { UserService } from './../services/user.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -66,11 +67,13 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('login', this.form.controls['login'].value);
             sessionStorage.setItem(
               'role',
-              JSON.stringify([
-                this.userService.getAccountType(
-                  this.userService.byLogin(this.form.controls['login'].value)
-                ),
-              ])
+              JSON.stringify(
+                this.userService
+                  .byLogin(this.form.controls['login'].value)
+                  .subscribe((user) => {
+                    return user.AccountType;
+                  })
+              )
             );
             if (!!localStorage.getItem('valider')) {
               localStorage.removeItem('valider');

@@ -1,8 +1,16 @@
+import { Observable } from 'rxjs';
+import { AbstractControl, AsyncValidatorFn } from '@angular/forms';
+import { ValidationErrors } from '@angular/forms';
+import { debounceTime, map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Genre } from './../../../model/genre';
 import { AlbumService } from './../../../services/album.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { Album } from 'src/app/model/album';
 
 @Component({
@@ -12,22 +20,27 @@ import { Album } from 'src/app/model/album';
 })
 export class FormAlbumComponent implements OnInit {
   form: FormGroup;
+
   constructor(
+    private fb: FormBuilder,
     private albumService: AlbumService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.form = new FormGroup({
-      name: new FormControl('', [
+    this.form = this.fb.group({
+      nameControl: this.fb.control('', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{1,})*$/),
-        Validators.maxLength(200),
+        Validators.maxLength(50),
       ]),
-      year: new FormControl('', [Validators.required]),
-
-      cover: new FormControl(''),
+      yearControl: this.fb.control('', [
+        Validators.pattern(/^[0-9]{4}/),
+        Validators.maxLength(4),
+      ]),
+      coverControl: this.fb.control('', []),
     });
   }
+
   ngOnInit(): void {}
 
   save() {
@@ -35,14 +48,12 @@ export class FormAlbumComponent implements OnInit {
       .insert(
         new Album(
           undefined,
-          this.form.controls['name'].value,
-          this.form.controls['year'].value,
-          this.form.controls['cover'].value
+          this.form.controls['nameControl'].value,
+          this.form.controls['yearControl'].value,
+          this.form.controls['coverControl'].value
         )
       )
-      .subscribe((album) => {
-        console.log(album);
-      });
+      .subscribe((album) => {});
     this.router.navigate(['/album']);
   }
 }

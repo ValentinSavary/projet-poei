@@ -71,9 +71,11 @@ export class ArtistService {
   public insert(artist: Artist): Observable<Artist> {
     const a = {
       name: artist.name,
-      year: artist.country,
+      country: artist.country,
     };
-    return this.http.post<Artist>(ArtistService.URL, a);
+    return this.http.post<Artist>(ArtistService.URL, a, {
+      headers: this.httpHeaders,
+    });
   }
 
   // Methode pour la mise a jour d un artiste dans la BDD

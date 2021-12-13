@@ -2,17 +2,26 @@
   <div class="container">
     <div class="form-group">
       <label>Id</label>
-      <input [(ngModel)]="music.id" readonly class="form-control" />
+      <input
+        class="form-control"
+        name="idControl"
+        [(ngModel)]="music.id"
+        #idControl="ngModel"
+        readonly
+        class="form-control"
+      />
     </div>
+
     <div class="form-group">
       <label>Title</label>
       <input
-        [(ngModel)]="music.title"
         class="form-control"
         name="titleControl"
-        type="text"
+        [(ngModel)]="music.title"
         #titleControl="ngModel"
+        type="text"
         required
+        placeholder="Title"
       />
     </div>
 
@@ -45,8 +54,28 @@
     </div>
 
     <div class="form-group">
-      <label>Music file</label>
-      <input [(ngModel)]="music.musicFile" class="form-control" />
+      <label>Choose music file</label>
+      <input
+        ng2FileSelect
+        [(ngModel)]="music.musicFile"
+        class="form-control"
+        name="musicFileControl"
+        type="file"
+        accept=".mp3"
+        #musicFileControl="ngModel"
+        required
+        placeholder="MusicFile.mp3"
+      />
+      <!-- [uploader]="uploader" -->
+
+      <!-- <input type="file" name="file" id="file" > -->
+    </div>
+
+    <div
+      *ngIf="musicFileControl.dirty && musicFileControl.invalid"
+      class="alert alert-danger"
+    >
+      Put a valid music file (mp3 format)
     </div>
 
     <div class="form-group">
@@ -58,10 +87,15 @@
       </select>
     </div>
 
-    <div>
+    <div class="form-group">
       <button
         type="submit"
-        [disabled]="form.invalid && titleControl.dirty"
+        [disabled]="
+          form.invalid ||
+          titleControl.pristine ||
+          durationControl.pristine ||
+          musicFileControl.pristine
+        "
         class="btn btn-outline-success"
       >
         Send

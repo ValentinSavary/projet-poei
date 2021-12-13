@@ -41,8 +41,8 @@ export class AlbumService {
   }
 
   // Methode qui permet de recuperer un/des albums grace au nom de l artiste
-  public byArtist(name: string): Observable<Album> {
-    return this.http.get<Album>(`${AlbumService.URL}/artist/${name}`, {
+  public byArtist(name: string): Observable<any[]> {
+    return this.http.get<any[]>(`${AlbumService.URL}/artist/${name}`, {
       headers: this.httpHeaders,
     });
   }
@@ -75,12 +75,13 @@ export class AlbumService {
       year: album.year,
       cover: album.cover,
     };
-    return this.http.post<Album>(AlbumService.URL, a);
+    return this.http.post<Album>(AlbumService.URL, a, {
+      headers: this.httpHeaders,
+    });
   }
 
   // Methode pour la mise a jour d un album dans la BDD
   public update(album: Album): Observable<Album> {
-    console.log(album);
     return this.http.put<Album>(`${AlbumService.URL}/${album.id}`, album, {
       headers: this.httpHeaders,
     });

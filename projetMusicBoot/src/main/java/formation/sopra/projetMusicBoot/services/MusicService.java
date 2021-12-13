@@ -1,5 +1,9 @@
 package formation.sopra.projetMusicBoot.services;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
 
@@ -9,6 +13,7 @@ import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import formation.sopra.projetMusicBoot.entities.Album;
 import formation.sopra.projetMusicBoot.entities.Genre;
@@ -20,6 +25,8 @@ import formation.sopra.projetMusicBoot.repositories.MusicRepository;
 
 @Service
 public class MusicService {
+	
+	private final Path root = Paths.get("uploads");
 
 	@Autowired
 	private MusicRepository musicRepository;

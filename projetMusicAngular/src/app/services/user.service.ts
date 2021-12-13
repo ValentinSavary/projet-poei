@@ -60,12 +60,13 @@ export class UserService {
       password: user.password,
       accountType: user.accountType,
     };
-    return this.http.post<User>(UserService.URL, a);
+    return this.http.post<User>(UserService.URL, a, {
+      headers: this.httpHeaders,
+    });
   }
 
   // Methode pour la mise a jour d un user dans la BDD
   public update(user: User): Observable<User> {
-    console.log(user);
     return this.http.put<User>(`${UserService.URL}/${user.id}`, user, {
       headers: this.httpHeaders,
     });

@@ -85,7 +85,7 @@ public class MusicRestController {
 	public Music create(@Valid @RequestBody Music music, BindingResult br) {
 		return musicService.save(music);
 	}
-
+	
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Music.class)
 	public Music update(@Valid @RequestBody Music music, BindingResult br, @PathVariable("id") Long id) {

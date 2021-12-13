@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +15,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/musics/**");
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -53,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.DELETE,"/api/album/**").hasRole("ADMIN")
 			.antMatchers(HttpMethod.DELETE,"/api/artist/**").hasRole("ADMIN")
 			.antMatchers(HttpMethod.DELETE,"/api/playlist/**").authenticated()
+			.antMatchers(HttpMethod.POST,"/music/musics/**").permitAll()
 			.antMatchers("/api/auth").permitAll()
 			.and()
 			//authentification Basic (cf PostMan)

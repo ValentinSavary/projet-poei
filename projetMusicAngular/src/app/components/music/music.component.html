@@ -23,7 +23,13 @@
           >
         </td>
         <td>{{ music.duration }}</td>
-        <td>{{ music.musicFile }}</td>
+        <!-- <td>{{ music.musicFile }}</td> -->
+        <td>
+          <audio
+            src="http://localhost:8080/music/musics/{{ music.title }}.mp3"
+            controls
+          ></audio>
+        </td>
         <td>{{ music.genre }}</td>
         <td>
           <a

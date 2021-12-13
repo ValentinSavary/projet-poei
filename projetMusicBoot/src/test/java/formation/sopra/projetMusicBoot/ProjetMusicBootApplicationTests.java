@@ -1,5 +1,6 @@
 package formation.sopra.projetMusicBoot;
 
+import java.nio.file.Paths;
 import java.time.Year;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import formation.sopra.projetMusicBoot.entities.AccountType;
 import formation.sopra.projetMusicBoot.entities.Album;
@@ -38,6 +40,16 @@ class ProjetMusicBootApplicationTests {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	
+	@Test
+	void path() {
+		System.out.println(Paths.get("./musics").resolve("ddd"));
+		System.out.println(ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(":8080/download/")
+                .path("ddd")
+                .toUriString());
+	}
+	
 	// @Test
 	void contextLoads() {
 	}

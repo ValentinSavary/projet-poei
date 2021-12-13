@@ -1,51 +1,92 @@
-<form (ngSubmit)="save()" formGroup="form">
+<form (ngSubmit)="save()" [formGroup]="form">
+  <div class="form-group">
+    <label>Id :</label>
+    <input
+      class="form-control"
+      name="idControl"
+      readonly
+      class="form-control"
+      readonly
+    />
+  </div>
+
   <div class="form-group">
     <label>Name :</label>
-    <input class="form-control" formControlName="name" type="text" />
+    <input
+      class="form-control"
+      formControlName="nameControl"
+      type="text"
+      name="nameControl"
+      required
+      placeholder="Artist name"
+    />
   </div>
   <div
-    *ngIf="form.controls['name'].dirty && form.controls['name'].invalid"
+    *ngIf="
+      form.controls['nameControl'].dirty && form.controls['nameControl'].invalid
+    "
     class="alert alert-danger"
   >
-    Put a valid name
+    Put a valid name for the artist
   </div>
 
   <div class="form-group">
-    <label>Country : </label>
-    <input class="form-control" formControlName="country" type="text" />
-    <div
-      *ngIf="form.controls['country'].dirty && form.controls['country'].invalid"
-      class="alert alert-danger"
-    >
-      Put a valid country
-    </div>
+    <label>Country :</label>
+    <input
+      class="form-control"
+      formControlName="countryControl"
+      type="text"
+      name="countryControl"
+      placeholder="Country"
+    />
+  </div>
+
+  <div
+    *ngIf="
+      form.controls['countryControl'].dirty &&
+      form.controls['countryControl'].invalid
+    "
+    class="alert alert-danger"
+  >
+    Put a valid country
   </div>
 
   <div class="form-group">
-    <label>Albums : </label>
-    <input class="form-control" formControlName="albums" type="Albums" />
-    <div
-      *ngIf="form.controls['albums'].dirty && form.controls['albums'].invalid"
-      class="alert alert-danger"
-    >
-      Put a valid album list
-    </div>
+    <label>Albums :</label>
+    <input
+      class="form-control"
+      formControlName="albumsControl"
+      type="text"
+      name="albumsControl"
+      placeholder="Album published by the artist"
+    />
+  </div>
+
+  <div
+    *ngIf="
+      form.controls['albumsControl'].dirty &&
+      form.controls['albumsControl'].invalid
+    "
+    class="alert alert-danger"
+  >
+    Put a valid album published by the artist
   </div>
 
   <div>
     <button
       type="submit"
       class="btn btn-outline-success"
-      [disabled]="form.invalid"
+      [disabled]="form.invalid || form.controls['nameControl'].pristine"
     >
-      enregistrer {{ form.invalid }}
+      Create Artist
     </button>
-
+  </div>
+  <div>
     <a
       [routerLink]="['/artist']"
       routerLinkActive="active"
       class="btn btn-outline-warning"
-      >annuler</a
+      >Cancel</a
     >
   </div>
 </form>

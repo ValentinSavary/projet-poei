@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import { Artist } from './../../model/artist';
 import { ArtistService } from './../../services/artist.service';
@@ -8,13 +8,27 @@ import { ArtistService } from './../../services/artist.service';
   templateUrl: './artist.component.html',
   styleUrls: ['./artist.component.css'],
 })
-export class ArtistComponent implements OnInit {
+export class ArtistComponent implements OnInit, OnChanges {
   artists: Artist[] = [];
 
   constructor(private artistService: ArtistService) {}
 
   ngOnInit(): void {
     this.initArtists();
+    console.log('on est la');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ng change');
+    this.initArtists();
+  }
+
+  delete(id: number | undefined) {
+    if (!!id) {
+      this.artistService.delete(id).subscribe((result) => {
+        this.initArtists();
+      });
+    }
   }
 
   initArtists() {

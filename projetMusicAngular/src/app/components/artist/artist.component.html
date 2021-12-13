@@ -5,6 +5,8 @@
         <th>Id :</th>
         <th>Name :</th>
         <th>Country :</th>
+        <th>Edit :</th>
+        <th>Delete :</th>
       </tr>
     </thead>
     <tbody>
@@ -12,31 +14,30 @@
         <td>{{ artist.id }}</td>
         <td>
           <a
-            [routerLink]="['/artist']"
+            [routerLink]="['/album', 'artist', artist.name]"
             routerLinkActive="active"
             class="btn btn-link"
             >{{ artist.name }}</a
           >
         </td>
         <td>{{ artist.country }}</td>
-        <!-- <td>
-        <a
-          [routerLink]="['/albums', 'edit', album.id]"
-          routerLinkActive="active"
-          >editer</a
-        >
-      </td> -->
-        <!-- <td>
-        <button (click)="delete(album.id)" class="btn btn-outline-danger">
-          supprimer
-        </button>
-      </td> -->
+        <td>
+          <a
+            [routerLink]="['/artist', 'form', artist.id]"
+            routerLinkActive="active"
+            >editer</a
+          >
+        </td>
+        <td>
+          <button (click)="delete(artist.id)" class="btn btn-outline-danger">
+            supprimer
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
-
   <a
-    [routerLink]="['/artists', 'edit']"
+    [routerLink]="['/artist', 'form']"
     routerLinkActive="active"
     class="btn btn-link"
     >creation artist</a

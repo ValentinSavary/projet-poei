@@ -1,1 +1,45 @@
-<p>playlist works!</p>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id :</th>
+        <th>Name :</th>
+        <th>typePrivate :</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let playlist of playlists">
+        <td>{{ playlist.id }}</td>
+        <td>
+          <a
+            [routerLink]="['/music', 'playlist', playlist.name]"
+            routerLinkActive="active"
+            class="btn btn-link"
+            >{{ playlist.name }}</a
+          >
+        </td>
+        <td>{{ playlist.typePrivate }}</td>
+        <td>
+          <a
+            class="btn btn-outline-success"
+            [routerLink]="['/music', 'form', playlist.id]"
+            routerLinkActive="active"
+            >Edit</a
+          >
+        </td>
+        <td>
+          <button (click)="delete(playlist.id)" class="btn btn-outline-danger">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a
+    [routerLink]="['/playlist', 'form']"
+    routerLinkActive="active"
+    class="btn btn-outline-primary"
+    >Playlist Creation</a
+  >
+</div>

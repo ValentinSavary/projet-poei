@@ -38,15 +38,22 @@ export class MusicService {
   }
 
   // Methode qui permet de recuperer des musiques via le nom de l artiste
-  public byArtist(name: string): Observable<Music> {
-    return this.http.get<Music>(`${MusicService.URL}/artist/${name}`, {
+  public byArtist(name: string): Observable<any[]> {
+    return this.http.get<any[]>(`${MusicService.URL}/artist/${name}`, {
       headers: this.httpHeaders,
     });
   }
 
   // Methode qui permet de recuperer des musiques grace au nom de l album
-  public byAlbum(title: string): Observable<Music> {
-    return this.http.get<Music>(`${MusicService.URL}/album/${name}`, {
+  public byAlbum(name: string): Observable<any[]> {
+    return this.http.get<any[]>(`${MusicService.URL}/album/${name}`, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  // Methode qui permet de recuperer des musiques grace au nom d une playlist
+  public byPlaylist(name: string): Observable<any[]> {
+    return this.http.get<any[]>(`${MusicService.URL}/playlist/${name}`, {
       headers: this.httpHeaders,
     });
   }
@@ -73,7 +80,6 @@ export class MusicService {
       musicFile: null,
       genre: music.genre,
     };
-    console.log(a);
     return this.http.post<Music>(MusicService.URL, a, {
       headers: this.httpHeaders,
     });
@@ -81,7 +87,6 @@ export class MusicService {
 
   // Methode pour la mise a jour d une musique dans la BDD
   public update(music: Music): Observable<Music> {
-    console.log(music);
     return this.http.put<Music>(`${MusicService.URL}/${music.id}`, music, {
       headers: this.httpHeaders,
     });

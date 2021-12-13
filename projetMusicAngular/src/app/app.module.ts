@@ -1,9 +1,11 @@
 import { FormArtistComponent } from './components/artist/form-artist/form-artist.component';
+import { FormPlaylistComponent } from './components/playlist/form-playlist/form-playlist.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -32,6 +34,7 @@ import { Login1Component } from './login1/login1.component';
     FormMusicComponent,
     FormAlbumComponent,
     FormArtistComponent,
+    FormPlaylistComponent,
     RegisterComponent,
     Login1Component,
   ],
@@ -40,6 +43,8 @@ import { Login1Component } from './login1/login1.component';
     RouterModule.forRoot(routes),
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FileUploadModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

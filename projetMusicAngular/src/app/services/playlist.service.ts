@@ -32,22 +32,23 @@ export class PlaylistService {
     });
   }
 
-  public byUser(username: string): Observable<Playlist> {
-    return this.http.get<Playlist>(`${PlaylistService.URL}/user/${username}`, {
+  public byUser(username: string): Observable<any[]> {
+    return this.http.get<any[]>(`${PlaylistService.URL}/user/${username}`, {
       headers: this.httpHeaders,
     });
   }
 
-  public create(playlist: Playlist): Observable<Playlist> {
-    const p = {
+  public insert(playlist: Playlist): Observable<Playlist> {
+    const a = {
       name: playlist.name,
       typePrivate: playlist.typePrivate,
     };
-    return this.http.post<Playlist>(PlaylistService.URL, p);
+    return this.http.post<Playlist>(PlaylistService.URL, a, {
+      headers: this.httpHeaders,
+    });
   }
 
   public update(playlist: Playlist): Observable<Playlist> {
-    console.log(playlist);
     return this.http.put<Playlist>(
       `${PlaylistService.URL}/${playlist.id}`,
       playlist,
