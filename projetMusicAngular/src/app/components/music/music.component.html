@@ -1,8 +1,26 @@
 <div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <span class="filter">Filtre actuel : </span><b></b>
+    </div>
+    <div class="col-md-8 form-group">
+      <input type="text" [(ngModel)]="chaine" />
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <img
+          src="http://localhost:8080/music/covers/{{ albumName }}.jpg"
+          alt="File not found"
+          class="card-img"
+        />
+      </div>
+    </div>
+  </div>
   <table class="table">
     <thead>
       <tr>
-        <th>Id :</th>
         <th>Title :</th>
         <th>Duration in s :</th>
         <th>Music file :</th>
@@ -12,8 +30,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let music of musics">
-        <td>{{ music.id }}</td>
+      <tr *ngFor="let music of filtre()">
         <td>
           <a
             [routerLink]="['/music']"

@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			// precision de l URL de l api
 			.antMatcher("/api/**")
 			// mise en place des tokens
-				.csrf().ignoringAntMatchers("/api/**").ignoringAntMatchers("/musics/**").ignoringAntMatchers("/album/**")
+				.csrf().ignoringAntMatchers("/api/**").ignoringAntMatchers("/musics/**").ignoringAntMatchers("/covers/**")
 			.and()
 			// creation session
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.DELETE,"/api/artist/**").hasRole("ADMIN")
 			.antMatchers(HttpMethod.DELETE,"/api/playlist/**").authenticated()
 			.antMatchers(HttpMethod.POST,"/musics/**").permitAll()
-			.antMatchers(HttpMethod.POST,"/album/**").permitAll()
+			.antMatchers(HttpMethod.POST,"/covers/**").permitAll()
 			.antMatchers("/api/auth").permitAll()
 			.and()
 			//authentification Basic (cf PostMan)

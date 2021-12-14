@@ -1,3 +1,4 @@
+import { Album } from 'src/app/model/album';
 import { Observable } from 'rxjs';
 import { AbstractControl, AsyncValidatorFn } from '@angular/forms';
 import { ValidationErrors } from '@angular/forms';
@@ -20,6 +21,7 @@ import { Artist } from 'src/app/model/artist';
 })
 export class FormArtistComponent implements OnInit {
   form: FormGroup;
+  albums: Album[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -37,7 +39,7 @@ export class FormArtistComponent implements OnInit {
         Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{1,})*$/),
         Validators.maxLength(25),
       ]),
-      albumsControl: this.fb.control('', []),
+      albumControl: this.fb.control('', []),
     });
   }
 
@@ -50,7 +52,7 @@ export class FormArtistComponent implements OnInit {
           undefined,
           this.form.controls['nameControl'].value,
           this.form.controls['countryControl'].value,
-          this.form.controls['albumsControl'].value
+          this.form.controls['albumControl'].value
         )
       )
       .subscribe((artist) => {

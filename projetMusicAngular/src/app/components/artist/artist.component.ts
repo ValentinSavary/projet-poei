@@ -10,6 +10,7 @@ import { ArtistService } from './../../services/artist.service';
 })
 export class ArtistComponent implements OnInit, OnChanges {
   artists: Artist[] = [];
+  chaine: string = '';
 
   constructor(private artistService: ArtistService) {}
 
@@ -44,6 +45,17 @@ export class ArtistComponent implements OnInit, OnChanges {
           )
         );
       }
+    });
+  }
+
+  filtre(): Artist[] {
+    return this.artists.filter((artist) => {
+      if (artist.name != undefined) {
+        return (
+          artist.name.toLowerCase().indexOf(this.chaine.toLowerCase()) !== -1
+        );
+      }
+      return '';
     });
   }
 }

@@ -25,7 +25,7 @@
           <a class="nav-link" [routerLink]="['/user']"> Users</a>
         </li>
         <li *ngIf="logged" class="nav-items" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/user']">Admin</a>
+          <a class="nav-link" [routerLink]="['/admin']">Admin</a>
         </li>
       </ul>
     </div>
@@ -46,5 +46,4 @@
     </div>
   </nav>
 </div>
-<div class="mt-5"></div>
 <router-outlet></router-outlet>

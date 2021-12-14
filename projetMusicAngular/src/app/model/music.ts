@@ -1,3 +1,4 @@
+import { Album } from 'src/app/model/album';
 import { Genre } from './genre';
 export class Music {
   public constructor(
@@ -5,7 +6,8 @@ export class Music {
     private _title?: string | undefined,
     private _duration?: number | undefined,
     private _musicFile?: File | undefined,
-    private _genre?: Genre | undefined
+    private _genre?: Genre | undefined,
+    private _album?: Album | undefined
   ) {}
 
   /**
@@ -49,6 +51,14 @@ export class Music {
   }
 
   /**
+   * Getter album
+   * @return {Album}
+   */
+  public get album(): Album | undefined {
+    return this._album;
+  }
+
+  /**
    * Setter id
    * @param {number} value
    */
@@ -86,5 +96,13 @@ export class Music {
    */
   public set genre(value: Genre | undefined) {
     this._genre = value;
+  }
+
+  /**
+   * Setter album
+   * @param {Album} value
+   */
+  public set album(value: Album | undefined) {
+    this._album = value;
   }
 }

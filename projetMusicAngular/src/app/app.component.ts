@@ -1,3 +1,4 @@
+import { Artist } from './model/artist';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 

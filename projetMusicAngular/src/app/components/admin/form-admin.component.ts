@@ -26,6 +26,7 @@ import { Artist } from 'src/app/model/artist';
 export class FormAdminComponent implements OnInit {
   genres = Genre;
   form: FormGroup;
+  albums: Album[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -45,7 +46,7 @@ export class FormAdminComponent implements OnInit {
         Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{1,})*$/),
         Validators.maxLength(25),
       ]),
-      albumsControl: this.fb.control('', []),
+      albumControl: this.fb.control('', []),
 
       nameAlbumControl: this.fb.control('', [
         Validators.required,
@@ -82,7 +83,7 @@ export class FormAdminComponent implements OnInit {
         undefined,
         this.form.controls['nameControl'].value,
         this.form.controls['countryControl'].value,
-        this.form.controls['albumsControl'].value
+        this.form.controls['albumControl'].value
       )
     );
     this.albumService.insert(

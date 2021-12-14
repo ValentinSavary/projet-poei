@@ -52,24 +52,12 @@
   </div>
 
   <div class="form-group">
-    <label>Albums :</label>
-    <input
-      class="form-control"
-      formControlName="albumsControl"
-      type="text"
-      name="albumsControl"
-      placeholder="Album published by the artist"
-    />
-  </div>
-
-  <div
-    *ngIf="
-      form.controls['albumsControl'].dirty &&
-      form.controls['albumsControl'].invalid
-    "
-    class="alert alert-danger"
-  >
-    Put a valid album published by the artist
+    <label>Choose an album published by the artist :</label>
+    <select>
+      <option *ngFor="let album of albums">
+        {{ album.name }}
+      </option>
+    </select>
   </div>
 
   <div>

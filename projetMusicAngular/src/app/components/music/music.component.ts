@@ -13,6 +13,7 @@ import { MusicService } from './../../services/music.service';
   styleUrls: ['./music.component.css'],
 })
 export class MusicComponent implements OnInit {
+  albumName: string = '';
   musics: Music[] = [];
   chaine: string = '';
 
@@ -25,8 +26,8 @@ export class MusicComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      console.log(params['music']);
       if (!!params['music']) {
+        this.albumName = params['music'];
         this.listMusicByAlbum(params['music']);
       } else if (!!params['name']) {
         this.listMusicByPlaylist(params['name']);
@@ -46,7 +47,8 @@ export class MusicComponent implements OnInit {
             value['title'],
             value['duration'],
             value['musicFile'],
-            value['genre']
+            value['genre'],
+            value['album']
           )
         );
       }
@@ -54,8 +56,8 @@ export class MusicComponent implements OnInit {
   }
 
   // Cette methode retourne toutes les musiques d un album
-  listMusicByAlbum(username: string) {
-    this.musicService.byAlbum(username).subscribe((result) => {
+  listMusicByAlbum(name: string) {
+    this.musicService.byAlbum(name).subscribe((result) => {
       console.log(result);
       this.musics = [];
       for (let value of result) {
@@ -65,7 +67,8 @@ export class MusicComponent implements OnInit {
             value['title'],
             value['duration'],
             value['musicFile'],
-            value['genre']
+            value['genre'],
+            value['album']
           )
         );
       }
@@ -98,6 +101,17 @@ export class MusicComponent implements OnInit {
     }
   }
 
+  filtre(): Music[] {
+    return this.musics.filter((music) => {
+      if (music.title != undefined) {
+        return (
+          music.title.toLowerCase().indexOf(this.chaine.toLowerCase()) !== -1
+        );
+      }
+      return '';
+    });
+  }
+
   // path(id: number): string {
   //   this.musicService.byId(id).subscribe((music) => {
   //     this.artistService.byMusic(
@@ -112,10 +126,4 @@ export class MusicComponent implements OnInit {
   //   });
   //   return 'ff';
   // }
-
-  /*   filtre(): Music[] {
-    return this.musics.filter((music) => {
-      return music.name.indexOf(this.chaine) !== -1;
-    });
-  } */
 }

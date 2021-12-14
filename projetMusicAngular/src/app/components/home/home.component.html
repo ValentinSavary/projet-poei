@@ -1,1 +1,47 @@
 <h1>Bienvenue sur Postify, le site n°1 de la musique !</h1>
+<div class="mt-5"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 form-group">
+      <input
+        class="form-group"
+        type="text"
+        [(ngModel)]="chaine"
+        placeholder="Search"
+        name="searchText"
+      />
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-outline-success" (click)="search(chaine)">
+        OK
+      </button>
+    </div>
+    <div class="col-md-6"></div>
+  </div>
+</div>
+<div class="container">
+  <h1>Artists</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name :</th>
+        <th>Country :</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let artist of searchArtist()">
+        <td>
+          <a
+            [routerLink]="['/album', 'artist', artist.name]"
+            routerLinkActive="active"
+            class="btn btn-link"
+            >{{ artist.name }}</a
+          >
+        </td>
+        <td>{{ artist.country }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container"><h1>Albums</h1></div>
+<div class="container"><h1>Musics</h1></div>

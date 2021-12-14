@@ -76,7 +76,9 @@ export class AlbumComponent implements OnInit {
   filtre(): Album[] {
     return this.albums.filter((album) => {
       if (album.name != undefined) {
-        return album.name.indexOf(this.chaine) !== -1;
+        return (
+          album.name.toLowerCase().indexOf(this.chaine.toLowerCase()) !== -1
+        );
       }
       return '';
     });
