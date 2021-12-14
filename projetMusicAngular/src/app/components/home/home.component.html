@@ -1,112 +1,106 @@
-<h1>Bienvenue sur Postify, le site n°1 de la musique !</h1>
-<div class="mt-5"></div>
 <div class="container">
-  <div class="row">
-    <div class="col-md-2 form-group">
-      <input
-        class="form-group"
-        type="text"
-        [(ngModel)]="chaine"
-        placeholder="Search"
-        name="searchText"
-      />
-    </div>
-    <div class="col-md-1">
-      <button class="btn btn-outline-success" (click)="search(chaine)">
-        OK
-      </button>
-    </div>
-    <div class="col-md-6"></div>
-  </div>
-</div>
-<div class="container">
-  <h1>Artists</h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name :</th>
-        <th>Country :</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let artist of artists">
-        <td>
-          <a
-            [routerLink]="['/album', 'artist', artist.name]"
-            routerLinkActive="active"
-            class="btn btn-link"
-            >{{ artist.name }}</a
-          >
-        </td>
-        <td>{{ artist.country }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="container">
-  <h1>Albums</h1>
-  <div class="row row-cols-1 row-cols-md-3">
-    <div class="col mb-4" *ngFor="let album of albums">
-      <div class="card">
-        <img
-          src="http://localhost:8080/music/covers/{{ album.name }}.jpg"
-          class="card-img-top"
-        />
-        <div class="card-body">
-          <h5
-            class="card-title"
-            [routerLink]="['/music', 'album', album.name]"
-            routerLinkActive="active"
-            class="btn btn-link"
-          >
-            {{ album.name }}
-          </h5>
-          <p class="card-text">{{ album.year }}</p>
-        </div>
-      </div>
-    </div>
-    <br />
-  </div>
-
+  <h1>Welcome on Postify !</h1>
+  <div class="mt-5"></div>
   <div class="container">
-    <h1>Musics</h1>
+    <div class="row">
+      <div class="col-md-2 form-group">
+        <input
+          class="form-group"
+          type="text"
+          [(ngModel)]="chaine"
+          placeholder="Search"
+          name="searchText"
+        />
+      </div>
+      <div class="col-md-1">
+        <button class="btn btn-outline-success" (click)="search(chaine)">
+          OK
+        </button>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+  <div>
+    <h1>Artists</h1>
     <table class="table">
       <thead>
         <tr>
-          <th>Title :</th>
-          <th>Duration in s :</th>
-          <th>Music :</th>
-          <th>Genre :</th>
+          <th>Name :</th>
+          <th>Country :</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let music of musics">
+        <tr *ngFor="let artist of artists">
           <td>
-            <div class="col-4">
-              <img
-                src="http://localhost:8080/music/covers/{{ music.album }}.jpg"
-                alt="File not found"
-                class="card-img"
-                sizes="20px"
-              />
-            </div>
             <a
-              [routerLink]="['/music']"
+              [routerLink]="['/album', 'artist', artist.name]"
               routerLinkActive="active"
               class="btn btn-link"
-              >{{ music.title }}</a
+              >{{ artist.name }}</a
             >
           </td>
-          <td>{{ music.duration }}</td>
-          <td>
-            <audio
-              src="http://localhost:8080/music/musics/{{ music.title }}.mp3"
-              controls
-            ></audio>
-          </td>
-          <td>{{ music.genre }}</td>
+          <td>{{ artist.country }}</td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div>
+    <h1>Albums</h1>
+    <div class="row row-cols-1 row-cols-md-3">
+      <div class="col mb-4" *ngFor="let album of albums">
+        <div class="card">
+          <img
+            src="http://localhost:8080/music/covers/{{ album.name }}.jpg"
+            class="card-img-top"
+          />
+          <div class="card-body">
+            <h5
+              class="card-title"
+              [routerLink]="['/music', 'album', album.name]"
+              routerLinkActive="active"
+              class="btn btn-link"
+            >
+              {{ album.name }}
+            </h5>
+            <p class="card-text">{{ album.year }}</p>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+
+    <div>
+      <h1>Musics</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title :</th>
+            <th>Duration in s :</th>
+            <th>Music :</th>
+            <th>Genre :</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let music of musics">
+            <td>
+              <a
+                [routerLink]="['/music']"
+                routerLinkActive="active"
+                class="btn btn-link"
+                >{{ music.title }}</a
+              >
+            </td>
+            <td>{{ music.duration }}</td>
+            <td>
+              <audio
+                src="http://localhost:8080/music/musics/{{ music.title }}.mp3"
+                controls
+              ></audio>
+            </td>
+            <td>{{ music.genre }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

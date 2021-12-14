@@ -8,3 +8,14 @@ export enum Genre {
   RNB = 'RnB',
   VARIETEFRANCAISE = 'Variete Francaise',
 }
+
+export const GenreLabelMapping: Record<Genre, string> = {
+  [Genre.ROCK]: 'Rock',
+  [Genre.METAL]: 'Metal',
+  [Genre.TECHNICALDEATHCORE]: 'Technical Deathcore',
+  [Genre.CLASSICAL]: 'Classical',
+  [Genre.POP]: 'Pop',
+  [Genre.RAP]: 'Rap',
+  [Genre.RNB]: 'RnB',
+  [Genre.VARIETEFRANCAISE]: 'Variete Francaise',
+};

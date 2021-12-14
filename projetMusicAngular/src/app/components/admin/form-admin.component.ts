@@ -1,3 +1,4 @@
+import { GenreLabelMapping } from './../../model/genre';
 import { FileUploader } from 'ng2-file-upload';
 import { Genre } from '../../model/genre';
 import { Observable } from 'rxjs';
@@ -24,10 +25,12 @@ import { Artist } from 'src/app/model/artist';
   templateUrl: './form-admin.component.html',
 })
 export class FormAdminComponent implements OnInit {
-  genres = Genre;
+  // genres = Genre;
   music: Music = new Music();
   form: FormGroup;
   albums: Album[] = [];
+  public GenreLabelMapping = GenreLabelMapping;
+  public genres = Object.values(Genre);
 
   constructor(
     private fb: FormBuilder,

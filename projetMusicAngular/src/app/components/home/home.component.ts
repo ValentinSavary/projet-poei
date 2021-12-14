@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   artists: Artist[] = [];
   albums: Album[] = [];
   musics: Music[] = [];
-  albumName: string = '';
 
   constructor(
     private artistService: ArtistService,
@@ -75,6 +74,7 @@ export class HomeComponent implements OnInit {
             value['album']
           )
         );
+        console.log(value['album']);
       }
     });
   }

@@ -39,10 +39,10 @@ export class FormMusicComponent implements OnInit {
         Validators.pattern(/^[0-9]{1,4}$/),
         Validators.maxLength(4),
       ]),
-      musicFileControl: this.fb.control('', [
+      /*       musicFileControl: this.fb.control('', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{1,})*$/),
-      ]),
+      ]), */
       genreControl: this.fb.control('', []),
     });
   }
@@ -64,7 +64,7 @@ export class FormMusicComponent implements OnInit {
           undefined,
           this.form.controls['titleControl'].value,
           this.form.controls['durationControl'].value,
-          this.form.controls['musicFileControl'].value,
+          /*           this.form.controls['musicFileControl'].value, */
           this.form.controls['genreControl'].value
         )
       )

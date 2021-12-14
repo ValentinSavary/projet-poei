@@ -1,52 +1,56 @@
-<div class="row">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light col-10">
-    <a class="navbar-brand" [routerLink]="['']">{{ title }}</a>
-    <button class="navbar-toggler" type="button">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav">
-        <li class="nav-items" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/home']"> Accueil </a>
-        </li>
-        <li class="nav-items" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/artist']"> Artists</a>
-        </li>
-        <li class="nav-items" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/album']"> Albums</a>
-        </li>
-        <li class="nav-items" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/music']"> Musics</a>
-        </li>
-        <li *ngIf="logged" class="nav-items" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/playlist']"> Playlists</a>
-        </li>
-        <li *ngIf="logged" class="nav-items" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/user']"> Users</a>
-        </li>
-        <li *ngIf="logged" class="nav-items" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/admin']">Admin</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light col-2">
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav">
-        <li *ngIf="!logged" class="nav-items" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/login']"> Login</a>
-        </li>
-        <li *ngIf="logged" class="nav-items" routerLinkActive="active">
-          <a class="nav-link btn" (click)="logout()"> Logout</a>
-        </li>
-        <li *ngIf="!logged" class="nav-items" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/login1']"> LoginTest</a>
-        </li>
-        <li *ngIf="!logged" class="nav-items" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/user/form']"> Register</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<div class="container">
+  <div class="row">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary col-10">
+      <a class="navbar-brand" [routerLink]="['/home']">
+        <img class="img" src="../assets/Postify.png" />
+      </a>
+      <button class="navbar-toggler" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-items" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/home']"> Accueil </a>
+          </li>
+          <li class="nav-items" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/artist']"> Artists</a>
+          </li>
+          <li class="nav-items" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/album']"> Albums</a>
+          </li>
+          <li class="nav-items" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/music']"> Musics</a>
+          </li>
+          <li *ngIf="logged" class="nav-items" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/playlist']"> Playlists</a>
+          </li>
+          <li *ngIf="logged" class="nav-items" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/user']"> Users</a>
+          </li>
+          <li *ngIf="logged" class="nav-items" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/admin']">Admin</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light col-2">
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li *ngIf="!logged" class="nav-items" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/login']"> Login</a>
+          </li>
+          <li *ngIf="logged" class="nav-items" routerLinkActive="active">
+            <a class="nav-link btn" (click)="logout()"> Logout</a>
+          </li>
+          <li *ngIf="!logged" class="nav-items" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/login1']"> LoginTest</a>
+          </li>
+          <li *ngIf="!logged" class="nav-items" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/user/form']"> Register</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 </div>
 <router-outlet></router-outlet>

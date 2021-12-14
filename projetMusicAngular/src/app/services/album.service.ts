@@ -21,6 +21,12 @@ export class AlbumService {
     });
   }
 
+  private get httpHeadersFile(): HttpHeaders {
+    return new HttpHeaders({
+      Authorization: 'Basic ' + sessionStorage.getItem('token'),
+    });
+  }
+
   // Methode qui permet de recuperer tous les albums
   public allAlbum(): Observable<any[]> {
     return this.http.get<any[]>(AlbumService.URL);
@@ -77,6 +83,14 @@ export class AlbumService {
     };
     return this.http.post<Album>(AlbumService.URL, a, {
       headers: this.httpHeaders,
+    });
+  }
+
+  public addCover(cover: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', cover);
+    return this.http.post(`http://localhost:8080/music/album`, formData, {
+      headers: this.httpHeadersFile,
     });
   }
 

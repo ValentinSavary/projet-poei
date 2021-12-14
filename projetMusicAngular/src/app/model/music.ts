@@ -7,7 +7,7 @@ export class Music {
     private _duration?: number | undefined,
     private _musicFile?: File | undefined,
     private _genre?: Genre | undefined,
-    private _album?: Album | undefined
+    private _album?: Album[] | undefined
   ) {}
 
   /**
@@ -52,9 +52,9 @@ export class Music {
 
   /**
    * Getter album
-   * @return {Album}
+   * @return {Album[]}
    */
-  public get album(): Album | undefined {
+  public get album(): Album[] | undefined {
     return this._album;
   }
 
@@ -102,7 +102,7 @@ export class Music {
    * Setter album
    * @param {Album} value
    */
-  public set album(value: Album | undefined) {
+  public set album(value: Album[] | undefined) {
     this._album = value;
   }
 }

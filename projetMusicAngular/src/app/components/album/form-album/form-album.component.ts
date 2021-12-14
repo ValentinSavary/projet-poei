@@ -38,20 +38,22 @@ export class FormAlbumComponent implements OnInit {
         Validators.pattern(/^[0-9]{4}/),
         Validators.maxLength(4),
       ]),
-      coverControl: this.fb.control('', []),
+      /*       coverControl: this.fb.control('', []), */
     });
   }
 
   ngOnInit(): void {}
 
   save() {
+    this.albumService.addCover(this.form.controls['coverControl']);
     this.albumService
       .insert(
         new Album(
           undefined,
           this.form.controls['nameControl'].value,
-          this.form.controls['yearControl'].value,
-          this.form.controls['coverControl'].value
+          this.form.controls['yearControl'].value
+          /*        this.form.controls['coverControl'].value
+           */
         )
       )
       .subscribe((album) => {
@@ -62,6 +64,6 @@ export class FormAlbumComponent implements OnInit {
   uploader: FileUploader = new FileUploader({
     url: 'http://localhost:8080/music/album/covers',
     removeAfterUpload: false,
-    autoUpload: true,
+    autoUpload: false,
   });
 }

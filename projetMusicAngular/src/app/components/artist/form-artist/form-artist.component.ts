@@ -39,7 +39,7 @@ export class FormArtistComponent implements OnInit {
         Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{1,})*$/),
         Validators.maxLength(25),
       ]),
-      albumControl: this.fb.control('', []),
+      /*       albumControl: this.fb.control('', []), */
     });
   }
 
@@ -51,8 +51,8 @@ export class FormArtistComponent implements OnInit {
         new Artist(
           undefined,
           this.form.controls['nameControl'].value,
-          this.form.controls['countryControl'].value,
-          this.form.controls['albumControl'].value
+          this.form.controls['countryControl'].value
+          /*           this.form.controls['albumControl'].value */
         )
       )
       .subscribe((artist) => {
