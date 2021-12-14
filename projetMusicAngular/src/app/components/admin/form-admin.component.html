@@ -1,260 +1,212 @@
 <div class="container">
   <form (ngSubmit)="save()" [formGroup]="form">
-    <div class="container">
-      <div class="form-group" name="artist">
-        <div class="form-group">
-          <label>Id artist :</label>
-          <input
-            class="form-control"
-            name="idArtistControl"
-            readonly
-            class="form-control"
-            readonly
-          />
-        </div>
+    <h4>ARTIST SECTION</h4>
 
-        <div class="form-group">
-          <label>Name artist :</label>
-          <input
-            class="form-control"
-            formControlName="nameArtistControl"
-            type="text"
-            name="nameControl"
-            required
-            placeholder="Artist name"
-          />
-        </div>
-        <div
-          *ngIf="
-            form.controls['nameControl'].dirty &&
-            form.controls['nameControl'].invalid
-          "
-          class="alert alert-danger"
-        >
-          Put a valid name for the artist
-        </div>
-
-        <div class="form-group">
-          <label>Country :</label>
-          <input
-            class="form-control"
-            formControlName="countryControl"
-            type="text"
-            name="countryControl"
-            placeholder="Country"
-          />
-        </div>
-
-        <div
-          *ngIf="
-            form.controls['countryControl'].dirty &&
-            form.controls['countryControl'].invalid
-          "
-          class="alert alert-danger"
-        >
-          Put a valid country
-        </div>
-
-        <div class="form-group">
-          <label>Choose an album published by the artist :</label>
-          <select>
-            <option *ngFor="let album of albums">
-              {{ album.name }}
-            </option>
-          </select>
-        </div>
-      </div>
-
-      <div
-        *ngIf="
-          form.controls['albumsControl'].dirty &&
-          form.controls['albumsControl'].invalid
-        "
-        class="alert alert-danger"
-      >
-        Put a valid album published by the artist
-      </div>
+    <div class="form-group">
+      <label>Name artist :</label>
+      <input
+        class="form-control"
+        formControlName="nameArtistControl"
+        type="text"
+        name="nameControl"
+        required
+        placeholder="Artist name"
+      />
     </div>
 
-    <div class="form-group" name="album">
-      <div class="form-group">
-        <label>Id album :</label>
-        <input
-          class="form-control"
-          name="idAlbumControl"
-          readonly
-          class="form-control"
-          readonly
-        />
-      </div>
-
-      <div class="form-group">
-        <label>Name album :</label>
-        <input
-          class="form-control"
-          formControlName="nameAlbumControl"
-          type="text"
-          name="nameControl"
-          required
-          placeholder="Album name"
-        />
-      </div>
-      <div
-        *ngIf="
-          form.controls['nameControl'].dirty &&
-          form.controls['nameControl'].invalid
-        "
-        class="alert alert-danger"
-      >
-        Put a valid name for the album
-      </div>
-
-      <div class="form-group">
-        <label>Year :</label>
-        <input
-          class="form-control"
-          formControlName="yearControl"
-          type="number"
-          name="yearControl"
-          placeholder="Album year"
-        />
-      </div>
-      <div
-        *ngIf="
-          form.controls['yearControl'].dirty &&
-          form.controls['yearControl'].invalid
-        "
-        class="alert alert-danger"
-      >
-        Put a valid year for the album
-      </div>
-
-      <div class="form-group">
-        <label>Cover :</label>
-        <input
-          ng2FileSelect
-          class="form-control"
-          formControlName="coverControl"
-          type="file"
-          name="coverControl"
-          placeholder="Cover file"
-          [uploader]="uploader"
-        />
-      </div>
-      <div
-        *ngIf="
-          form.controls['coverControl'].dirty &&
-          form.controls['coverControl'].invalid
-        "
-        class="alert alert-danger"
-      >
-        Put a cover for the album
-      </div>
+    <div
+      *ngIf="
+        form.controls['nameControl'].dirty &&
+        form.controls['nameControl'].invalid
+      "
+      class="alert alert-danger"
+    >
+      Put a valid name for the artist
     </div>
+
+    <div class="form-group">
+      <label>Country :</label>
+      <input
+        class="form-control"
+        formControlName="countryControl"
+        type="text"
+        name="countryControl"
+        placeholder="Country"
+      />
+    </div>
+
+    <div
+      *ngIf="
+        form.controls['countryControl'].dirty &&
+        form.controls['countryControl'].invalid
+      "
+      class="alert alert-danger"
+    >
+      Put a valid country
+    </div>
+
+    <h4>ALBUM SECTION</h4>
+
+    <div class="form-group">
+      <label>Name album :</label>
+      <input
+        class="form-control"
+        formControlName="nameAlbumControl"
+        type="text"
+        name="nameControl"
+        required
+        placeholder="Album name"
+      />
+    </div>
+
+    <div
+      *ngIf="
+        form.controls['nameControl'].dirty &&
+        form.controls['nameControl'].invalid
+      "
+      class="alert alert-danger"
+    >
+      Put a valid name for the album
+    </div>
+
+    <div class="form-group">
+      <label>Year :</label>
+      <input
+        class="form-control"
+        formControlName="yearControl"
+        type="number"
+        name="yearControl"
+        placeholder="Album year"
+      />
+    </div>
+
+    <div
+      *ngIf="
+        form.controls['yearControl'].dirty &&
+        form.controls['yearControl'].invalid
+      "
+      class="alert alert-danger"
+    >
+      Put a valid year for the album
+    </div>
+
+    <div class="form-group">
+      <label>Cover :</label>
+      <input
+        ng2FileSelect
+        class="form-control"
+        formControlName="coverControl"
+        type="file"
+        name="coverControl"
+        placeholder="Cover file"
+        [uploader]="uploader"
+      />
+    </div>
+
+    <div
+      *ngIf="
+        form.controls['coverControl'].dirty &&
+        form.controls['coverControl'].invalid
+      "
+      class="alert alert-danger"
+    >
+      Put a cover for the album
+    </div>
+
+    <h4>MUSIC SECTION</h4>
+
+    <div class="form-group">
+      <label>Title :</label>
+      <input
+        class="form-control"
+        formControlName="titleControl"
+        type="text"
+        name="titleControl"
+        required
+        placeholder="Music title"
+      />
+    </div>
+
+    <div
+      *ngIf="
+        form.controls['titleControl'].dirty &&
+        form.controls['tileControl'].invalid
+      "
+      class="alert alert-danger"
+    >
+      Put a valid title for the music
+    </div>
+
+    <div class="form-group">
+      <label>Duration :</label>
+      <input
+        class="form-control"
+        formControlName="durationControl"
+        type="number"
+        name="durationControl"
+        placeholder="Music duration"
+      />
+    </div>
+
+    <div
+      *ngIf="
+        form.controls['durationControl'].dirty &&
+        form.controls['durationControl'].invalid
+      "
+      class="alert alert-danger"
+    >
+      Put a valid duration for the music
+    </div>
+
+    <div class="form-group">
+      <label>Music file :</label>
+      <input
+        class="form-control"
+        formControlName="musicFileControl"
+        type="file"
+        accept=".mp3"
+        name="musicFileControl"
+        placeholder="Music file.mp3"
+        required
+      />
+    </div>
+
+    <div
+      *ngIf="
+        form.controls['musicFileControl'].dirty &&
+        form.controls['musicFileControl'].invalid
+      "
+      class="alert alert-danger"
+    >
+      Put a valid music file with mp3 format
+    </div>
+
+    <div class="form-group">
+      <label>Music genre :</label>
+      <select [(ngModel)]="music.genre" class="form-control">
+        <option *ngFor="let enum of genres | keyvalue" [value]="enum.key">
+          {{ enum.value }}
+        </option>
+      </select>
+    </div>
+
     <div>
-      <div class="form-group" name="music">
-        <div class="form-group">
-          <label>Id music :</label>
-          <input
-            class="form-control"
-            name="idMusicControl"
-            readonly
-            class="form-control"
-            readonly
-          />
-        </div>
+      <button
+        type="submit"
+        class="btn btn-outline-success"
+        [disabled]="form.invalid"
+      >
+        Create
+      </button>
+    </div>
 
-        <div class="form-group">
-          <label>Title :</label>
-          <input
-            class="form-control"
-            formControlName="titleControl"
-            type="text"
-            name="titleControl"
-            required
-            placeholder="Music title"
-          />
-        </div>
-        <div
-          *ngIf="
-            form.controls['titleControl'].dirty &&
-            form.controls['tileControl'].invalid
-          "
-          class="alert alert-danger"
-        >
-          Put a valid title for the music
-        </div>
-
-        <div class="form-group">
-          <label>Duration :</label>
-          <input
-            class="form-control"
-            formControlName="durationControl"
-            type="number"
-            name="durationControl"
-            placeholder="Music duration"
-          />
-        </div>
-        <div
-          *ngIf="
-            form.controls['durationControl'].dirty &&
-            form.controls['durationControl'].invalid
-          "
-          class="alert alert-danger"
-        >
-          Put a valid duration for the music
-        </div>
-
-        <div class="form-group">
-          <label>Music file :</label>
-          <input
-            class="form-control"
-            formControlName="musicFileControl"
-            type="file"
-            accept=".mp3"
-            name="musicFileControl"
-            placeholder="Music file.mp3"
-            required
-          />
-        </div>
-        <div
-          *ngIf="
-            form.controls['musicFileControl'].dirty &&
-            form.controls['musicFileControl'].invalid
-          "
-          class="alert alert-danger"
-        >
-          Put a valid music file with mp3 format
-        </div>
-
-        <div class="form-group">
-          <label>Music genre :</label>
-          <select>
-            <option *ngFor="let enum of genres | keyvalue" [value]="enum.key">
-              {{ enum.value }}
-            </option>
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <button
-          type="submit"
-          class="btn btn-outline-success"
-          [disabled]="form.invalid"
-        >
-          Create
-        </button>
-      </div>
-
-      <div>
-        <a
-          [routerLink]="['/admin']"
-          routerLinkActive="active"
-          class="btn btn-outline-warning"
-          >Cancel</a
-        >
-      </div>
+    <div>
+      <a
+        [routerLink]="['/admin']"
+        routerLinkActive="active"
+        class="btn btn-outline-warning"
+        >Cancel</a
+      >
     </div>
   </form>
 </div>
