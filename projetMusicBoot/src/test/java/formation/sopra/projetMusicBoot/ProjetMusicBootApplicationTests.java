@@ -40,21 +40,18 @@ class ProjetMusicBootApplicationTests {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	
 	//@Test
 	void path() {
 		System.out.println(Paths.get("./musics").resolve("ddd"));
-		System.out.println(ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(":8080/download/")
-                .path("ddd")
-                .toUriString());
+		System.out.println(
+				ServletUriComponentsBuilder.fromCurrentContextPath().path(":8080/download/").path("ddd").toUriString());
 	}
-	
-	// @Test
+
+	//@Test
 	void contextLoads() {
 	}
 
-	// @Test
+	//@Test
 	void loadDB() {
 		Artist thyArt = new Artist();
 		thyArt.setName("Thy Art Is Murder");
@@ -235,14 +232,14 @@ class ProjetMusicBootApplicationTests {
 		user1.setAccountType(AccountType.ROLE_ADMIN);
 		user1.setPassword(passwordEncoder.encode("oooo"));
 		userService.create(user1);
-		
+
 		User user2 = new User();
 		user2.setUsername("Valentin");
 		user2.setLogin("loginValentin");
 		user2.setAccountType(AccountType.ROLE_ADMIN);
 		user2.setPassword(passwordEncoder.encode("vvvv"));
 		userService.create(user2);
-		
+
 		User user3 = new User();
 		user3.setUsername("Sebastien");
 		user3.setLogin("loginSebastien");
@@ -262,7 +259,7 @@ class ProjetMusicBootApplicationTests {
 		musPla.add(mus2);
 		playlist1.setMusics(musPla);
 		playlistService.save(playlist1);
-		
+
 		Playlist playlist2 = new Playlist();
 		playlist2.setName("pla2");
 		playlist2.setTypePrivate(false);
