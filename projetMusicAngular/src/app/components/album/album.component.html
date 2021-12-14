@@ -7,8 +7,8 @@
     </div>
   </div>
   <br />
-  <div class="row row-cols-1 row-cols-md-3">
-    <div class="col mb-4" *ngFor="let album of filtre()">
+  <div class="row row-cols-1 row-cols-md-4">
+    <div class="col mb-3" *ngFor="let album of filtre()">
       <div class="card">
         <img
           src="http://localhost:8080/music/covers/{{ album.name }}.jpg"
@@ -25,7 +25,6 @@
           </h5>
           <p class="card-text">{{ album.year }}</p>
         </div>
-        <!--  A mettre dans la source <td>{{ album.cover }}</td> -->
       </div>
     </div>
     <br />

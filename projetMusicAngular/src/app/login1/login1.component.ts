@@ -36,8 +36,8 @@ export class Login1Component implements OnInit {
         this.showMessage = false;
         sessionStorage.setItem('token', btoa(this.login + ':' + this.password));
         sessionStorage.setItem('login', this.login);
-        if (!!ok['user']) {
-          sessionStorage.setItem('role', 'user');
+        if (!!ok['free']) {
+          sessionStorage.setItem('role', 'free');
         } else {
           sessionStorage.setItem('role', 'admin');
         }

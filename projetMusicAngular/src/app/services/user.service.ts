@@ -60,9 +60,7 @@ export class UserService {
       password: user.password,
       accountType: user.accountType,
     };
-    return this.http.post<User>(UserService.URL, a, {
-      headers: this.httpHeaders,
-    });
+    return this.http.post<User>(UserService.URL, a);
   }
 
   // Methode pour la mise a jour d un user dans la BDD
