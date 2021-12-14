@@ -51,11 +51,7 @@ class ProjetMusicBootApplicationTests {
 	void contextLoads() {
 	}
 
-<<<<<<< Updated upstream
-	//@Test
-=======
 	 //@Test
->>>>>>> Stashed changes
 	void loadDB() {
 		Artist thyArt = new Artist();
 		thyArt.setName("Thy Art Is Murder");
