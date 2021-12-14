@@ -1,8 +1,6 @@
-import { ArtistService } from './../../services/artist.service';
-import { AlbumService } from './../../services/album.service';
-import { Album } from './../../model/album';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Music } from './../../model/music';
 import { MusicService } from './../../services/music.service';
@@ -16,12 +14,13 @@ export class MusicComponent implements OnInit {
   albumName: string = '';
   musics: Music[] = [];
   chaine: string = '';
+  isAdmin: boolean = false;
 
   constructor(
     private musicService: MusicService,
-    private albumService: AlbumService,
-    private artistService: ArtistService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +34,9 @@ export class MusicComponent implements OnInit {
         this.initMusics();
       }
     });
+    this.admin();
+    console.log(this.isAdmin);
+    console.log(sessionStorage.getItem('role'));
   }
 
   initMusics() {
@@ -110,6 +112,15 @@ export class MusicComponent implements OnInit {
       }
       return '';
     });
+  }
+
+  admin() {
+    if (sessionStorage.getItem('role') === 'admin') {
+      this.isAdmin = true;
+      return this.isAdmin;
+    } else {
+      return (this.isAdmin = false);
+    }
   }
 
   // path(id: number): string {
