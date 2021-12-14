@@ -33,11 +33,11 @@ export class Artist {
   }
 
   /**
-   * Getter artists
+   * Getter albums
    * @return {Album[]}
    */
-  public get artists(): Album[] | undefined {
-    return this.albums;
+  public get albums(): Album[] | undefined {
+    return this._albums;
   }
 
   /**
@@ -65,10 +65,10 @@ export class Artist {
   }
 
   /**
-   * Setter artists
+   * Setter album
    * @param {Album[]} value
    */
   public set albums(value: Album[] | undefined) {
-    this.albums = value;
+    this._albums = value;
   }
 }
