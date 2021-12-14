@@ -33,15 +33,15 @@ export class ArtistService {
   }
 
   // Methode qui permet de recuperer un artiste par son nom
-  public byName(name: string): Observable<Artist> {
-    return this.http.get<Artist>(`${ArtistService.URL}/name/${name}`, {
+  public byName(name: string): Observable<Artist[]> {
+    return this.http.get<Artist[]>(`${ArtistService.URL}/name/${name}`, {
       headers: this.httpHeaders,
     });
   }
 
   // Methode qui permet de recuperer un/des artistes grace au nom de l album
-  public byArtist(name: string): Observable<Artist> {
-    return this.http.get<Artist>(`${ArtistService.URL}/album/${name}`, {
+  public byAlbum(name: string): Observable<Artist[]> {
+    return this.http.get<Artist[]>(`${ArtistService.URL}/album/${name}`, {
       headers: this.httpHeaders,
     });
   }

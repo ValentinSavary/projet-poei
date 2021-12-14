@@ -31,8 +31,8 @@ export class MusicService {
   }
 
   // Methode qui permet de recuperer une musique par son nom
-  public byTitle(title: string): Observable<Music> {
-    return this.http.get<Music>(`${MusicService.URL}/title/${title}`, {
+  public byTitle(title: string): Observable<Music[]> {
+    return this.http.get<Music[]>(`${MusicService.URL}/title/${title}`, {
       headers: this.httpHeaders,
     });
   }
@@ -59,8 +59,8 @@ export class MusicService {
   }
 
   // Methode qui permet de recuperer des musiques grace au genre
-  public byGenre(genre: string): Observable<Music> {
-    return this.http.get<Music>(`${MusicService.URL}/genre/${genre}`, {
+  public byGenre(genre: string): Observable<Music[]> {
+    return this.http.get<Music[]>(`${MusicService.URL}/genre/${genre}`, {
       headers: this.httpHeaders,
     });
   }

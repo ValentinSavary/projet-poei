@@ -34,8 +34,8 @@ export class AlbumService {
   }
 
   // Methode qui permet de recuperer un album par son nom
-  public byName(name: string): Observable<Album> {
-    return this.http.get<Album>(`${AlbumService.URL}/name/${name}`, {
+  public byName(name: string): Observable<Album[]> {
+    return this.http.get<Album[]>(`${AlbumService.URL}/name/${name}`, {
       headers: this.httpHeaders,
     });
   }
@@ -55,8 +55,8 @@ export class AlbumService {
   }
 
   // Methode qui permet de recuperer un/des albums grace au genre
-  public byGenre(genre: string): Observable<Album> {
-    return this.http.get<Album>(`${AlbumService.URL}/genre/${genre}`, {
+  public byGenre(genre: string): Observable<Album[]> {
+    return this.http.get<Album[]>(`${AlbumService.URL}/genre/${genre}`, {
       headers: this.httpHeaders,
     });
   }
