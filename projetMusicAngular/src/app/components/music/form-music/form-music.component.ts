@@ -1,10 +1,18 @@
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Genre } from './../../../model/genre';
+import { Observable } from 'rxjs';
+import { AbstractControl, AsyncValidatorFn } from '@angular/forms';
+import { ValidationErrors } from '@angular/forms';
+import { debounceTime, map } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MusicService } from './../../../services/music.service';
 import { Component, OnInit } from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { Music } from 'src/app/model/music';
-import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-form-music',
@@ -12,72 +20,68 @@ import { FileUploader } from 'ng2-file-upload';
   styleUrls: ['./form-music.component.css'],
 })
 export class FormMusicComponent implements OnInit {
-  music: Music = new Music();
   genres = Genre;
-  URL = 'http://localhost:8080/music/music/musics';
+  form: FormGroup;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
     private musicService: MusicService,
     private router: Router,
-    private httpClient: HttpClient
-  ) {}
-
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      console.log(params['music']);
-      if (!!params['music']) {
-        this.musicService.byId(params['music']).subscribe((music) => {
-          this.music = music;
-        });
-      }
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.form = this.fb.group({
+      titleControl: this.fb.control('', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{1,})*$/),
+        Validators.maxLength(50),
+      ]),
+      durationControl: this.fb.control('', [
+        Validators.pattern(/^[0-9]{1,4}$/),
+        Validators.maxLength(4),
+      ]),
+      musicFileControl: this.fb.control('', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{1,})*$/),
+      ]),
+      genreControl: this.fb.control('', []),
     });
   }
 
-  save(form: any) {
-    var formData: any = new FormData();
-    formData.append(form.controls['file'].value);
-    this.httpClient.post(this.URL, formData);
+  ngOnInit(): void {}
+  /*   this.activatedRoute.params.subscribe((params) => {
+    if (!!params['music']) {
+      this.musicService.byId(params['music']).subscribe((music) => {
+        this.music = music;
+      });
+    }
+  });
+} */
 
-    // const formData = new FormData(form['musicFileControl'].value);
-    // formData.append('file', form.get('uploader').value);
-    // this.httpClient.post<any>(this.URL, formData).subscribe(
-    //   (res) => console.log(res),
-    //   (err) => console.log(err)
-    // );
+  save() {
+    this.musicService
+      .insert(
+        new Music(
+          undefined,
+          this.form.controls['titleControl'].value,
+          this.form.controls['durationControl'].value,
+          this.form.controls['musicFileControl'].value,
+          this.form.controls['genreControl'].value
+        )
+      )
+      .subscribe((music) => {
+        this.router.navigate(['/music']);
+      });
+  }
+}
+
+/*   save(form: any) {
     if (!!this.music.id) {
       this.musicService.update(this.music).subscribe((result) => {
-        this.goList();
+        this.router.navigate(['/music']);
       });
     } else {
       this.musicService.insert(this.music).subscribe((result) => {
-        this.goList();
+        this.router.navigate(['/music']);
       });
     }
-  }
-
-  // handleFileInput(files: FileList) {
-  //   this.file = files.item(0);
-  // }
-
-  // // uploadFileToActivity() {
-  // //   this.fileUploadService.postFile(this.fileToUpload).subscribe(
-  // //     (data) => {
-  // //       console.log('upload successful');
-  // //     },
-  // //     (error) => {
-  // //       console.log(error);
-  // //     }
-  // //   );
-  // // }
-
-  // uploader: FileUploader = new FileUploader({
-  //   url: 'http://localhost:8080/music/music/musics',
-  //   removeAfterUpload: false,
-  //   autoUpload: false,
-  // });
-
-  goList() {
-    this.router.navigate(['/music']);
-  }
-}
+  } */

@@ -48,7 +48,8 @@ export class FormPlaylistComponent implements OnInit {
           this.form.controls['musicsControl'].value
         )
       )
-      .subscribe((playlist) => {});
-    this.router.navigate(['/playlist']);
+      .subscribe((playlist) => {
+        this.router.navigate(['/playlist']);
+      });
   }
 }

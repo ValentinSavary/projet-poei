@@ -1,3 +1,4 @@
+import { Byte } from '@angular/compiler/src/util';
 import { Artist } from './artist';
 import { Music } from './music';
 export class Album {
@@ -5,7 +6,7 @@ export class Album {
     private _id?: number | undefined,
     private _name?: string | undefined,
     private _year?: string | undefined,
-    private _cover?: File | undefined,
+    private _cover?: Byte[] | undefined,
     private _musics?: Music[] | undefined,
     private _artists?: Artist[] | undefined
   ) {}
@@ -38,7 +39,7 @@ export class Album {
    * Getter cover
    * @return {File}
    */
-  public get cover(): File | undefined {
+  public get cover(): Byte[] | undefined {
     return this._cover;
   }
 
@@ -86,7 +87,7 @@ export class Album {
    * Setter cover
    * @param {string} value
    */
-  public set cover(value: File | undefined) {
+  public set cover(value: Byte[] | undefined) {
     this._cover = value;
   }
 

@@ -24,6 +24,9 @@
         <li *ngIf="logged" class="nav-items" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/user']"> Users</a>
         </li>
+        <li *ngIf="logged" class="nav-items" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/user']">Admin</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -34,7 +37,7 @@
           <a class="nav-link" [routerLink]="['/login']"> Login</a>
         </li>
         <li *ngIf="logged" class="nav-items" routerLinkActive="active">
-          <a class="nav-link" (click)="logout()"> Logout</a>
+          <a class="nav-link btn" (click)="logout()"> Logout</a>
         </li>
         <li *ngIf="!logged" class="nav-items" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/login1']"> LoginTest</a>

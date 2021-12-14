@@ -52,11 +52,13 @@
   <div class="form-group">
     <label>Cover :</label>
     <input
+      ng2FileSelect
       class="form-control"
       formControlName="coverControl"
-      type="byte"
+      type="file"
       name="coverControl"
       placeholder="Cover file"
+      [uploader]="uploader"
     />
   </div>
   <div

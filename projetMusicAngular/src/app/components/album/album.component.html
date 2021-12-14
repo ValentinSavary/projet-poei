@@ -1,48 +1,50 @@
 <div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Id :</th>
-        <th>Name :</th>
-        <th>Cover :</th>
-        <th>Year :</th>
-        <th>Edit :</th>
-        <th>Delete :</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let album of albums">
-        <td>{{ album.id }}</td>
-        <td>
-          <a
+  <div class="row">
+    <div class="col-md-4">
+      <span class="filter">Filtre actuel : </span><b></b>
+    </div>
+    <div class="col-md-8 form-group">
+      <input type="text" [(ngModel)]="chaine" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-4" *ngFor="let album of filtre()">
+      <div class="card">
+        <img [src]="album.cover" class="card-img-top" />
+        <div class="card-body">
+          <h5
+            class="card-title"
             [routerLink]="['/music', 'album', album.name]"
             routerLinkActive="active"
             class="btn btn-link"
-            >{{ album.name }}</a
           >
-        </td>
-        <td>{{ album.cover }}</td>
-        <td>{{ album.year }}</td>
-        <td>
+            {{ album.name }}
+          </h5>
+          <p class="card-text">{{ album.year }}</p>
+        </div>
+        <!--  A mettre dans la source <td>{{ album.cover }}</td> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- <td>
           <a
             [routerLink]="['/album', 'form', album.id]"
             routerLinkActive="active"
             >editer</a
           >
-        </td>
-        <td>
+        </td> -->
+
+  <!-- <td>
           <button (click)="delete(album.id)" class="btn btn-outline-danger">
             supprimer
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </td> -->
 
   <a
     [routerLink]="['/album', 'form']"
     routerLinkActive="active"
     class="btn btn-link"
-    >creation album</a
+    >Album creation</a
   >
 </div>

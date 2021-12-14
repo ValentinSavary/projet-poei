@@ -20,6 +20,7 @@ import { FormAlbumComponent } from './components/album/form-album/form-album.com
 import { routes } from './routes';
 import { RegisterComponent } from './components/user/register/register.component';
 import { Login1Component } from './login1/login1.component';
+import { FormAdminComponent } from './components/admin/form-admin.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { Login1Component } from './login1/login1.component';
     FormPlaylistComponent,
     RegisterComponent,
     Login1Component,
+    FormAdminComponent,
   ],
   imports: [
     BrowserModule,

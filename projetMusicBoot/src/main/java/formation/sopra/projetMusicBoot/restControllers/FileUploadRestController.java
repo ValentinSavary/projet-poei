@@ -49,7 +49,7 @@ public class FileUploadRestController {
 	
 	@PostMapping(value= "/musics", consumes =MediaType.MULTIPART_FORM_DATA_VALUE )
 	@ResponseBody
-	public void uploadFile(@RequestParam("file") MultipartFile file) {
+	public void uploadMusic(@RequestParam("file") MultipartFile file) {
 //        String name = storageService.store(file);
 //
 //        String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -62,6 +62,29 @@ public class FileUploadRestController {
 		
              try {
 				Files.copy(file.getInputStream(), Paths.get("./src/main/resources/static/musics").resolve(StringUtils.cleanPath(file.getOriginalFilename())),
+				         StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+         
+    }
+	@PostMapping(value= "/album", consumes =MediaType.MULTIPART_FORM_DATA_VALUE )
+	@ResponseBody
+	public void uploadCover(@RequestParam("file") MultipartFile file) {
+//        String name = storageService.store(file);
+//
+//        String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+//                .path(":8080/musics/")
+//                .path(name)
+//                .toUriString();
+//
+//        return new FileResponse(name, uri, file.getContentType(), file.getSize());
+		System.out.println(file.getOriginalFilename());
+		
+		
+             try {
+				Files.copy(file.getInputStream(), Paths.get("./src/main/resources/static/covers").resolve(StringUtils.cleanPath(file.getOriginalFilename())),
 				         StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

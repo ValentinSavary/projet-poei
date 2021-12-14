@@ -1,5 +1,6 @@
 package formation.sopra.projetMusicBoot.entities;
 
+import java.io.File;
 import java.time.Year;
 import java.util.HashSet;
 import java.util.Objects;
@@ -17,6 +18,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -41,7 +44,9 @@ public class Album {
 	@Lob
 	@JsonView({ JsonViews.Common.class, JsonViews.Album.class, JsonViews.Artist.class, JsonViews.Music.class,
 			JsonViews.Playlist.class })
+	@Type(type = "org.hibernate.type.BinaryType")
 	private byte[] cover;
+//	private File cover;
 
 	// Jointure de tables album et artist via colonnes id_album et id_artist ;
 	// l'attribut artists r�cup�re la jointure ; la colonne est d�j� nomm�e dans la

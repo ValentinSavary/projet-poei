@@ -1,3 +1,4 @@
+import { FileUploader } from 'ng2-file-upload';
 import { Observable } from 'rxjs';
 import { AbstractControl, AsyncValidatorFn } from '@angular/forms';
 import { ValidationErrors } from '@angular/forms';
@@ -53,7 +54,14 @@ export class FormAlbumComponent implements OnInit {
           this.form.controls['coverControl'].value
         )
       )
-      .subscribe((album) => {});
-    this.router.navigate(['/album']);
+      .subscribe((album) => {
+        this.router.navigate(['/album']);
+      });
   }
+
+  uploader: FileUploader = new FileUploader({
+    url: 'http://localhost:8080/music/album/covers',
+    removeAfterUpload: false,
+    autoUpload: true,
+  });
 }

@@ -1,106 +1,99 @@
-<form (ngSubmit)="save(form)" #form="ngForm">
+<form (ngSubmit)="save()" [formGroup]="form">
   <div class="container">
     <div class="form-group">
-      <label>Id</label>
+      <label>Id :</label>
       <input
         class="form-control"
         name="idControl"
-        [(ngModel)]="music.id"
-        #idControl="ngModel"
         readonly
         class="form-control"
+        readonly
       />
     </div>
 
     <div class="form-group">
-      <label>Title</label>
+      <label>Title :</label>
       <input
         class="form-control"
-        name="titleControl"
-        [(ngModel)]="music.title"
-        #titleControl="ngModel"
+        formControlName="titleControl"
         type="text"
+        name="titleControl"
         required
-        placeholder="Title"
+        placeholder="Music title"
       />
     </div>
-
     <div
-      *ngIf="titleControl.dirty && titleControl.invalid"
+      *ngIf="
+        form.controls['titleControl'].dirty &&
+        form.controls['tileControl'].invalid
+      "
       class="alert alert-danger"
     >
-      Put a valid title
+      Put a valid title for the music
     </div>
 
     <div class="form-group">
-      <label>Duration</label>
+      <label>Duration :</label>
       <input
-        [(ngModel)]="music.duration"
         class="form-control"
-        name="durationControl"
+        formControlName="durationControl"
         type="number"
-        #durationControl="ngModel"
-        required
-        min="1"
-        placeholder="Duration"
+        name="durationControl"
+        placeholder="Music duration"
       />
     </div>
-
     <div
-      *ngIf="durationControl.dirty && durationControl.invalid"
+      *ngIf="
+        form.controls['durationControl'].dirty &&
+        form.controls['durationControl'].invalid
+      "
       class="alert alert-danger"
     >
-      Put a valid duration
+      Put a valid duration for the music
     </div>
 
     <div class="form-group">
-      <label>Choose music file</label>
+      <label>Music file :</label>
       <input
-        ng2FileSelect
-        [(ngModel)]="music.musicFile"
         class="form-control"
-        name="musicFileControl"
+        formControlName="musicFileControl"
         type="file"
         accept=".mp3"
-        #musicFileControl="ngModel"
+        name="musicFileControl"
+        placeholder="Music file.mp3"
         required
-        placeholder="MusicFile.mp3"
       />
-      <!-- [uploader]="uploader" -->
-
-      <!-- <input type="file" name="file" id="file" > -->
     </div>
-
     <div
-      *ngIf="musicFileControl.dirty && musicFileControl.invalid"
+      *ngIf="
+        form.controls['musicFileControl'].dirty &&
+        form.controls['musicFileControl'].invalid
+      "
       class="alert alert-danger"
     >
-      Put a valid music file (mp3 format)
+      Put a valid music file with mp3 format
     </div>
 
     <div class="form-group">
-      <label>Genre</label>
-      <select [(ngModel)]="music.genre" class="form-control">
+      <label>Music genre :</label>
+      <select>
         <option *ngFor="let enum of genres | keyvalue" [value]="enum.key">
           {{ enum.value }}
         </option>
       </select>
     </div>
 
-    <div class="form-group">
+    <div>
       <button
         type="submit"
-        [disabled]="
-          form.invalid ||
-          titleControl.pristine ||
-          durationControl.pristine ||
-          musicFileControl.pristine
-        "
         class="btn btn-outline-success"
+        [disabled]="form.invalid || form.controls['nameControl'].pristine"
       >
-        Send
+        Create music
       </button>
+    </div>
 
+    <div>
       <a
         [routerLink]="['/music']"
         routerLinkActive="active"

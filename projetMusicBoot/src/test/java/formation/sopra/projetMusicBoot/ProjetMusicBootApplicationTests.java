@@ -41,7 +41,7 @@ class ProjetMusicBootApplicationTests {
 	private PasswordEncoder passwordEncoder;
 
 	
-	@Test
+	//@Test
 	void path() {
 		System.out.println(Paths.get("./musics").resolve("ddd"));
 		System.out.println(ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -54,7 +54,7 @@ class ProjetMusicBootApplicationTests {
 	void contextLoads() {
 	}
 
-	//@Test
+	// @Test
 	void loadDB() {
 		Artist thyArt = new Artist();
 		thyArt.setName("Thy Art Is Murder");

@@ -1,3 +1,4 @@
+import { FileUploader } from 'ng2-file-upload';
 import { Album } from './../../model/album';
 import { Music } from './../../model/music';
 import { AlbumService } from './../../services/album.service';
@@ -11,6 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AlbumComponent implements OnInit {
   albums: Album[] = [];
+  chaine: string = '';
+
   constructor(
     private albumService: AlbumService,
     private router: Router,
@@ -67,6 +70,15 @@ export class AlbumComponent implements OnInit {
         );
         console.log(result);
       }
+    });
+  }
+
+  filtre(): Album[] {
+    return this.albums.filter((album) => {
+      if (album.name != undefined) {
+        return album.name.indexOf(this.chaine) !== -1;
+      }
+      return '';
     });
   }
 }

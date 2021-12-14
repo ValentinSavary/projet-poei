@@ -25,8 +25,7 @@ spring:
       max-request-size: 20000KB        
 logging:
   level:
-    root: INFO
-#    '[formation.sopra.formationSpringBoot.restcontroller.ClientRestController]': INFO    
+    root: ERROR   
   file:
     name: logs.log
     path: /log
