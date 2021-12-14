@@ -1,14 +1,13 @@
 <div class="container">
   <h1 class="title">List of albums :</h1>
   <div class="row">
-    <div class="col-md-4">
-      <span class="filter">Actual filter : </span><b></b>
-    </div>
-    <div class="col-md-8 form-group">
+    <div class="col-4"><span class="filter">Actual filter : </span><b></b></div>
+    <div class="col-8">
       <input type="text" [(ngModel)]="chaine" />
     </div>
   </div>
-  <div class="row">
+  <br />
+  <div class="row row-cols-1 row-cols-md-3">
     <div class="col mb-4" *ngFor="let album of filtre()">
       <div class="card">
         <img
@@ -29,6 +28,7 @@
         <!--  A mettre dans la source <td>{{ album.cover }}</td> -->
       </div>
     </div>
+    <br />
   </div>
 
   <!-- <td>
