@@ -1,100 +1,103 @@
-<div class="container">
-  <h1 class="title">List of musics :</h1>
-  <div class="row">
-    <div class="col-md-4">
-      <span class="filter">Filtre actuel : </span><b></b>
+<div class="fullWindow">
+  <div class="container">
+    <br />
+    <h1 class="title">List of musics :</h1>
+    <div class="row">
+      <div class="col-md-2">
+        <span class="filter">Actual filter : </span><b></b>
+      </div>
+      <div class="col-md-8 form-group">
+        <input type="text" [(ngModel)]="chaine" />
+      </div>
     </div>
-    <div class="col-md-8 form-group">
-      <input type="text" [(ngModel)]="chaine" />
+    <br />
+    <br />
+    <div class="row" *ngIf="albumName != ''">
+      <div class="col-3">
+        <img
+          src="http://localhost:8080/music/covers/{{ albumName }}.jpg"
+          alt="File not found"
+          class="card-img"
+        />
+      </div>
+      <div class="col-8 offset-1">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title :</th>
+              <th>Duration in s :</th>
+              <th>Lecture :</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let music of filtre()">
+              <td>
+                <a>{{ music.title }}</a>
+              </td>
+              <td>{{ music.duration }}</td>
+              <!-- <td>{{ music.musicFile }}</td> -->
+              <td>
+                <audio
+                  src="http://localhost:8080/music/musics/{{ music.title }}.mp3"
+                  controls
+                ></audio>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-  <br />
-  <br />
-  <div class="row" *ngIf="albumName != ''">
-    <div class="col-3">
-      <img
-        src="http://localhost:8080/music/covers/{{ albumName }}.jpg"
-        alt="File not found"
-        class="card-img"
-      />
-    </div>
-    <div class="col-8 offset-1">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Title :</th>
-            <th>Duration in s :</th>
-            <th>Lecture :</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let music of filtre()">
-            <td>
-              <a>{{ music.title }}</a>
-            </td>
-            <td>{{ music.duration }}</td>
-            <!-- <td>{{ music.musicFile }}</td> -->
-            <td>
-              <audio
-                src="http://localhost:8080/music/musics/{{ music.title }}.mp3"
-                controls
-              ></audio>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <table class="table" *ngIf="albumName == ''">
-    <thead>
-      <tr>
-        <th>Title :</th>
-        <th>Duration in s :</th>
-        <th>Music file :</th>
-        <th *ngIf="isAdmin == true">Edit :</th>
-        <th *ngIf="isAdmin == true">Delete :</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let music of filtre()">
-        <td>
-          <a>{{ music.title }}</a>
-        </td>
-        <td>{{ music.duration }}</td>
-        <!-- <td>{{ music.musicFile }}</td> -->
-        <td>
-          <audio
-            src="http://localhost:8080/music/musics/{{ music.title }}.mp3"
-            controls
-          ></audio>
-        </td>
-        <td>
-          <a
-            class="btn btn-outline-success"
-            [routerLink]="['/music', 'form', music.id]"
-            routerLinkActive="active"
-            *ngIf="isAdmin == true"
-            >Edit</a
-          >
-        </td>
-        <td>
-          <button
-            (click)="delete(music.id)"
-            class="btn btn-outline-danger"
-            *ngIf="isAdmin == true"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="table" *ngIf="albumName == ''">
+      <thead>
+        <tr>
+          <th>Title :</th>
+          <th>Duration in s :</th>
+          <th>Music file :</th>
+          <!-- <th *ngIf="isAdmin == true">Edit :</th> -->
+          <th *ngIf="isAdmin == true">Delete :</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let music of filtre()">
+          <td>
+            <a>{{ music.title }}</a>
+          </td>
+          <td>{{ music.duration }}</td>
+          <!-- <td>{{ music.musicFile }}</td> -->
+          <td>
+            <audio
+              src="http://localhost:8080/music/musics/{{ music.title }}.mp3"
+              controls
+            ></audio>
+          </td>
+          <!--  <td>
+            <a
+              class="btn btn-outline-success"
+              [routerLink]="['/music', 'form', music.id]"
+              routerLinkActive="active"
+              *ngIf="isAdmin == true"
+              >Edit</a
+            >
+          </td> -->
+          <td>
+            <button
+              (click)="delete(music.id)"
+              class="btn btn-outline-danger"
+              *ngIf="isAdmin == true"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <a
-    [routerLink]="['/music', 'form']"
-    routerLinkActive="active"
-    class="btn btn-outline-primary"
-    *ngIf="albumName == ''"
-    >Music Creation</a
-  >
+    <a
+      [routerLink]="['/music', 'form']"
+      routerLinkActive="active"
+      class="btn btn-outline-primary"
+      *ngIf="albumName == ''"
+      >Music Creation</a
+    >
+  </div>
 </div>

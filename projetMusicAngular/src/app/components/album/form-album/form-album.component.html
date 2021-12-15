@@ -1,5 +1,7 @@
-<form (ngSubmit)="save()" [formGroup]="form">
-  <!--   <div class="form-group">
+<div class="fullWindow">
+  <div class="container">
+    <form (ngSubmit)="save()" [formGroup]="form">
+      <!--   <div class="form-group">
     <label>Id :</label>
     <input
       class="form-control"
@@ -10,84 +12,89 @@
     />
   </div> -->
 
-  <div class="form-group">
-    <label>Name :</label>
-    <input
-      class="form-control"
-      formControlName="nameControl"
-      type="text"
-      name="nameControl"
-      required
-      placeholder="Album name"
-    />
-  </div>
-  <div
-    *ngIf="
-      form.controls['nameControl'].dirty && form.controls['nameControl'].invalid
-    "
-    class="alert alert-danger"
-  >
-    Put a valid name for the album
-  </div>
+      <div class="form-group">
+        <label>Name :</label>
+        <input
+          class="form-control"
+          formControlName="nameControl"
+          type="text"
+          name="nameControl"
+          required
+          placeholder="Album name"
+        />
+      </div>
+      <div
+        *ngIf="
+          form.controls['nameControl'].dirty &&
+          form.controls['nameControl'].invalid
+        "
+        class="alert alert-danger"
+      >
+        Put a valid name for the album
+      </div>
 
-  <div class="form-group">
-    <label>Year :</label>
-    <input
-      class="form-control"
-      formControlName="yearControl"
-      type="number"
-      name="yearControl"
-      placeholder="Album year"
-    />
-  </div>
-  <div
-    *ngIf="
-      form.controls['yearControl'].dirty && form.controls['yearControl'].invalid
-    "
-    class="alert alert-danger"
-  >
-    Put a valid year for the album
-  </div>
+      <div class="form-group">
+        <label>Year :</label>
+        <input
+          class="form-control"
+          formControlName="yearControl"
+          type="number"
+          name="yearControl"
+          placeholder="Album year"
+        />
+      </div>
+      <div
+        *ngIf="
+          form.controls['yearControl'].dirty &&
+          form.controls['yearControl'].invalid
+        "
+        class="alert alert-danger"
+      >
+        Put a valid year for the album
+      </div>
 
-  <div class="form-group">
-    <label>Cover :</label>
-    <input
-      ng2FileSelect
-      #fileInput
-      class="form-control"
-      formControlName="coverControl"
-      type="file"
-      name="coverControl"
-      placeholder="Cover file"
-      [uploader]="uploader"
-    />
-  </div>
-  <div
-    *ngIf="
-      form.controls['coverControl'].dirty &&
-      form.controls['coverControl'].invalid
-    "
-    class="alert alert-danger"
-  >
-    Put a cover for the album
-  </div>
+      <!--       <div class="form-group">
+        <label>Cover :</label>
+        <input
+          ng2FileSelect
+          #fileInput
+          class="form-control"
+          formControlName="coverControl"
+          type="file"
+          name="coverControl"
+          placeholder="Cover file"
+          [uploader]="uploader"
+        />
+      </div>
+      <div
+        *ngIf="
+          form.controls['coverControl'].dirty &&
+          form.controls['coverControl'].invalid
+        "
+        class="alert alert-danger"
+      >
+        Put a cover for the album
+      </div> -->
+      <br />
 
-  <div class="form-group">
-    <button
-      type="submit"
-      class="btn btn-outline-success"
-      [disabled]="form.invalid || form.controls['nameControl'].pristine"
-    >
-      Create album
-    </button>
-  </div>
+      <div class="text-end">
+        <div class="form-group">
+          <button
+            type="submit"
+            class="btn btn-outline-success"
+            [disabled]="form.invalid || form.controls['nameControl'].pristine"
+          >
+            Create album
+          </button>
 
-  <div class="form-group">
-    <a
-      [routerLink]="['/album']"
-      routerLinkActive="active"
-      class="btn btn-outline-warning"
-      >Cancel</a
-    >
+          <a
+            [routerLink]="['/album']"
+            routerLinkActive="active"
+            class="btn btn-outline-warning"
+            >Cancel</a
+          >
+        </div>
+      </div>
+    </form>
   </div>
-</form>
+</div>

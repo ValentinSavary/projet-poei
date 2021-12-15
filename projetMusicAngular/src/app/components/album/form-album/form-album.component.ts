@@ -34,10 +34,7 @@ export class FormAlbumComponent implements OnInit {
         Validators.pattern(/^[a-zA-Z]{1,}((\s|-)[a-zA-Z]{1,})*$/),
         Validators.maxLength(50),
       ]),
-      yearControl: this.fb.control('', [
-        Validators.pattern(/^[0-9]{4}/),
-        Validators.maxLength(4),
-      ]),
+      yearControl: this.fb.control('', [Validators.pattern(/^[12][0-9]{3}$/)]),
       /*       coverControl: this.fb.control('', []), */
     });
   }

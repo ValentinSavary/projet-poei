@@ -1,4 +1,5 @@
-html {
-  background-color: dodgerblue;
-  opacity: 25%;
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #eaeded;
 }

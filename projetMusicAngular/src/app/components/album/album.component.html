@@ -1,53 +1,43 @@
-<div class="container">
-  <h1 class="title">List of albums :</h1>
-  <div class="row">
-    <div class="col-4"><span class="filter">Actual filter : </span><b></b></div>
-    <div class="col-8">
-      <input type="text" [(ngModel)]="chaine" />
-    </div>
-  </div>
-  <br />
-  <div class="row row-cols-1 row-cols-md-4">
-    <div class="col mb-3" *ngFor="let album of filtre()">
-      <div class="card">
-        <img
-          src="http://localhost:8080/music/covers/{{ album.name }}.jpg"
-          class="card-img-top"
-        />
-        <div class="card-body">
-          <h5
-            class="card-title"
-            [routerLink]="['/music', 'album', album.name]"
-            routerLinkActive="active"
-            class="btn btn-link"
-          >
-            {{ album.name }}
-          </h5>
-          <p class="card-text">{{ album.year }}</p>
-        </div>
+<div class="fullWindow">
+  <div class="container">
+    <br />
+    <h1 class="title">List of albums :</h1>
+    <div class="row">
+      <div class="col-4">
+        <span class="filter">Actual filter : </span><b></b>
+      </div>
+      <div class="col-8">
+        <input type="text" [(ngModel)]="chaine" />
       </div>
     </div>
     <br />
+    <div class="row row-cols-1 row-cols-md-4">
+      <div class="col mb-3" *ngFor="let album of filtre()">
+        <div class="card">
+          <img
+            src="http://localhost:8080/music/covers/{{ album.name }}.jpg"
+            class="card-img-top"
+          />
+          <div class="card-body">
+            <h5
+              class="card-title"
+              [routerLink]="['/music', 'album', album.name]"
+              routerLinkActive="active"
+              class="btn btn-link"
+            >
+              {{ album.name }}
+            </h5>
+            <p class="card-text">{{ album.year }}</p>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+    <a
+      [routerLink]="['/album', 'form']"
+      routerLinkActive="active"
+      class="btn btn-outline-primary"
+      >Album creation</a
+    >
   </div>
-
-  <!-- <td>
-          <a
-            [routerLink]="['/album', 'form', album.id]"
-            routerLinkActive="active"
-            >editer</a
-          >
-        </td> -->
-
-  <!-- <td>
-          <button (click)="delete(album.id)" class="btn btn-outline-danger">
-            supprimer
-          </button>
-        </td> -->
-
-  <a
-    [routerLink]="['/album', 'form']"
-    routerLinkActive="active"
-    class="btn btn-link"
-    >Album creation</a
-  >
 </div>

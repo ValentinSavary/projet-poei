@@ -1,5 +1,6 @@
-<form (ngSubmit)="save()" [formGroup]="form">
-  <!--   <div class="form-group">
+<div class="container">
+  <form (ngSubmit)="save()" [formGroup]="form">
+    <!--   <div class="form-group">
     <label>Id :</label>
     <input
       class="form-control"
@@ -10,48 +11,49 @@
     />
   </div> -->
 
-  <div class="form-group">
-    <label>Name :</label>
-    <input
-      class="form-control"
-      formControlName="nameControl"
-      type="text"
-      name="nameControl"
-      required
-      placeholder="Artist name"
-    />
-  </div>
-  <div
-    *ngIf="
-      form.controls['nameControl'].dirty && form.controls['nameControl'].invalid
-    "
-    class="alert alert-danger"
-  >
-    Put a valid name for the artist
-  </div>
+    <div class="form-group">
+      <label>Name :</label>
+      <input
+        class="form-control"
+        formControlName="nameControl"
+        type="text"
+        name="nameControl"
+        required
+        placeholder="Artist name"
+      />
+    </div>
+    <div
+      *ngIf="
+        form.controls['nameControl'].dirty &&
+        form.controls['nameControl'].invalid
+      "
+      class="alert alert-danger"
+    >
+      Put a valid name for the artist
+    </div>
 
-  <div class="form-group">
-    <label>Country :</label>
-    <input
-      class="form-control"
-      formControlName="countryControl"
-      type="text"
-      name="countryControl"
-      placeholder="Country"
-    />
-  </div>
+    <div class="form-group">
+      <label>Country :</label>
+      <input
+        class="form-control"
+        formControlName="countryControl"
+        type="text"
+        name="countryControl"
+        placeholder="Country"
+      />
+    </div>
 
-  <div
-    *ngIf="
-      form.controls['countryControl'].dirty &&
-      form.controls['countryControl'].invalid
-    "
-    class="alert alert-danger"
-  >
-    Put a valid country
-  </div>
+    <div
+      *ngIf="
+        form.controls['countryControl'].dirty &&
+        form.controls['countryControl'].invalid
+      "
+      class="alert alert-danger"
+    >
+      Put a valid country
+    </div>
 
-  <!--   <div class="form-group">
+    <!--   <div class="form-group">
     <label>Choose an album published by the artist :</label>
     <select>
       <option *ngFor="let album of albums">
@@ -59,22 +61,22 @@
       </option>
     </select>
   </div> -->
+    <br />
 
-  <div>
-    <button
-      type="submit"
-      class="btn btn-outline-success"
-      [disabled]="form.invalid || form.controls['nameControl'].pristine"
-    >
-      Create Artist
-    </button>
-  </div>
-  <div>
-    <a
-      [routerLink]="['/artist']"
-      routerLinkActive="active"
-      class="btn btn-outline-warning"
-      >Cancel</a
-    >
-  </div>
-</form>
+    <div class="text-end">
+      <button
+        type="submit"
+        class="btn btn-outline-success"
+        [disabled]="form.invalid || form.controls['nameControl'].pristine"
+      >
+        Create Artist
+      </button>
+      <a
+        [routerLink]="['/artist']"
+        routerLinkActive="active"
+        class="btn btn-outline-warning"
+        >Cancel</a
+      >
+    </div>
+  </form>
+</div>

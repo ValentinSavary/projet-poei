@@ -1,54 +1,47 @@
-<div class="container">
-  <h1 class="title">List of artists :</h1>
-  <div class="row">
-    <div class="col-md-4">
-      <span class="filter">Filtre actuel : </span><b></b>
+<div class="fullWindow">
+  <div class="container">
+    <br />
+    <h1 class="title">List of artists :</h1>
+    <div class="row">
+      <div class="col-md-2">
+        <span class="filter">Actual filter : </span><b></b>
+      </div>
+      <div class="col-md-8 form-group">
+        <input type="text" [(ngModel)]="chaine" />
+      </div>
     </div>
-    <div class="col-md-8 form-group">
-      <input type="text" [(ngModel)]="chaine" />
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name :</th>
+          <th>Country :</th>
+          <th>Delete :</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let artist of filtre()">
+          <td>
+            <a
+              [routerLink]="['/album', 'artist', artist.name]"
+              routerLinkActive="active"
+              class="btn btn-link"
+              >{{ artist.name }}</a
+            >
+          </td>
+          <td>{{ artist.country }}</td>
+          <td>
+            <button (click)="delete(artist.id)" class="btn btn-outline-danger">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a
+      [routerLink]="['/artist', 'form']"
+      routerLinkActive="active"
+      class="btn btn-outline-primary"
+      >Artist creation</a
+    >
   </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Id :</th>
-        <th>Name :</th>
-        <th>Country :</th>
-        <th>Edit :</th>
-        <th>Delete :</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let artist of filtre()">
-        <td>{{ artist.id }}</td>
-        <td>
-          <a
-            [routerLink]="['/album', 'artist', artist.name]"
-            routerLinkActive="active"
-            class="btn btn-link"
-            >{{ artist.name }}</a
-          >
-        </td>
-        <td>{{ artist.country }}</td>
-        <td>
-          <a
-            [routerLink]="['/artist', 'form', artist.id]"
-            routerLinkActive="active"
-            >editer</a
-          >
-        </td>
-        <td>
-          <button (click)="delete(artist.id)" class="btn btn-outline-danger">
-            supprimer
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <a
-    [routerLink]="['/artist', 'form']"
-    routerLinkActive="active"
-    class="btn btn-link"
-    >creation artist</a
-  >
 </div>

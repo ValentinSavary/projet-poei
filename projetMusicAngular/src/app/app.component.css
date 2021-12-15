@@ -1,7 +1,8 @@
-body {
-  background-color: dodgerblue;
-}
-
 .img {
   height: 40px;
+}
+
+.fullNav {
+  background-color: #00a2e8;
+  color: white;
 }

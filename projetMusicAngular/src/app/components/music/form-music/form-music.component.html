@@ -1,6 +1,6 @@
 <form (ngSubmit)="save()" [formGroup]="form">
   <div class="container">
-    <<!-- div class="form-group">
+    <!-- div class="form-group">
       <label>Id :</label>
       <input
         class="form-control"
@@ -26,7 +26,7 @@
     <div
       *ngIf="
         form.controls['titleControl'].dirty &&
-        form.controls['tileControl'].invalid
+        form.controls['titleControl'].invalid
       "
       class="alert alert-danger"
     >
@@ -76,25 +76,23 @@
     </div> -->
 
     <div class="form-group">
-      <label>Music genre :</label>
-      <select>
+      <label>Music genre : </label>
+      <select class="form-control">
         <option *ngFor="let enum of genres | keyvalue" [value]="enum.key">
           {{ enum.value }}
         </option>
       </select>
     </div>
+    <br />
 
-    <div>
+    <div class="text-end">
       <button
         type="submit"
-        class="btn btn-outline-success"
-        [disabled]="form.invalid || form.controls['nameControl'].pristine"
+        class="btn btn-outline-success text-end"
+        [disabled]="form.invalid"
       >
         Create music
       </button>
-    </div>
-
-    <div>
       <a
         [routerLink]="['/music']"
         routerLinkActive="active"

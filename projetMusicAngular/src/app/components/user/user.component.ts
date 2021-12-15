@@ -10,11 +10,20 @@ import { UserService } from './../../services/user.service';
 })
 export class UserComponent implements OnInit {
   users: User[] = [];
+  login: string | null = '';
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.initUsers();
+    this.login = this.getLogin();
+  }
+
+  getLogin(): string | null {
+    if (sessionStorage.getItem('login') != null) {
+      return sessionStorage.getItem('login');
+    }
+    return 'lol';
   }
 
   initUsers() {
