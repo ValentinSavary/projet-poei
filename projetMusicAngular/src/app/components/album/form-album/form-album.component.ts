@@ -45,7 +45,7 @@ export class FormAlbumComponent implements OnInit {
   ngOnInit(): void {}
 
   save() {
-    this.albumService.addCover(this.form.controls['coverControl']);
+    // this.albumService.addCover(this.form.controls['coverControl']);
     this.albumService
       .insert(
         new Album(

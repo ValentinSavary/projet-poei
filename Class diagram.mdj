@@ -3796,8 +3796,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 128,
-											"top": 320,
+											"left": -128,
+											"top": 272,
 											"height": 13
 										},
 										{
@@ -3807,8 +3807,8 @@
 												"$ref": "AAAAAAF9KChvv0FLwj4="
 											},
 											"font": "Arial;13;1",
-											"left": 597,
-											"top": 503,
+											"left": 469,
+											"top": 479,
 											"width": 141.248046875,
 											"height": 13,
 											"text": "Search"
@@ -3821,8 +3821,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 128,
-											"top": 320,
+											"left": -128,
+											"top": 272,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -3835,15 +3835,15 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 128,
-											"top": 320,
+											"left": -128,
+											"top": 272,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 592,
-									"top": 496,
+									"left": 464,
+									"top": 472,
 									"width": 151.248046875,
 									"height": 25,
 									"stereotypeLabel": {
@@ -3869,8 +3869,8 @@
 										"$ref": "AAAAAAF9KChvu0FIozU="
 									},
 									"font": "Arial;13;0",
-									"left": 592,
-									"top": 521,
+									"left": 464,
+									"top": 497,
 									"width": 151.248046875,
 									"height": 10
 								},
@@ -3894,8 +3894,8 @@
 												"$ref": "AAAAAAF9KEPHJUpk6aE="
 											},
 											"font": "Arial;13;0",
-											"left": 597,
-											"top": 536,
+											"left": 469,
+											"top": 512,
 											"width": 141.248046875,
 											"height": 13,
 											"text": "+searchByArtist()",
@@ -3911,8 +3911,8 @@
 												"$ref": "AAAAAAF9KEP9cErpxX4="
 											},
 											"font": "Arial;13;0",
-											"left": 597,
-											"top": 551,
+											"left": 469,
+											"top": 527,
 											"width": 141.248046875,
 											"height": 13,
 											"text": "+searchByAlbum(String)",
@@ -3928,8 +3928,8 @@
 												"$ref": "AAAAAAF9KEQnG0uCbuw="
 											},
 											"font": "Arial;13;0",
-											"left": 597,
-											"top": 566,
+											"left": 469,
+											"top": 542,
 											"width": 141.248046875,
 											"height": 13,
 											"text": "+searchByGenre(String)",
@@ -3945,17 +3945,17 @@
 												"$ref": "AAAAAAF9KERPmkwbf1A="
 											},
 											"font": "Arial;13;0",
-											"left": 597,
-											"top": 581,
+											"left": 469,
+											"top": 557,
 											"width": 141.248046875,
 											"height": 13,
-											"text": "+searchByTrack(String)",
+											"text": "+searchByMusic(String)",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 592,
-									"top": 531,
+									"left": 464,
+									"top": 507,
 									"width": 151.248046875,
 									"height": 68
 								},
@@ -3970,8 +3970,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 64,
-									"top": 160,
+									"left": -64,
+									"top": 136,
 									"width": 10,
 									"height": 10
 								},
@@ -3986,16 +3986,16 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 64,
-									"top": 160,
+									"left": -64,
+									"top": 136,
 									"width": 10,
 									"height": 10
 								}
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 592,
-							"top": 496,
+							"left": 464,
+							"top": 472,
 							"width": 151.248046875,
 							"height": 103,
 							"nameCompartment": {
@@ -4704,7 +4704,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF9KChvu0FIozU="
 							},
-							"name": "searchByTrack",
+							"name": "searchByMusic",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -4712,8 +4712,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF9KERPmkwbf1A="
 									},
-									"name": "String",
-									"type": ""
+									"name": "String"
 								}
 							]
 						}
