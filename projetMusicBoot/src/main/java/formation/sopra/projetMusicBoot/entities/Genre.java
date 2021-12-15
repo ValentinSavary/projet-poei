@@ -1,7 +1,7 @@
 package formation.sopra.projetMusicBoot.entities;
 
 public enum Genre {
-	Rock("Rock"), Metal("Metal"), TechnicalDeathcore("Technical Deathcore"), Classical("Classical"), Pop("Pop"), Rap("Rap"), RnB("RnB"), VarieteFrancaise("VarieteFrancaise");
+	Rock("Rock"), HunnuRock("Hunnu Rock"), Metal("Metal"), TechnicalDeathcore("Technical Deathcore"), MelodicDeath("Melodic Death"), ProgressiveMelodicDeath("Progressive Melodic Death"), Classical("Classical"), Electro("Electro"), Pop("Pop"), Rap("Rap"), RnB("RnB"), VarieteFrancaise("VarieteFrancaise");
 	
 	private String name;
 

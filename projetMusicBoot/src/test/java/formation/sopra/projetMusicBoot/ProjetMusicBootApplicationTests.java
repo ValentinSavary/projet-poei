@@ -51,7 +51,7 @@ class ProjetMusicBootApplicationTests {
 	void contextLoads() {
 	}
 
-	 //@Test
+	//@Test
 	void loadDB() {
 		Artist thyArt = new Artist();
 		thyArt.setName("Thy Art Is Murder");
@@ -63,7 +63,6 @@ class ProjetMusicBootApplicationTests {
 		Album human = new Album();
 		human.setName("Human Target");
 		human.setYear(Year.of(2019));
-
 		Music atonement = new Music();
 		atonement.setTitle("Atonement");
 		atonement.setDuration(239);
@@ -74,7 +73,6 @@ class ProjetMusicBootApplicationTests {
 		eternalSuffering.setDuration(305);
 		eternalSuffering.setGenres(genreThyArt);
 		musicService.save(eternalSuffering);
-
 		Set<Music> musHuman = new HashSet<Music>();
 		musHuman.add(eternalSuffering);
 		musHuman.add(atonement);
@@ -84,145 +82,180 @@ class ProjetMusicBootApplicationTests {
 		Album holy = new Album();
 		holy.setName("Holy War");
 		holy.setYear(Year.of(2015));
-
 		Music lightBearer = new Music();
 		lightBearer.setTitle("Light Bearer");
 		lightBearer.setDuration(235);
 		lightBearer.setGenres(genreThyArt);
 		musicService.save(lightBearer);
-
 		Music coffinDragger = new Music();
 		coffinDragger.setTitle("Coffin Dragger");
 		coffinDragger.setDuration(175);
 		coffinDragger.setGenres(genreThyArt);
 		musicService.save(coffinDragger);
-
 		Set<Music> musHoly = new HashSet<Music>();
 		musHoly.add(lightBearer);
 		musHoly.add(coffinDragger);
 		holy.setMusics(musHoly);
 		albumService.save(holy);
-
 		Set<Album> albThyArt = new HashSet<Album>();
 		albThyArt.add(holy);
 		albThyArt.add(human);
 		thyArt.setAlbums(albThyArt);
 		artistService.save(thyArt);
+		
+		Artist inMourning = new Artist();
+		inMourning.setName("In Mourning");
+		inMourning.setCountry("Sweden");
+		Set<Genre> genreInMourning = new HashSet<Genre>();
+		genreInMourning.add(Genre.Metal);
+		genreInMourning.add(Genre.ProgressiveMelodicDeath);
+		genreInMourning.add(Genre.MelodicDeath);
+		
+		Album weightOfOceans = new Album();
+		weightOfOceans.setName("The Weight Of Oceans");
+		weightOfOceans.setYear(Year.of(2012));
+		Music colossus = new Music();
+		colossus.setTitle("Colossus");
+		colossus.setDuration(573);
+		colossus.setGenres(genreInMourning);
+		musicService.save(colossus);
+		Music vowToConquer = new Music();
+		vowToConquer.setTitle("A Vow To Conquer The Ocean");
+		vowToConquer.setDuration(443);
+		vowToConquer.setGenres(genreInMourning);
+		musicService.save(vowToConquer);
+		Music drowningSun = new Music();
+		drowningSun.setTitle("The Drowning Sun");
+		drowningSun.setDuration(520);
+		drowningSun.setGenres(genreInMourning);
+		musicService.save(drowningSun);
+		Set<Music> musWeightOfOceans = new HashSet<Music>();
+		musWeightOfOceans.add(colossus);
+		musWeightOfOceans.add(vowToConquer);
+		musWeightOfOceans.add(drowningSun);
+		weightOfOceans.setMusics(musWeightOfOceans);
+		albumService.save(weightOfOceans);
+		
+		Set<Album> albInMounring = new HashSet<Album>();
+		albInMounring.add(weightOfOceans);
+		inMourning.setAlbums(albInMounring);
+		artistService.save(inMourning);
+		
+		Artist prequell = new Artist();
+		prequell.setName("Prequell");
+		prequell.setCountry("France");
+		Set<Genre> genrePrequell = new HashSet<Genre>();
+		genrePrequell.add(Genre.Classical);
+		genrePrequell.add(Genre.Electro);
+		
+		Album futureComesBefore = new Album();
+		futureComesBefore.setName("The Futur Comes Before");
+		futureComesBefore.setYear(Year.of(2017));
+		
+		Music partXV = new Music();
+		partXV.setTitle("Part XV");
+		partXV.setDuration(312);
+		partXV.setGenres(genrePrequell);
+		musicService.save(partXV);
+		
+		Music partVII = new Music();
+		partVII.setTitle("Part VII");
+		partVII.setDuration(230);
+		partVII.setGenres(genrePrequell);
+		musicService.save(partVII);
+		
+		Set<Music> musFuturComesBefore = new HashSet<Music>();
+		musFuturComesBefore.add(partXV);
+		musFuturComesBefore.add(partVII);
+		futureComesBefore.setMusics(musFuturComesBefore);
+		albumService.save(futureComesBefore);
+		
+		Set<Album> albPrequell = new HashSet<Album>();
+		albPrequell.add(futureComesBefore);
+		prequell.setAlbums(albPrequell);
+		artistService.save(prequell);
+		
+		Artist theHu = new Artist();
+		theHu.setName("The HU");
+		theHu.setCountry("Mongolia");
+		Set<Genre> genreTheHu = new HashSet<Genre>();
+		genreTheHu.add(Genre.Rock);
+		genreTheHu.add(Genre.HunnuRock);
+		
+		Album theGereg = new Album();
+		theGereg.setName("The Gereg");
+		theGereg.setYear(Year.of(2019));
+		
+		Music wolfTotem = new Music();
+		wolfTotem.setTitle("Wolf Totem");
+		wolfTotem.setDuration(338);
+		wolfTotem.setGenres(genreTheHu);
+		musicService.save(wolfTotem);
+		
+		Music yuve = new Music();
+		yuve.setTitle("Yuve Yuve Yu");
+		yuve.setDuration(282);
+		yuve.setGenres(genreTheHu);
+		musicService.save(yuve);
+		
+		Music theSame = new Music();
+		theSame.setTitle("The Same");
+		theSame.setDuration(327);
+		theSame.setGenres(genreTheHu);
+		musicService.save(theSame);
+		
+		Set<Music> musGereg = new HashSet<Music>();
+		musGereg.add(wolfTotem);
+		musGereg.add(yuve);
+		musGereg.add(theSame);
+		theGereg.setMusics(musGereg);
+		albumService.save(theGereg);
+		
+		Set<Album> albTheHu = new HashSet<Album>();
+		albTheHu.add(theGereg);
+		theHu.setAlbums(albTheHu);
+		artistService.save(theHu);
+		
 
-		// DB Valentin
-		Set<Music> musicsValo = new HashSet<Music>();
-		Set<Artist> artistsValo = new HashSet<Artist>();
-		Set<Album> albumsValo = new HashSet<Album>();
-		Set<Genre> genresValo = new HashSet<Genre>();
-		// Musics
-
-		Music mus1 = new Music();
-		mus1.setDuration(180);
-		mus1.setTitle("J'me tire");
-		genresValo.add(Genre.Rap);
-		mus1.setGenres(genresValo);
-		musicsValo.add(mus1);
-		musicService.save(mus1);
-
-		Music mus2 = new Music();
-		mus2.setDuration(204);
-		mus2.setTitle("Bella");
-		mus2.setGenres(genresValo);
-		musicsValo.add(mus2);
-		musicService.save(mus2);
-
-		Music mus3 = new Music();
-		mus3.setDuration(154);
-		mus3.setTitle("One Shot");
-		mus3.setGenres(genresValo);
-		musicsValo.add(mus3);
-		musicService.save(mus3);
-
-		Artist art = new Artist("Maitre Gims", "France");
-		Album alb = new Album();
-//		artistsValo.add(art);
-//		alb.setArtists(artistsValo);
-		alb.setName("Subliminal");
-		alb.setMusics(musicsValo);
-		albumService.save(alb);
-		albumsValo.add(alb);
-		art.setAlbums(albumsValo);
-		artistService.save(art);
-
-		// Creation musiques des albums de l'artiste de Seb
-
-		Music musicSebA = new Music();
-		Set<Album> albumsMusicA = new HashSet<Album>();
-		Set<Playlist> playlistsMusicA = new HashSet<Playlist>();
-		Set<Genre> genresMusicA = new HashSet<Genre>();
-		genresMusicA.add(Genre.Rock);
-		genresMusicA.add(Genre.Metal);
-		musicSebA.setTitle("musicSebA");
-		musicSebA.setGenres(genresMusicA);
-		musicSebA.setDuration(42);
-		musicSebA.setAlbums(albumsMusicA);
-		musicSebA.setPlaylists(playlistsMusicA);
-		musicService.save(musicSebA);
-
-		Music musicSebAB = new Music();
-		Set<Album> albumsMusicAB = new HashSet<Album>();
-		Set<Playlist> playlistsMusicAB = new HashSet<Playlist>();
-		Set<Genre> genresMusicAB = new HashSet<Genre>();
-		musicSebAB.setTitle("musicSebAB");
-		genresMusicAB.add(Genre.Rock);
-		genresMusicAB.add(Genre.Pop);
-		musicSebAB.setGenres(genresMusicAB);
-		musicSebAB.setDuration(42);
-		musicSebAB.setAlbums(albumsMusicAB);
-		musicSebAB.setPlaylists(playlistsMusicAB);
-		musicService.save(musicSebAB);
-
-		Music musicSebB = new Music();
-		Set<Album> albumsMusicB = new HashSet<Album>();
-		Set<Playlist> playlistsMusicB = new HashSet<Playlist>();
-		Set<Genre> genresMusicB = new HashSet<Genre>();
-		musicSebB.setTitle("musicSebB");
-		genresMusicB.add(Genre.Pop);
-		musicSebB.setGenres(genresMusicB);
-		musicSebB.setDuration(42);
-		musicSebB.setAlbums(albumsMusicB);
-		musicSebB.setPlaylists(playlistsMusicB);
-		musicService.save(musicSebB);
-
-		// Creation albums de l'artiste de Seb
-
-		Album albumSebA = new Album();
-		Set<Music> musicsA = new HashSet<Music>();
-		musicsA.add(musicSebA);
-		musicsA.add(musicSebAB);
-		Set<Artist> artistsA = new HashSet<Artist>();
-		albumSebA.setName("albumSebA");
-		albumSebA.setYear(Year.of(2000));
-		albumSebA.setMusics(musicsA);
-		albumSebA.setArtists(artistsA);
-		albumService.save(albumSebA);
-
-		Album albumSebB = new Album();
-		Set<Music> musicsB = new HashSet<Music>();
-		musicsB.add(musicSebB);
-		musicsB.add(musicSebAB);
-		Set<Artist> artistsB = new HashSet<Artist>();
-		albumSebB.setName("albumSebB");
-		albumSebB.setYear(Year.of(2020));
-		albumSebB.setMusics(musicsB);
-		albumSebB.setArtists(artistsB);
-		albumService.save(albumSebB);
-
-		// Creation artiste de Seb
-
-		Artist artSeb = new Artist();
-		artSeb.setName("artistSeb");
-		artSeb.setCountry("France");
-		Set<Album> albumsArtSeb = new HashSet<Album>();
-		albumsArtSeb.add(albumSebA);
-		albumsArtSeb.add(albumSebB);
-		artSeb.setAlbums(albumsArtSeb);
-		artistService.save(artSeb);
+//		// DB Valentin
+//		Set<Music> musicsValo = new HashSet<Music>();
+//		Set<Artist> artistsValo = new HashSet<Artist>();
+//		Set<Album> albumsValo = new HashSet<Album>();
+//		Set<Genre> genresValo = new HashSet<Genre>();
+//		// Musics
+//
+//		Music mus1 = new Music();
+//		mus1.setDuration(180);
+//		mus1.setTitle("J'me tire");
+//		genresValo.add(Genre.Rap);
+//		mus1.setGenres(genresValo);
+//		musicsValo.add(mus1);
+//		musicService.save(mus1);
+//
+//		Music mus2 = new Music();
+//		mus2.setDuration(204);
+//		mus2.setTitle("Bella");
+//		mus2.setGenres(genresValo);
+//		musicsValo.add(mus2);
+//		musicService.save(mus2);
+//
+//		Music mus3 = new Music();
+//		mus3.setDuration(154);
+//		mus3.setTitle("One Shot");
+//		mus3.setGenres(genresValo);
+//		musicsValo.add(mus3);
+//		musicService.save(mus3);
+//
+//		Artist art = new Artist("Maitre Gims", "France");
+//		Album alb = new Album();
+////		artistsValo.add(art);
+////		alb.setArtists(artistsValo);
+//		alb.setName("Subliminal");
+//		alb.setMusics(musicsValo);
+//		albumService.save(alb);
+//		albumsValo.add(alb);
+//		art.setAlbums(albumsValo);
+//		artistService.save(art);
 
 		// Creation users
 
@@ -246,6 +279,13 @@ class ProjetMusicBootApplicationTests {
 		user3.setAccountType(AccountType.ROLE_ADMIN);
 		user3.setPassword(passwordEncoder.encode("ssss"));
 		userService.create(user3);
+		
+		User user4 = new User();
+		user4.setUsername("Theo");
+		user4.setLogin("loginTheo");
+		user4.setAccountType(AccountType.ROLE_ADMIN);
+		user4.setPassword(passwordEncoder.encode("tttt"));
+		userService.create(user4);
 
 		// Creation playlists
 		Playlist playlist1 = new Playlist();
@@ -254,9 +294,9 @@ class ProjetMusicBootApplicationTests {
 		playlist1.setUser(user1);
 
 		Set<Music> musPla = new HashSet<Music>();
-		musPla.add(musicSebB);
+		musPla.add(colossus);
 		musPla.add(lightBearer);
-		musPla.add(mus2);
+		musPla.add(partVII);
 		playlist1.setMusics(musPla);
 		playlistService.save(playlist1);
 
