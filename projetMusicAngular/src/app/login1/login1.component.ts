@@ -41,7 +41,7 @@ export class Login1Component implements OnInit {
         } else {
           sessionStorage.setItem('role', 'admin');
         }
-        this.router.navigate(['/home']);
+        this.router.navigate(['/user']);
       },
       (error) => {
         this.message = 'Authentication error';

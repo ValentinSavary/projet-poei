@@ -73,6 +73,10 @@ export class AlbumComponent implements OnInit {
     });
   }
 
+  get logged(): boolean {
+    return !!sessionStorage.getItem('token') ? true : false;
+  }
+
   filtre(): Album[] {
     return this.albums.filter((album) => {
       if (album.name != undefined) {

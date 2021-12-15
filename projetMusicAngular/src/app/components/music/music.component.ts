@@ -114,6 +114,10 @@ export class MusicComponent implements OnInit {
     });
   }
 
+  get logged(): boolean {
+    return !!sessionStorage.getItem('token') ? true : false;
+  }
+
   admin() {
     if (sessionStorage.getItem('role') === 'admin') {
       this.isAdmin = true;

@@ -15,7 +15,7 @@
         <tr>
           <th>Name :</th>
           <th>Country :</th>
-          <th>Delete :</th>
+          <th *ngIf="logged">Delete :</th>
         </tr>
       </thead>
       <tbody>
@@ -29,7 +29,7 @@
             >
           </td>
           <td>{{ artist.country }}</td>
-          <td>
+          <td *ngIf="logged">
             <button (click)="delete(artist.id)" class="btn btn-outline-danger">
               Delete
             </button>
@@ -38,6 +38,7 @@
       </tbody>
     </table>
     <a
+      *ngIf="logged"
       [routerLink]="['/artist', 'form']"
       routerLinkActive="active"
       class="btn btn-outline-primary"

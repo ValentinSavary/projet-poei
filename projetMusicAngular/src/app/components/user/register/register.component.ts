@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       ]),
       login: new FormControl('', Validators.required, this.checkLogin()),
       accountType: new FormControl(''),
-      passwordGroup: new FormGroup(
+      passwordGroup: new FormControl(
         {
           password: new FormControl('', [
             Validators.required,

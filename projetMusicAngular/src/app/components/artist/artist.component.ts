@@ -48,6 +48,10 @@ export class ArtistComponent implements OnInit, OnChanges {
     });
   }
 
+  get logged(): boolean {
+    return !!sessionStorage.getItem('token') ? true : false;
+  }
+
   filtre(): Artist[] {
     return this.artists.filter((artist) => {
       if (artist.name != undefined) {
